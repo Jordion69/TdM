@@ -1,4 +1,46 @@
-mat-sidenav-container, mat-sidenav-content, mat-sidenav {
-  height: 100%;
+
+
+img {
+
+  height: 100px;
+  width: auto;
+}
+
+.header_change {
+  background-color: transparent !important;
+}
+
+// .bg-dark {
+//   background-color: transparent !important;
+// }
+
+ul li {
+  font-size: 25px;
+  color: red;
+  font-weight: 900;
+}
+
+ul li a {
+  color: red;
+  font-weight: 800;
+}
+
+@media (max-width: 1200px) {
+  img {
+    height: 50px;
+  }
+
+  ul li {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 1500px) {
+  img {
+    height: 75px;
+  }
+  ul li {
+    font-size: 18px;
+  }
 }
 

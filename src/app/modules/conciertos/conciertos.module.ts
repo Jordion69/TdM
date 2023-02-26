@@ -12,7 +12,6 @@ import { ConciertosRoutingModule} from './conciertos-routing.module'
   imports: [
     ConciertosRoutingModule,
     CommonModule
-
   ]
 })
 export class ConciertosModule { }

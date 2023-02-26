@@ -1,5 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
 // @import "~bootstrap-icons/font/bootstrap-icons.css";
 
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Creepster&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200;1,300;1,400&family=Roboto:wght@100&family=Share+Tech+Mono&display=swap');
+
+
 html, body { height: 100%; margin: 0; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+// :root {
+//   $ff-title: 'Creepster', cursive;
+//   $ff-headline:'Kanit', sans-serif;
+// }
+
+$headings-font-family: 'Kanit', sans-serif;
+$display-font-family: 'Creepster', cursive;
+$primary: #151417;
+$secondary: white;
+$danger: hsl(330, 100%, 61%);
+
+$theme-colors: (
+  "primary":    $primary,
+  "secondary":  $secondary,
+
+);
+
+$custom-color: (
+  "custom-color": #900
+);
+
+
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+

@@ -7,12 +7,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TooltipsComponent } from './shared/components/tooltips/tooltips.component';
+import { ConciertosModule } from './modules/conciertos/conciertos.module';
+import { PagenotfoundComponent } from './modules/pagenotfound/page/pagenotfound.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     TooltipsComponent,
+    PagenotfoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -20,7 +23,8 @@ import { TooltipsComponent } from './shared/components/tooltips/tooltips.compone
     BrowserAnimationsModule,
     CoreModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ConciertosModule
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

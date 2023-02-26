@@ -1,27 +1,43 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-
-const conciertosModule = () => import('./modules/conciertos/conciertos.module')
-.then((m) => m.ConciertosModule);
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { PagenotfoundComponent } from './modules/pagenotfound/page/pagenotfound.component';
 
 const routes: Routes = [
-  // {
-  //   path: 'conciertos',
-  //   redirectTo: 'conciertos',
-  //   pathMatch: 'full',
-  // },
-  // {
-  //   path: '',
-  //   children: [
-  //     {path: 'conciertos', loadChildren: conciertosModule}
+  { path: '', redirectTo: '/home', pathMatch: 'full'},
 
-  //   ]
-  // }
-  { path: 'conciertos', loadChildren: () => import('./modules/conciertos/conciertos.module').then( m => m.ConciertosModule) }
+  { path: 'conciertos',
+    loadChildren: () => import('./modules/conciertos/conciertos.module')
+    .then( m => m.ConciertosModule)
+  },
+  { path: 'contacto',
+  loadChildren: () => import('./modules/contacto/contacto.module')
+  .then( m => m.ContactoModule)
+},
+  { path: 'noticias',
+    loadChildren: () => import('./modules/noticias/noticias.module')
+    .then( m => m.NoticiasModule)
+  },
+  { path: 'garitos',
+    loadChildren: () => import('./modules/garitos/garitos.module')
+    .then( m => m.GaritosModule)
+  },
+  { path: 'home',
+    loadChildren: () => import('./modules/home/home.module')
+    .then( m => m.HomeModule)
+  },
+  { path: 'sobre-nosotros',
+  loadChildren: () => import('./modules/sobre-nosotros/sobre-nosotros.module')
+  .then( m => m.SobreNosotrosModule)
+  },
+  { path: '**', component: PagenotfoundComponent}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    enableTracing: true,
+    preloadingStrategy: PreloadAllModules
+  })],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }
