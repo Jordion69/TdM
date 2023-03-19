@@ -1,0 +1,19 @@
+.carousel-control-prev-icon {
+  color: black;
+  background-color: rgba(0,0,0,.6);
+ }
+ .carousel-control-next-icon {
+  background-color: rgba(0,0,0,.6);
+ }
+
+ .carousel-item img {
+  max-height: 70vh;
+ }
+
+
+ @media (max-width: 768px) {
+
+  .carousel-item img {
+    max-height: 35vh;
+  }
+ }
