@@ -1,0 +1,40 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xl-4 col-lg-6 col-sm-6" *ngFor="let garito of garitos">
+      <div class="card mt-5" >
+        <img class="card-img-top img-fluid" src="{{garito.src}}" alt="">
+        <div class="card-body">
+          <h5 class="card-title">{{garito.title}}</h5>
+          <p class="card-text">Calle de la agricultura 25</p>
+          <p class="card-text">Granada 08033</p>
+          <div class="row">
+            <ul class="d-flex flex-row flex-wrap list-unstyled col-4 col-lg-3 col-xl-3 justify-content-between">
+              <li class="hover-overlay hover-zoom">
+                <a href="#">
+                  <span class="bi bi-facebook"></span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="bi bi-instagram"></span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="bi bi-geo-alt-fill"></span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+

@@ -10,8 +10,9 @@ import { filter, map } from 'rxjs';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit, AfterViewInit {
+  url: any;
   constructor(private readonly route: ActivatedRoute, private router: Router) {
-
+    console.log(this.router.url)
   }
   ngAfterViewInit(): void {
 
@@ -19,18 +20,18 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
 
   ngOnInit(): void {
-    this.router.events.pipe(filter ((e): e is NavigationEnd => e instanceof NavigationEnd),
-    map(e => {
-      console.log("E --->", e);
-
-    }));
 
 
   }
 
+
+
+
+
   public onToggleSidenav = () => {};
 
   header_variable = true;
+
   @HostListener("document:scroll")
   scrollfunction() {
     if(document.body.scrollTop > 0 || document.documentElement.scrollTop > 0) {

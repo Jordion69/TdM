@@ -1,0 +1,36 @@
+.h-search-form {
+  width: 100%;
+  position: relative;
+}
+.h-search-form input {
+  width: 100%;
+  padding: 0 30px;
+  border-radius: 50px;
+  border: 2px solid;
+  font-size: 16px;
+  text-transform: capitalize;
+  position: relative;
+  color: #333;
+  height: 70px;
+}
+
+.h-search-form button {
+  position: absolute;
+  right: 6px;
+  height: 60px;
+  border: none;
+  color: #fff;
+  background: #5f3afc;
+  top: 5px;
+  border-radius: 50px;
+  width: 100px;
+}
+@media (max-width: 768px) {
+  .h-search-form input {
+    height: 50px;
+  }
+  .h-search-form button {
+    height: 40px;
+    width: 80px;
+  }
+}
