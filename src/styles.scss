@@ -19,14 +19,18 @@ $secondary: purple;
 $danger: hsl(330, 100%, 61%);
 
 $theme-colors: (
-  "primary":    $primary, 
+  "primary":    $primary,
   "secondary":  $secondary,
 
 );
 
+$font-size-base: 0.875rem;
+$lead-font-size:              $font-size-base * 1.25;
+
 $custom-color: (
   "custom-color": #900
 );
+
 
 
 @import "../node_modules/bootstrap/scss/bootstrap.scss";

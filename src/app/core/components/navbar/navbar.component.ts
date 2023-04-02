@@ -32,12 +32,12 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   header_variable = true;
 
-  @HostListener("document:scroll")
-  scrollfunction() {
-    if(document.body.scrollTop > 0 || document.documentElement.scrollTop > 0) {
-      this.header_variable = false;
-    } else {
-      this.header_variable = true;
-    }
-  }
+  // @HostListener("document:scroll")
+  // scrollfunction() {
+  //   if(document.body.scrollTop > 0 || document.documentElement.scrollTop > 0) {
+  //     this.header_variable = false;
+  //   } else {
+  //     this.header_variable = true;
+  //   }
+  // }
 }
