@@ -7,6 +7,7 @@
  }
 
  .carousel-item img {
+  height: 60vh;
   max-height: 70vh;
  }
 
@@ -14,6 +15,23 @@
  @media (max-width: 768px) {
 
   .carousel-item img {
+    height: 40vh;
     max-height: 35vh;
+  }
+ }
+
+ @media (max-width: 520px) {
+
+  .carousel-item img {
+    height: 30vh;
+    max-height: 30vh;
+  }
+ }
+
+ @media (max-width: 400px) {
+
+  .carousel-item img {
+    height: 25vh;
+    max-height: 25vh;
   }
  }

@@ -4,6 +4,17 @@
     <img class="img-fluid  col-12 h-100 h-lg-auto p-0"  src="../../../../assets/img/289702748_10159868988994904_9180178091870686296_n.jpg" alt="">
   </div>
 </section>
+<section class="news">
+  <div class="container-fluid color-overlay d-flex flex-column justify-content-center align-items-center">
+    <app-title [nombre]="'noticias'"></app-title>
+    <app-slider
+        [img1]="'../../../../assets/img/news1.jpg'"
+        [img2]="'../../../../assets/img/news2.jpg'"
+        [img3]="'../../../../assets/img/news3.jpg'"
+        ></app-slider>
+  </div>
+</section>
+
 <section class=" conciertos">
       <div class="container-fluid color-overlay d-flex flex-column justify-content-center align-items-center">
         <!-- <h1 class="text-danger display-1 py-1 py-lg-3 py-xl-5">Conciertos</h1> -->
@@ -13,35 +24,24 @@
         [img2]="'../../../../assets/img/guns.jpg'"
         [img3]="'../../../../assets/img/dl.jpg'"
         ></app-slider>
-
     </div>
 </section>
-<section class="news">
-  <div class="container-fluid color-overlay d-flex flex-column justify-content-center align-items-center">
-    <app-title [nombre]="'noticias'"></app-title>
-    <app-slider
-        [img1]="'../../../../assets/img/iron-maiden-2022-A3-web.jpg'"
-        [img2]="'../../../../assets/img/guns.jpg'"
-        [img3]="'../../../../assets/img/dl.jpg'"
-        ></app-slider>
 
-  </div>
-</section>
+
 <section class="clubs">
   <div class="container-fluid color-overlay d-flex flex-column justify-content-center align-items-center">
     <app-title [nombre]="'garitos'"></app-title>
     <app-slider
-        [img1]="'../../../../assets/img/iron-maiden-2022-A3-web.jpg'"
-        [img2]="'../../../../assets/img/guns.jpg'"
-        [img3]="'../../../../assets/img/dl.jpg'"
+        [img1]="'../../../../assets/img/Excalibur_mallorca1_000134.jpg'"
+        [img2]="'../../../../assets/img/Excalibur_mallorca1_000134.jpg'"
+        [img3]="'../../../../assets/img/Excalibur_mallorca1_000134.jpg'"
         [title1]="'Hey bro'"
         [title2]="''"
         [title3]="''"
-        [text1]="''"
+        [text1]="'Barcelona'"
         [text2]="''"
         [text3]="''"
         ></app-slider>
-
   </div>
 
 </section>

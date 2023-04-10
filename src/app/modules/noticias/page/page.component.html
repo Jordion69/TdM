@@ -1,6 +1,26 @@
-<section class="search-bar">
+<section class="news">
+
+
+<article class="search-bar">
   <app-search></app-search>
-</section>
-<section class="container-fluid">
+</article>
+<article class="main-news">
+  <app-heading
+  [heading]="'NOTICIAS DEL DIA'"
+  ></app-heading>
+  <app-main></app-main>
+</article>
+
+<article class="container-fluid">
+  <app-heading
+  [heading]="'ÚLTIMAS NOTICIAS'"
+  ></app-heading>
   <app-card></app-card>
+</article>
+<article class="container-fluid">
+  <app-heading
+  [heading]="'NOTICIAS'"
+  ></app-heading>
+  <app-card-news></app-card-news>
+</article>
 </section>

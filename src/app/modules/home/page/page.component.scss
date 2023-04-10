@@ -1,6 +1,6 @@
 
 .main-img img {
-  max-height: 100vh;
+  max-height: 90vh;
 }
 
  .conciertos {
@@ -51,6 +51,44 @@
   }
   .clubs {
     min-height: 50vh;
+  }
+  // h1 {
+  //   font-size: calc(1.525rem + 3.3vw);
+  // }
+  // .carousel-item img {
+  //   max-height: 35vh;
+  // }
+ }
+
+ @media (max-width: 500px) {
+  .conciertos {
+    min-height: 40vh;
+  }
+
+  .news {
+    min-height: 40vh;
+  }
+  .clubs {
+    min-height: 40vh;
+  }
+  // h1 {
+  //   font-size: calc(1.525rem + 3.3vw);
+  // }
+  // .carousel-item img {
+  //   max-height: 35vh;
+  // }
+ }
+
+ @media (max-width: 500px) {
+  .conciertos {
+    min-height: 33vh;
+  }
+
+  .news {
+    min-height: 33vh;
+  }
+  .clubs {
+    min-height: 33vh;
   }
   // h1 {
   //   font-size: calc(1.525rem + 3.3vw);
