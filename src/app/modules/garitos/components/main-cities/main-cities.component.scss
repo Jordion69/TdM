@@ -1,0 +1,33 @@
+/* Carrusel */
+.carousel {
+  min-width: 1500px;
+}
+
+/* Tarjetas */
+.carousel-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+}
+
+@media (max-width: 1199.98px) {
+  .carousel {
+    min-width: 100%;
+  }
+  .carousel-item {
+    flex-basis: calc(100% / 3);
+  }
+}
+
+@media (max-width: 991.98px) {
+  .carousel-item {
+    flex-basis: calc(100% / 2);
+  }
+}
+
+@media (max-width: 767.98px) {
+  .carousel-item {
+    flex-basis: 100%;
+  }
+}
