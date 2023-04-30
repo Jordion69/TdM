@@ -1,33 +1,14 @@
-/* Carrusel */
-.carousel {
-  min-width: 1500px;
+.containers {
+  width: 90%;
+  margin: 0 auto;
 }
-
-/* Tarjetas */
-.carousel-item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 300px;
+.cities {
+  transition: all .3 ease;
 }
-
-@media (max-width: 1199.98px) {
-  .carousel {
-    min-width: 100%;
-  }
-  .carousel-item {
-    flex-basis: calc(100% / 3);
-  }
+.cities img {
+  max-height: 200px;
+  height: auto;
 }
-
-@media (max-width: 991.98px) {
-  .carousel-item {
-    flex-basis: calc(100% / 2);
-  }
-}
-
-@media (max-width: 767.98px) {
-  .carousel-item {
-    flex-basis: 100%;
-  }
+.cities img:hover {
+  box-shadow: 0 0 10px 1px #dbdbdb;
 }

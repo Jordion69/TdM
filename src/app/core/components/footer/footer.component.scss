@@ -55,7 +55,7 @@
 //   }
 // }
 
-a{
+a {
   color:white;
 }
 .shfooter .collapse {
@@ -90,39 +90,7 @@ a{
 
 }
 
-.resize {
-  text-align: center;
-}
-.resize {
-  margin-top: 3rem;
-  font-size: 1.25rem;
-}
-/*RESIZESCREEN ANIMATION*/
-.fa-angle-double-right {
-  animation: rightanime 1s linear infinite;
-}
 
-.fa-angle-double-left {
-  animation: leftanime 1s linear infinite;
-}
-@keyframes rightanime {
-  50% {
-    transform: translateX(10px);
-    opacity: 0.5;
-  }
-  100% {
-    transform: translateX(10px);
-    opacity: 0;
-  }
-}
-@keyframes leftanime {
-  50% {
-    transform: translateX(-10px);
-    opacity: 0.5;
-  }
-  100% {
-    transform: translateX(-10px);
-    opacity: 0;
-  }
-}
-
+ .logo img {
+  max-width: 250px;
+ }
