@@ -1,104 +1,21 @@
 
 .main-img img {
   max-height: 90vh;
+  width: 100vw;
+  background-size: cover;
 }
-
- .conciertos {
-  background-image: url("../../../../assets/img/concierto.jpg");
-  background-size: cover;
-  min-height: 60vh;
-  color: white;
-  text-shadow: 2px 2px 2px rgba(0,0,0,.2);
- }
-
- .news {
-  background-image: url("../../../../assets/img/noticias2.jpg");
-  background-size: cover;
-  min-height: 80vh;
-  color: white;
-  text-shadow: 2px 2px 2px rgba(0,0,0,.2);
- }
-
- .clubs {
-  background-image: url("../../../../assets/img/garito.JPG");
-  background-size: cover;
-  min-height: 90vh;
-  color: white;
-  text-shadow: 2px 2px 2px rgba(0,0,0,.2);
- }
-
-
-
-//  .carousel-control-prev-icon {
-//   color: black;
-//   background-color: rgba(0,0,0,.6);
-//  }
-//  .carousel-control-next-icon {
-//   background-color: rgba(0,0,0,.6);
-//  }
-
-//  .carousel-item img {
-//   max-height: 70vh;
-//  }
-
- @media (max-width: 768px) {
-  .conciertos {
-    min-height: 50vh;
-  }
-
-  .news {
-    min-height: 50vh;
-  }
-  .clubs {
-    min-height: 50vh;
-  }
-  // h1 {
-  //   font-size: calc(1.525rem + 3.3vw);
-  // }
-  // .carousel-item img {
-  //   max-height: 35vh;
-  // }
- }
-
- @media (max-width: 500px) {
-  .conciertos {
-    min-height: 40vh;
-  }
-
-  .news {
-    min-height: 40vh;
-  }
-  .clubs {
-    min-height: 40vh;
-  }
-  // h1 {
-  //   font-size: calc(1.525rem + 3.3vw);
-  // }
-  // .carousel-item img {
-  //   max-height: 35vh;
-  // }
- }
-
- @media (max-width: 500px) {
-  .conciertos {
-    min-height: 33vh;
-  }
-
-  .news {
-    min-height: 33vh;
-  }
-  .clubs {
-    min-height: 33vh;
-  }
-  // h1 {
-  //   font-size: calc(1.525rem + 3.3vw);
-  // }
-  // .carousel-item img {
-  //   max-height: 35vh;
-  // }
- }
-
-
+.news {
+  background-color: white;
+}
+.conciertos {
+  background-color: black;
+}
+.clubs {
+  background-color: white;
+}
+.container-fluid {
+  padding: 0;
+}
 
 
 

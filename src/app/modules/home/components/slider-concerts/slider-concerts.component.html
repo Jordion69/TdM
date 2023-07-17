@@ -4,28 +4,25 @@
     <div class="swiper-container tranding-slider" >
       <div class="swiper-wrapper">
         <swiper
-          [slidesPerView]="'auto'"
-          [spaceBetween]="100"
-          [grabCursor]="true"
-          [loop]="true"
-          [pagination]="{ clickable: true }"
+        [config]="swiperConfig"
+        [pagination]="{ clickable: true }"
           >
           <ng-template
             class="swiper-slide tranding-slide"
             swiperSlide
-        *ngFor="let garito of garitos"
+            *ngFor="let concierto of conciertos"
             >
             <div class="tranding-slide-img">
-              <img [src]="garito.src" alt="">
+              <img [src]="concierto.src" alt="">
             </div>
             <div class="tranding-slide-content">
               <h1 class="date-place">20/5</h1>
               <div class="tranding-slide-content-bottom">
                 <h2 class="food-name">
-                  {{garito.title}}
+                  {{concierto.banda}}
                 </h2>
                 <h3 class="food-rating">
-                  <span>{{garito.place}}</span>
+                  <span>{{concierto.ciudad}}</span>
                 </h3>
               </div>
             </div>
@@ -35,7 +32,3 @@
     </div>
   </div>
 </section>
-
-
-
-

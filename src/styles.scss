@@ -4,8 +4,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Creepster&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200;1,300;1,400&family=Roboto:wght@100&family=Share+Tech+Mono&display=swap');
 
 
-html, body { height: 100%; margin: 0; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+// html, body {  margin: 0; }
+// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 // :root {
 //   $ff-title: 'Creepster', cursive;
@@ -34,4 +34,6 @@ $custom-color: (
 
 
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+
 

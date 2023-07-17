@@ -1,23 +1,30 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { PageComponent } from './page/page.component';
 import { TitleComponent } from './components/title/title.component';
-import { SliderComponent } from './components/slider/slider.component';
 import { HeadlineComponent } from './components/headline/headline.component';
+import { SwiperModule } from 'swiper/angular';
+import { SliderNewsComponent } from './components/slider-news/slider-news.component';
+import { SliderConcertsComponent } from './components/slider-concerts/slider-concerts.component';
+import { SliderClubsComponent } from './components/slider-clubs/slider-clubs.component';
 
 
 @NgModule({
   declarations: [
     PageComponent,
     TitleComponent,
-    SliderComponent,
-    HeadlineComponent
+    HeadlineComponent,
+    SliderNewsComponent,
+    SliderConcertsComponent,
+    SliderClubsComponent,
   ],
   imports: [
     CommonModule,
-    HomeRoutingModule
-  ]
+    HomeRoutingModule,
+    SwiperModule
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class HomeModule { }

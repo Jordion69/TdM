@@ -6,13 +6,9 @@ img {
   background-color: rgba(0,0,0,.1);
 }
 
-
-
-
-
-
-
-
+.header_change {
+  background-color: transparent !important;
+}
 
 ul li {
   font-size: 25px;
@@ -25,24 +21,31 @@ ul li a {
   font-weight: 800;
 }
 
-
+@media  only screen and (max-width: 1500px) {
+  ul li {
+    font-size: 15px;
+  }
+  img {
+    height: 60px;
+  }
+}
 
 @media  only screen and (max-width: 1200px) {
   ul li {
     font-size: 10px;
   }
-}
-
-@media only screen and (max-width: 1500px) {
-
-  ul li {
-    font-size: 18px;
+  .header_change {
+    background-color: black !important;
+  }
+  .navbar-toggler {
+    border: 1px solid white;
   }
 }
 
-a.nav-link.active {
-  background: green;
-  color: rgba(255, 255, 255, 0.9);
-}
+
+// a.nav-link.active {
+//   background: green;
+//   color: rgba(255, 255, 255, 0.9);
+// }
 
 
