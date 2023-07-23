@@ -1,7 +1,7 @@
 
 <section class="container-fluid image">
   <div class="row main-img">
-    <img class="img-fluid  col-12 h-100 h-lg-auto p-0"  src="../../../../assets/img/289702748_10159868988994904_9180178091870686296_n.jpg" alt="">
+    <img class=""  src="/assets/img/289702748_10159868988994904_9180178091870686296_n.jpg" alt="">
   </div>
 </section>
 
@@ -27,18 +27,18 @@
 <section class="conciertos">
   <div class="container-fluid color-overlay d-flex flex-column justify-content-center align-items-center">
     <app-title [nombre]="'próximos conciertos'"></app-title>
-    <div>
-      <app-slider-concerts></app-slider-concerts>
-    </div>
+  </div>
+  <div>
+    <app-slider-concerts></app-slider-concerts>
   </div>
 </section>
 
 <section class="clubs">
   <div class="container-fluid color-overlay d-flex flex-column justify-content-center align-items-center">
     <app-title [nombre]="'garitos'"></app-title>
-    <div *ngFor="let garito of garitos">
+  </div>
+  <div>
       <app-slider-clubs></app-slider-clubs>
-    </div>
   </div>
 </section>
 

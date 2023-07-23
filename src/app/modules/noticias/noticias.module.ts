@@ -8,20 +8,22 @@ import { SearchComponent } from './components/search/search.component';
 import { MainComponent } from './components/main/main.component';
 import { HeadingComponent } from './components/heading/heading.component';
 import { CardNewsComponent } from './components/card-news/card-news.component';
+import { SharedModule } from "../../shared/shared.module";
 
 
 @NgModule({
-  declarations: [
-    PageComponent,
-    CardComponent,
-    SearchComponent,
-    MainComponent,
-    HeadingComponent,
-    CardNewsComponent
-  ],
-  imports: [
-    CommonModule,
-    NoticiasRoutingModule
-  ]
+    declarations: [
+        PageComponent,
+        CardComponent,
+        SearchComponent,
+        MainComponent,
+        HeadingComponent,
+        CardNewsComponent
+    ],
+    imports: [
+        CommonModule,
+        NoticiasRoutingModule,
+        SharedModule
+    ]
 })
 export class NoticiasModule { }

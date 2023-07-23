@@ -17,5 +17,14 @@
   padding: 0;
 }
 
+@media (max-width: 1200px) {
+  .main-img img {
+    width: 100vw;
+    height: auto;
+    padding: 0;
+    margin: 0;
+  }
+}
+
 
 

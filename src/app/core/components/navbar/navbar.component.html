@@ -1,98 +1,108 @@
-<!-- <nav   class="navbar navbar-expand-xl navbar-dark bg-dark fixed-top active"> -->
+
 <nav [class.header_change]="header_variable" class="navbar navbar-expand-xl navbar-dark bg-dark fixed-top active">
   <div class="container-fluid">
-  <!-- icono o nombre -->
-
-  <a class="navbar-brand" routerLink="/home">
-    <img  class="d-lg mx-auto d-block" src="./assets/img/logotdm.png" alt="">
-  </a>
-
-  <!-- boton del menu -->
-
-  <button
-  class="navbar-toggler"
-  type="button"
-  data-bs-toggle="collapse"
-  data-bs-target="#navbarSupportedContent"
-  aria-controls="navbarSupportedContent"
-  aria-expanded="false"
-  aria-label="Toggle navigation"
-  >
+    <a class="navbar-brand" routerLink="/home">
+      <img  class="d-lg mx-auto d-block" src="./assets/img/logotdm.png" alt="">
+    </a>
+    <button
+    class="navbar-toggler"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
-  </button>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active" role="button"  routerLink="/noticias" routerLinkActive="active">Noticias</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/garitos">Garitos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/conciertos">Conciertos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/contacto">Contacto</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/sobre-nosotros">Sobre nosotros</a>
+        </li>
+      </ul>
 
-    <!-- elementos del menu colapsable -->
+      <hr class="d-md-none text-white-50">
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav me-auto">
-      <li class="nav-item">
-        <a class="nav-link active" role="button"  routerLink="/noticias" routerLinkActive="active">Noticias</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/garitos">Garitos</a>
-      </li>
-      <!-- <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle"
-        href="#" id="navbarDropdown"
-        role="button"
-        data-bs-toggle="dropdown">Conciertos</a>
-        <ul class="dropdown-menu bg-secondary">
-          <li>
-            <a class="dropdown-item" routerLink="/conciertos">Noticias</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#">Garitos</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#">Conciertos</a>
-          </li>
-        </ul>
-      </li> -->
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/conciertos">Conciertos</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/contacto">Contacto</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/sobre-nosotros">Sobre nosotros</a>
-      </li>
-    </ul>
 
-    <hr class="d-md-none text-white-50">
 
-     <!-- enlaces redes sociales -->
+      <ul class="navbar-nav  flex-row flex-wrap text-light">
 
-    <ul class="navbar-nav  flex-row flex-wrap text-light">
+        <li class="nav-item col-6 col-md-auto p-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Facebook">
+          <a href="https://www.facebook.com/groups/1012326002987671">
+            <i class="bi bi-facebook"></i>
+          </a>
+          <small class="d-md-none ms-2">Facebook</small>
+        </li>
+        <li class="nav-item col-6 col-md-auto p-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Instagram">
+          <a href="https://www.instagram.com/eltemplodelmetall/">
+            <i class="bi bi-instagram"></i>
+          </a>
+          <small class="d-md-none ms-2">Instagram</small>
+        </li>
+        <li class="nav-item col-6 col-md-auto p-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Radios">
+          <a href="">
+            <i class="bi bi-broadcast-pin"></i>
+          </a>
+          <small class="d-md-none ms-2">Radios</small>
+        </li>
+        <li class="nav-item col-6 col-md-auto p-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Login">
+          <a href="">
+            <i class="bi bi-person-circle"></i>
+          </a>
+          <small class="d-md-none ms-2">Log in</small>
+        </li>
+      </ul>
+      <!-- <div class="search"> -->
+        <!-- <li class="nav-item col-6 col-md-auto p-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Search"> -->
+          <!-- <span class="icon">
+            <i class="bi bi-search searchBtn"></i>
+            <i class="bi bi-x closeBtn"></i>
+          </span> -->
+        <!-- <small class="d-md-none ms-2">Search</small> -->
+      <!-- </li> -->
+      <!-- </div>
+      <div class="searchBox">
+        <input type="text" placeholder="Que estás buscando?">
+      </div> -->
 
-      <li class="nav-item col-6 col-md-auto p-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Facebook">
-        <i class="bi bi-facebook"></i>
-        <small class="d-md-none ms-2">Facebook</small>
-      </li>
-      <li class="nav-item col-6 col-md-auto p-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Instagram">
-          <i class="bi bi-instagram"></i>
-        <small class="d-md-none ms-2">Instagram</small>
-      </li>
-      <li class="nav-item col-6 col-md-auto p-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Radios">
-        <i class="bi bi-broadcast-pin"></i>
-        <small class="d-md-none ms-2">Radios</small>
-      </li>
-      <li class="nav-item col-6 col-md-auto p-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Login">
-        <i class="bi bi-person-circle"></i>
-        <small class="d-md-none ms-2">Log in</small>
-      </li>
-    </ul>
-
-   <!--boton Informacion -->
-
-    <form class="d-flex">
-
-      <button class="btn btn-outline-warning d-none d-md-inline-block " type="submit">Informacion</button>
-    </form>
+      <div class="search" (click)="toggleSearch()">
+        <span class="icon">
+          <i *ngIf="!isSearchExpanded" class="bi bi-search searchBtn"></i>
+          <i *ngIf="isSearchExpanded" class="bi bi-x closeBtn"></i>
+        </span>
+      </div>
+    </div>
+    <div class="searchBox" [ngClass]="{'active': isSearchExpanded}">
+      <input class="form-control" type="search" placeholder="Buscar" aria-label="Search" [class.expanded]="isSearchExpanded"
+        (focus)="expandSearch()" (blur)="collapseSearch()" #searchInput>
+      <div class="closeBtn" [ngClass]="{'active': isSearchExpanded}" (click)="collapseSearch()">&#10005;</div>
+    </div>
+    <!-- <div class="menuToggle" (click)="toggleMenu()">
+      <i class="bi bi-list"></i>
+    </div> -->
   </div>
-  </div>
+
+  <!--
+      <form class="d-flex">
+
+        <button class="btn btn-outline-warning d-none d-md-inline-block " type="submit">Informacion</button>
+      </form> -->
 </nav>
 
-<!-- <router-outlet></router-outlet> -->
+
+
 
 
