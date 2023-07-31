@@ -8,6 +8,10 @@
  .card-img-overlay h5 {
   font-size: 3em;
   font-weight: bolder;
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  color: white;
  }
 
  .card-img-overlay h6 {
@@ -15,6 +19,16 @@
   font-weight: bolder;
   display: flex;
   text-align: end;
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  color: white;
+ }
+ .card-img-overlay p {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  color: white;
  }
 
 

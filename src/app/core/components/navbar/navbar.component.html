@@ -64,42 +64,16 @@
           </a>
           <small class="d-md-none ms-2">Log in</small>
         </li>
+        <li class="nav-item col-6 col-md-auto p-3" data-bs-toggle="tooltip" data-bs-placement="top" title="XUKLIS">
+          <a href="">
+            <!-- <i class="bi bi-person-circle"></i> -->
+            <img src="../../../../assets/img/rxxjfif.jfif" alt="">
+          </a>
+          <small class="d-md-none ms-2">Log in</small>
+        </li>
       </ul>
-      <!-- <div class="search"> -->
-        <!-- <li class="nav-item col-6 col-md-auto p-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Search"> -->
-          <!-- <span class="icon">
-            <i class="bi bi-search searchBtn"></i>
-            <i class="bi bi-x closeBtn"></i>
-          </span> -->
-        <!-- <small class="d-md-none ms-2">Search</small> -->
-      <!-- </li> -->
-      <!-- </div>
-      <div class="searchBox">
-        <input type="text" placeholder="Que estás buscando?">
-      </div> -->
-
-      <div class="search" (click)="toggleSearch()">
-        <span class="icon">
-          <i *ngIf="!isSearchExpanded" class="bi bi-search searchBtn"></i>
-          <i *ngIf="isSearchExpanded" class="bi bi-x closeBtn"></i>
-        </span>
-      </div>
-    </div>
-    <div class="searchBox" [ngClass]="{'active': isSearchExpanded}">
-      <input class="form-control" type="search" placeholder="Buscar" aria-label="Search" [class.expanded]="isSearchExpanded"
-        (focus)="expandSearch()" (blur)="collapseSearch()" #searchInput>
-      <div class="closeBtn" [ngClass]="{'active': isSearchExpanded}" (click)="collapseSearch()">&#10005;</div>
-    </div>
-    <!-- <div class="menuToggle" (click)="toggleMenu()">
-      <i class="bi bi-list"></i>
-    </div> -->
   </div>
-
-  <!--
-      <form class="d-flex">
-
-        <button class="btn btn-outline-warning d-none d-md-inline-block " type="submit">Informacion</button>
-      </form> -->
+</div>
 </nav>
 
 

@@ -11,13 +11,10 @@ import { filter, map } from 'rxjs';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit, AfterViewInit {
-  isSearchExpanded = false;
-  isMenuOpen = false;
 
-  @ViewChild('searchInput') searchInput!: ElementRef;
 
   constructor(private readonly route: ActivatedRoute, private router: Router) {
-    console.log(this.router.url)
+    // console.log(this.router.url)
   }
 
   ngAfterViewInit(): void {
@@ -38,45 +35,4 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.header_variable = true;
     }
   }
-
-  @HostListener('document:click', ['$event'])
-  documentClick(event: Event): void {
-    const target = event.target as HTMLElement | null;
-    if (!target || !target.closest('.search')) {
-      // Si se hace clic fuera del campo de búsqueda, colapsar el campo.
-      this.collapseSearch();
-    }
-  }
-
-  toggleSearch(): void {
-    this.isSearchExpanded = !this.isSearchExpanded;
-    if (this.isSearchExpanded) {
-      setTimeout(() => this.setFocusOnSearch(), 0);
-    }
-  }
-
-  expandSearch(): void {
-    this.isSearchExpanded = true;
-    setTimeout(() => this.setFocusOnSearch(), 0);
-  }
-
-  collapseSearch(): void {
-    this.isSearchExpanded = false;
-  }
-
-  setFocusOnSearch(): void {
-    if (this.searchInput) {
-      this.searchInput.nativeElement.focus();
-    }
-  }
-
-  toggleMenu(): void {
-    this.isMenuOpen = !this.isMenuOpen;
-    if (this.isMenuOpen) {
-      // Lógica para mostrar el menú en pantallas pequeñas.
-    } else {
-      // Lógica para ocultar el menú en pantallas pequeñas.
-    }
-  }
 }
-

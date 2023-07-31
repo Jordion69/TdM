@@ -6,7 +6,7 @@
 .container {
   max-width:  124rem;
   padding: 0 1rem;
-  margin: 0 auto;
+  margin: 0 ;
 }
 #tranding {
   padding: 0;
@@ -48,8 +48,8 @@
 }
 
 .tranding-slide .tranding-slide-img img {
-  width: 30rem;
-  height: 35rem;
+  width: 100%;
+  height: auto;
   border-radius: 2rem;
   object-fit: cover;
 }
