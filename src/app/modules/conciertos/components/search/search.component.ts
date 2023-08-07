@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent {
+  isFixedHeader: boolean = false;
 
+  onScroll(event: Event) {
+    const target = event.target as HTMLElement;
+    this.isFixedHeader = target.scrollTop > 60;
+  }
 }

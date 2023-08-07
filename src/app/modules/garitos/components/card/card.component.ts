@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent {
+  p: number = 1;
   garitos: Array<any> = [
     { id: 1, src: "../../../../../assets/img/w1.jpg", title: "Pub Cronos" },
     { id: 2, src: "../../../../../assets/img/w2.jpg", title: "Pub ZZTop" },

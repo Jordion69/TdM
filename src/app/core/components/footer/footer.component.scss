@@ -1,96 +1,38 @@
-// footer {
-//   background: #101010;
-//   padding: 85% 0;
-// }
 
-// .single-content {
-//   padding: 115px 0;
-//   text-align: center;
-// }
-// .single-box p {
-//   color: #fff;
-//   line-height: 1.9;
-// }
-// .single-box h3 {
-//   font-size: 16px;
-//   font-weight: 700;
-//   color: #fff;
-// }
-// .single-box .card-area i {
-//   color: #fff;
-//   font-size: 20px;
-//   margin-right: 10px;
-// }
-// .single-box ul {
-//   list-style: none;
-//   padding: 0;
-// }
-// .single-box ul li a {
-//   text-decoration: none;
-//   color: #fff;
-//   line-height: 2.5;
-//   font-weight: 100;
-// }
-// .single-box h2 {
-//   color: #fff;
-//   font-size: 20px;
-//   font-weight: 700;
-// }
-// #basic-addon2 {
-//   background: #fe1e4f;
-//   color: #fff;
-// }
-// .socials i {
-//   font-size: 18px;
-//   margin-right: 15px;
-// }
-// @media (max-width: 767px) {
-//   .single-box {
-//     margin-bottom: 50px;
-//   }
-// }
-// @media (min-width: 768px) and (max-width: 991px) {
-//   .single-box {
-//     margin-bottom: 50px;
-//   }
-// }
+
 
 a {
-  color:white;
+  color:red;
 }
-.shfooter .collapse {
-  display: inherit;
+.redesSociales {
+  max-height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-@media (max-width:767px) {
-  .shfooter ul {
-    margin-bottom: 0;
-  }
-
-  .shfooter .collapse {
-    display: none;
-  }
-
-  .shfooter .collapse.show {
-    display: block;
-  }
-
-  .shfooter .title .fa-angle-up,
-  .shfooter .title[aria-expanded=true] .fa-angle-down {
-    display: none;
-  }
-
-  .shfooter .title[aria-expanded=true] .fa-angle-up {
-    display: block;
-  }
-
-  .shfooter .navbar-toggler {
-    display: inline-block;
-    padding: 0;
-  }
-
+.lista {
+  min-width: 200px;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1rem;
 }
 
-
+.lista a {
+  text-decoration: none;
+  font-size: 28px;
+  transition: all .4s ease-in-out;
+}
+.lista A:hover {
+  color: white;
+}
  .logo img {
   max-width: 250px;
  }
+.xuklis {
+  max-height: 20vh;
+}
+.xuklis a img {
+  height: 100px;
+}
+
+

@@ -6,6 +6,7 @@ import { SearchComponent } from './components/search/search.component';
 import { CardComponent } from './components/card/card.component';
 import { MainCitiesComponent } from './components/main-cities/main-cities.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
   imports: [
     CommonModule,
     GaritosRoutingModule,
-    CarouselModule
+    CarouselModule,
+    NgxPaginationModule
   ]
 })
 export class GaritosModule { }
