@@ -1,100 +1,10 @@
-<!--
-  <div class="container">
-    <div *ngFor="let concierto of conciertos" class="row my-4 border border-4 rounded">
-      <div class="col-12 col-lg-2 bg-danger">
-        <ul class="d-flex align-items-center flex-lg-column list-unstyled ">
-          <li class="mb-auto p-2 bd-highlight"><h2><strong>{{concierto.dia}}</strong></h2></li>
-          <li class="mb-auto p-2 bd-highlight"><h5>{{concierto.mes}}</h5></li>
-          <li class="me-auto p-2 bd-highlight flex-lg-fill"><h5>2023</h5></li>
-          <li class="ms-auto mt-2  justify-content-sm-center"><a href="{{concierto.paginaEntradas}}"><button class="btn btn-secondary">Entradas</button></a></li>
-        </ul>
-      </div>
-      <div class="col-4 col-md-6 col-lg-4">
-        <img class="img img-fluid p-1" src="{{concierto.src}}" alt="">
-      </div>
-      <div class="col-8 col-md-6 col-lg-6 bg-warning "> -->
-        <!-- <ul class="d-flex  flex-column  justify-content-between list-unstyled">
-          <li class="mb-auto p-2 bd-highlight"><h2>{{concierto.banda}}</h2></li>
-          <li class="p-2 bd-highlight">{{concierto.bandaAux}}</li>
-          <li class="p-2 bd-highlight"><strong>{{concierto.ciudad}}</strong> | {{concierto.Lugar}}</li>
-        </ul> -->
-        <!-- <div class="d-flex flex-column align-items-start">
-          <div class="mb-auto"><h2>{{concierto.banda}}</h2></div>
-          <div class=""><h5>{{concierto.bandaAux}}</h5></div>
-          <div class=""><h5> {{concierto.Lugar}}</h5></div>
-          <div class=""><h2>{{concierto.ciudad}}</h2></div>
-        </div>
-      </div>
-    </div>
-  </div> -->
 
 
-  <!-- <div class="container-fluid bg-black">
-    <div *ngFor="let concierto of conciertos" class="row">
-      <div class="col-12 col-lg-8 offset-lg-2 bg-light">
-        <div class="row">
-          <div class="col-12 col-sm-4 col-lg-2 image bg-danger align-items-center">
-            <img class="img-fluid" src="{{concierto.src}}" alt="">
-          </div>
-        </div>
-        <h1>Conciertos</h1>
-      </div>
-    </div>
-  </div> -->
-
-  <!-- <div class="card">
-    <div *ngFor="let concierto of conciertos" class="d-flex flex-column d-xl-flex flex-xl-row row mt-2 border border-1">
-      <div class="col-xl-2"></div>
-      <div class="col-md-6 col-lg-4 col-xl-2">
-        <img class="img-fluid" src="{{concierto.src}}" alt="">
-      </div>
-
-        <div class="col-md-3 col-lg-2 col-xl-4 bandas">
-          <h3 class="card-title mt-2">{{concierto.banda}}</h3>
-          <h3 class="">{{concierto.bandaAux}}</h3>
-          <h3 class="">{{concierto.Lugar}}</h3>
-        </div>
-        <div class="col-md-3 col-lg-2 col-xl-2 bg-dark venta">
-          <h1 >25/03/2023</h1>
-          <h3 class="card-title mt-2"><strong>{{concierto.ciudad}}</strong></h3>
-          <button class="btn btn-secondary mt-2">Venta de entradas</button>
-        </div>
-
-
-      <div class="col-xl-2"></div>
-    </div>
-  </div> -->
-
-  <!-- <div class="conciertos-area">
-    <div class="container">
-      <div *ngFor="let concierto of conciertos" class="row d-flex">
-        <div class="col-sm-12 col-md-6 col-lg-4">
-          <div class="card">
-            <div class="img"><img src="{{concierto.src}}" alt=""></div>
-            <div class="date">
-              <h2>{{concierto.day}}</h2>
-              <h4>{{concierto.month}}</h4>
-            </div>
-            <div class="main-text">
-              <h2>{{concierto.banda}}</h2>
-              <h4>{{concierto.bandaAux}}</h4>
-              <h4>{{concierto.Lugar}}</h4>
-              <h2>{{concierto.ciudad}}</h2>
-            </div>
-            <div class="entradas">
-              <button class="btn btn-secondary">Entradas</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
-
-<div class="container-fluid">
+<div class="container-fluid gallery">
 <div class="row" >
-  <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6" *ngFor="let concierto of conciertos">
+  <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6" *ngFor="let concierto of conciertos">
     <div class="card mt-4" >
-        <div class="img"><img src="{{concierto.src}}" alt=""></div>
+        <div class="img"><img src="{{concierto.src}}" alt="" (click)="openModal(concierto.src)">></div>
         <div class="date">
           <h2>{{concierto.day}}</h2>
           <h4>{{concierto.month}}</h4>
@@ -113,6 +23,15 @@
   </div>
 </div>
 
+<div id="gallery-modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <img class="modal-img" [src]="modalImage" alt="Modal Image">
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
