@@ -16,25 +16,25 @@
         </div>
 
       </div>
-      <form action="" class="p-4 mt-5">
+      <form  [formGroup]="FormContacto" (ngSubmit)="EnviarEmail()" action="" class="p-4 mt-2">
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">Nombre</label>
-          <input type="nombre" class="form-control" id="exampleFormControlInput0" placeholder="Intorduce tu nombre ...">
+          <input type="nombre" formControlName="nombre" class="form-control" id="exampleFormControlInput0" placeholder="Intorduce tu nombre ...">
         </div>
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">Email</label>
-          <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Introduce email ...">
+          <input type="email" formControlName="email" class="form-control" id="exampleFormControlInput1" placeholder="Introduce email ...">
         </div>
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">Asunto</label>
-          <input type="asunto" class="form-control" id="exampleFormControlInput2" placeholder="Introduce asunto...">
+          <input type="asunto" formControlName="asunto" class="form-control" id="exampleFormControlInput2" placeholder="Introduce asunto...">
         </div>
         <div class="mb-3">
           <label for="exampleFormControlTextarea1" class="form-label">Mensaje</label>
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+          <textarea class="form-control" formControlName="mensaje" id="exampleFormControlTextarea1" rows="5"></textarea>
         </div>
         <div class="mb-3">
-          <button class="btn btn-warning">Enviar</button>
+          <button type="submit" class="btn btn-warning">Enviar</button>
         </div>
       </form>
     </div>
