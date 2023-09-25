@@ -1,12 +1,16 @@
 .containers {
   width: 90%;
   margin: 0 auto;
+
 }
 .cities {
-  transition: all .3 ease;
+  // display: flex; /* Para que las imágenes se muestren en una fila horizontal */
+  // justify-content: center; /* Centra las imágenes horizontalmente */
+  // gap: 10px; /* Agrega un espacio de 10 píxeles entre las imágenes */
+  transition: all 0.3s ease;
 }
 .cities img {
-  max-height: 200px;
+ max-width: 700px;
   height: auto;
 }
 .cities img:hover {

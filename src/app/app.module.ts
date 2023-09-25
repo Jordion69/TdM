@@ -8,6 +8,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TooltipsComponent } from './shared/components/tooltips/tooltips.component';
 import { ConciertosModule } from './modules/conciertos/conciertos.module';
 import { PagenotfoundComponent } from './modules/pagenotfound/page/pagenotfound.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 @NgModule({
@@ -23,7 +25,8 @@ import { PagenotfoundComponent } from './modules/pagenotfound/page/pagenotfound.
     CoreModule,
     FormsModule,
     ReactiveFormsModule,
-    ConciertosModule
+    ConciertosModule,
+    HttpClientModule
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

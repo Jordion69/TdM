@@ -1,4 +1,7 @@
 import { Component,  ViewEncapsulation } from '@angular/core';
+import { Noticia } from 'src/app/interfaces/noticia';
+import { NoticiasService } from 'src/app/services/noticias.service';
+import { environment } from 'src/environments/environments';
 
 import SwiperCore, {
   Navigation,
@@ -16,6 +19,8 @@ SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
 
 })
 export class SliderNewsComponent {
+  UrlNewsFirstSeven: string = environment.URL_NEWS_FIRST_7;
+  noticias1: Noticia[] = [];
   swiperConfig: any = {
     effect: 'coverflow',
     grabCursor: true,
@@ -30,8 +35,21 @@ export class SliderNewsComponent {
     },
   };
 
+  public  first3: Array<Noticia> = [];
+  constructor(private NoticiasService:NoticiasService) {}
+  ngOnInit(): void {
+    this.cargarData();
+  }
+  public cargarData () {
+    this.NoticiasService.getFirstSeven('http://127.0.0.1:8000/noticias/first-seven')
+    .subscribe(res => {
+
+      console.log("Noticias -> ", res);
+    })
+  }
+
   noticias: Array<any> = [
-    { id: 1, title: "Iron Maiden gran gira mundial", img: "/assets/img/news1.jpg", text: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......"},
+    { id: 1, title: "Iron Maiden gran gira mundial", img: "/assets/img/new1280(1).jpg", text: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......"},
     { id: 2, title: "Slayer muere bateria", img: "/assets/img/news2.jpg", text: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......"},
     { id: 3, title: "Twisted sister arrestado cantante", img: "/assets/img/news3.jpg", text: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......"},
     { id: 4, title: "Judas Priest muere rod", img: "/assets/img/news4.jpg", text: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......"},
