@@ -20,6 +20,15 @@ ul li {
 ul li:hover {
   transform: scale(1.5);
 }
+h2 {
+  font-size: 6rem;
+ }
+
+ @media (max-width: 768px) {
+  h2 {
+    font-size: calc(1.525rem + 3.3vw);
+  }
+ }
 
 
 

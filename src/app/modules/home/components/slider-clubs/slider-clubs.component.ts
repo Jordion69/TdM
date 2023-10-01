@@ -28,14 +28,14 @@ export class SliderClubsComponent {
     },
   };
   garitos: Array<any> = [
-    { id: 1, place: "Barcelona", src: "/assets/img/w1.jpg", title: "Pub Cronos" },
-    { id: 2, place: "Tarragona", src: "/assets/img/w2.jpg", title: "Pub ZZTop" },
-    { id: 3, place: "Lleida", src: "/assets/img/w3.jpg", title: "Pub Valhala" },
-    { id: 4, place: "Girona", src: "/assets/img/w4.jpg", title: "Pub 4 ases" },
-    { id: 5, place: "Murcia", src: "/assets/img/w1.jpg", title: "Pub Cronos" },
-    { id: 6, place: "La rioja", src: "/assets/img/w2.jpg", title: "Pub ZZTop" },
-    { id: 7, place: "Burgos", src: "/assets/img/w3.jpg", title: "Pub Valhala" },
-    { id: 8, place: "Canarias", src: "/assets/img/w4.jpg", title: "Pub 4 ases" },
-    { id: 8, place: "Soria", src: "/assets/img/w4.jpg", title: "Pub 4 ases" }
+    { id: 1,date: "2023/09/21",place: "Barcelona", src: "/assets/img/Frame 1.jpg", title: "Pub Cronos" },
+    { id: 2,date: "2023/09/22",place: "Tarragona", src: "/assets/img/Frame 2.jpg", title: "Pub ZZTop" },
+    { id: 3,date: "2023/09/23",place: "Lleida", src: "/assets/img/Frame 3.jpg", title: "Pub Valhala" },
+    { id: 4,date: "2023/09/24",place: "Girona", src: "/assets/img/Frame 4.jpg", title: "Pub 4 ases" },
+    { id: 5,date: "2023/09/25",place: "Murcia", src: "/assets/img/Frame 1.jpg", title: "Pub Cronos" },
+    { id: 6,date: "2023/09/26",place: "La rioja", src: "/assets/img/Frame 2.jpg", title: "Pub ZZTop" },
+    { id: 7,date: "2023/09/27",place: "Burgos", src: "/assets/img/Frame 3.jpg", title: "Pub Valhala" },
+    { id: 8,date: "2023/09/28",place: "Canarias", src: "/assets/img/Frame 4.jpg", title: "Pub 4 ases" },
+    { id: 9,date: "2023/09/29",place: "Soria", src: "/assets/img/Frame 1.jpg", title: "Pub 4 ases" }
   ];
 }

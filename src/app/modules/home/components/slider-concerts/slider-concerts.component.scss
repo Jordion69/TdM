@@ -179,59 +179,61 @@
 @import "swiper/scss/navigation";
 @import "swiper/scss/pagination";
 
-.container {
+.container-concerts {
   max-width:  124rem;
   padding: 0 1rem;
   margin: 0 auto;
 }
-#tranding {
+.tranding-slide-concerts {
+  width: 100%;
+  max-width: 30rem;
+  height: auto;
+  position: relative;
+}
+#tranding-concerts {
   padding: 0;
 }
 
 @media (max-width:1440px) {
-  #tranding {
+  #tranding-concerts {
     padding: 0;
   }
 }
 
-#tranding .tranding-slider {
-  height: 42rem;
+#tranding-concerts .tranding-slider {
+  // height: 42rem;
   padding: 0;
   position: relative;
 }
 
 @media (max-width:500px) {
-  #tranding .tranding-slider {
-    height: 37rem;
+  #tranding-concerts .tranding-slider {
+    // height: 28rem;
   }
 }
 
-.tranding-slide {
-  width: 30rem;
-  height: 35rem;
-  position: relative;
-}
+
 
 @media (max-width:500px) {
-  .tranding-slide {
-    width: 28rem !important;
-    height: 36rem !important;
+  .tranding-slide-concerts {
+    width: 20rem !important;
+    height: auto !important;
   }
-  .tranding-slide .tranding-slide-img img {
-    width: 28rem !important;
-    height: 36rem !important;
+  .tranding-slide-concerts .tranding-slide-concerts-img img {
+    width: 20rem !important;
+    height: auto !important;
   }
 }
 
-.tranding-slide .tranding-slide-img img {
-  width: 30rem;
-  height: 35rem;
+.tranding-slide-concerts .tranding-slide-concerts-img img {
+  width: 100%;
+  height: auto;
   border-radius: 2rem;
   object-fit: cover;
 }
 
-.tranding-slide .tranding-slide-content {
-  background-color: rgba(0,0,0,0.5);
+.tranding-slide-concerts .tranding-slide-content-concerts {
+  background-color: rgba(0,0,0,0.6);
   border-radius: 2rem;
   position: absolute;
   left: 0;
@@ -240,14 +242,14 @@
   bottom: 0;
 }
 
-.tranding-slide-content .date-place {
+.tranding-slide-content-concerts .date-place-concerts {
   position: absolute;
   top: 2rem;
   right: 2rem;
   color: white;
 }
 
-.tranding-slide-content .tranding-slide-content-bottom {
+.tranding-slide-content-concerts .tranding-slide-content-bottom-concerts {
   position: absolute;
   bottom: 2rem;
   left: 2rem;
@@ -269,7 +271,7 @@
   display: none;
 }
 
-.tranding-slider-control {
+.tranding-slider-control-concerts {
   position: relative;
   bottom: 2rem;
   display: flex;
@@ -277,40 +279,40 @@
   justify-content: center;
 }
 
-.tranding-slider-control .swiper-button-next {
+.tranding-slider-control-concerts .swiper-button-next {
   left: 58% !important;
   transform: translateX(-58%) !important;
 }
 
 @media (max-width:990px) {
-  .tranding-slider-control .swiper-button-next {
+  .tranding-slider-control-concerts .swiper-button-next {
     left: 70% !important;
     transform: translateX(-70%) !important;
   }
 }
 
 @media (max-width:450px) {
-  .tranding-slider-control .swiper-button-next {
+  .tranding-slider-control-concerts .swiper-button-next {
     left: 80% !important;
     transform: translateX(-80%) !important;
   }
 }
 
 @media (max-width:990px) {
-  .tranding-slider-control .swiper-button-prev {
+  .tranding-slider-control-concerts .swiper-button-prev {
     left: 30% !important;
     transform: translateX(-30%) !important;
   }
 }
 
 @media (max-width:450px) {
-  .tranding-slider-control .swiper-button-prev {
+  .tranding-slider-control-concerts .swiper-button-prev {
     left: 20% !important;
     transform: translateX(-20%) !important;
   }
 }
 
-.tranding-slider-control .slider-arrow {
+.tranding-slider-control-concerts .slider-arrow {
   background: white;
   width: 3.5rem;
   height: 3.5rem;
@@ -320,27 +322,27 @@
   filter: drop-shadow(0px 8px 24px rgba(18, 28, 53, 0.1));
 }
 
-.tranding-slider-control .slider-arrow i {
+.tranding-slider-control-concerts .slider-arrow i {
   font-size: 2rem;
   color: #222224;
 }
 
-.tranding-slider-control .slider-arrow::after {
+.tranding-slider-control-concerts .slider-arrow::after {
   content: '';
 }
 
-.tranding-slider-control .swiper-pagination {
+.tranding-slider-control-concerts .swiper-pagination {
   position: relative;
   width: 15rem;
   height: 2rem;
   bottom: 2rem;
 }
 
-.tranding-slider-control .swiper-pagination .swiper-pagination-bullet {
+.tranding-slider-control-concerts .swiper-pagination .swiper-pagination-bullet {
   filter: drop-shadow(0px 8px 24px rgba(18, 28, 53, 0.1));
 }
 
-.tranding-slider-control .swiper-pagination .swiper-pagination-bullet-active {
+.tranding-slider-control-concerts .swiper-pagination .swiper-pagination-bullet-active {
   background: red;
 }
 .swiper-pagination-bullet {

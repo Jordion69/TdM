@@ -3,58 +3,64 @@
 @import "swiper/scss/navigation";
 @import "swiper/scss/pagination";
 
-.container {
+.container-clubs {
   max-width:  124rem;
   padding: 0 1rem;
   margin: 0 auto;
 }
-#tranding {
+.tranding-slide-clubs {
+  // width: 30rem;
+  // height: 35rem;
+  width: 100%;
+  max-width: 30rem;
+  height: auto;
+  position: relative;
+}
+#tranding-clubs {
   padding: 0;
 }
 
 @media (max-width:1440px) {
-  #tranding {
+  #tranding-clubs {
     padding: 0;
   }
 }
 
-#tranding .tranding-slider {
-  height: 42rem;
+#tranding-clubs .tranding-slider-clubs {
+  // height: 42rem;
   padding: 0;
   position: relative;
 }
 
-@media (max-width:500px) {
-  #tranding .tranding-slider {
-    height: 37rem;
-  }
-}
+// @media (max-width:500px) {
+//   #tranding .tranding-slider {
+//     height: 37rem;
+//   }
+// }
 
-.tranding-slide {
-  width: 30rem;
-  height: 35rem;
-  position: relative;
-}
+
 
 @media (max-width:500px) {
-  .tranding-slide {
-    width: 28rem !important;
-    height: 36rem !important;
+  .tranding-slide-clubs {
+    width: 20rem !important;
+    height: auto !important;
   }
-  .tranding-slide .tranding-slide-img img {
-    width: 28rem !important;
-    height: 36rem !important;
+  .tranding-slide-clubs .tranding-slide-clubs-img img {
+    width: 100% !important;
+    height: auto !important;
   }
 }
 
-.tranding-slide .tranding-slide-img img {
+.tranding-slide-clubs .tranding-slide-clubs-img img {
   width: 30rem;
-  height: 35rem;
+  height: auto;
   border-radius: 2rem;
   object-fit: cover;
 }
 
-.tranding-slide .tranding-slide-content {
+.tranding-slide-clubs .tranding-slide-content-clubs {
+  background-color: rgba(0,0,0,0.5);
+  border-radius: 2rem;
   position: absolute;
   left: 0;
   top: 0;
@@ -62,18 +68,20 @@
   bottom: 0;
 }
 
-.tranding-slide-content .date-place {
+.tranding-slide-content-clubs .date-place-clubs {
   position: absolute;
   top: 2rem;
   right: 2rem;
   color: white;
+  font-weight: bolder;
 }
 
-.tranding-slide-content .tranding-slide-content-bottom {
+.tranding-slide-content-clubs .tranding-slide-content-bottom-clubs {
   position: absolute;
   bottom: 2rem;
   left: 2rem;
   color: white;
+  font-weight: bolder;
 }
 
 .food-rating {

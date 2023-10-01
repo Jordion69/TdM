@@ -1,6 +1,6 @@
 
-<section id="tranding">
-  <div class="container">
+<section id="tranding-news">
+  <div class="container-news">
     <div class="swiper-container tranding-slider" >
       <div class="swiper-wrapper" >
         <swiper
@@ -8,16 +8,16 @@
         [pagination]="{ clickable: true }"
           >
           <ng-template
-            class="swiper-slide tranding-slide"
+            class="swiper-slide tranding-slide-news"
             swiperSlide
             *ngFor="let noticia of noticias"
             >
-            <div class="tranding-slide-img">
+            <div class="tranding-slide-news-img">
               <img [src]="noticia.img" alt="">
             </div>
-            <div class="tranding-slide-content">
-              <h1 class="date-place">20/5</h1>
-              <div class="tranding-slide-content-bottom">
+            <div class="tranding-slide-content-news">
+              <h1 class="date-place-news">20/5</h1>
+              <div class="tranding-slide-content-bottom-news">
                 <h2 class="food-name">
                   {{noticia.title}}
                 </h2>

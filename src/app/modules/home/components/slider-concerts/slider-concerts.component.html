@@ -1,6 +1,6 @@
 
-<section id="tranding">
-  <div class="container">
+<section id="tranding-concerts">
+  <div class="container-concerts">
     <div class="swiper-container tranding-slider" >
       <div class="swiper-wrapper">
         <swiper
@@ -8,16 +8,16 @@
         [pagination]="{ clickable: true }"
           >
           <ng-template
-            class="swiper-slide tranding-slide"
+            class="swiper-slide tranding-slide-concerts"
             swiperSlide
             *ngFor="let concierto of conciertos"
             >
-            <div class="tranding-slide-img">
+            <div class="tranding-slide-concerts-img">
               <img [src]="concierto.src" alt="">
             </div>
-            <div class="tranding-slide-content">
-              <h1 class="date-place">20/5</h1>
-              <div class="tranding-slide-content-bottom">
+            <div class="tranding-slide-content-concerts">
+              <h1 class="date-place-concerts">20/5</h1>
+              <div class="tranding-slide-content-bottom-concerts">
                 <h2 class="food-name">
                   {{concierto.banda}}
                 </h2>

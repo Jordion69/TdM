@@ -1,0 +1,198 @@
+// .image img {
+//   max-height: 100px;
+//   min-height: 10vh;
+// }
+// .image {
+//   transition: all 0.3s;
+//   position: relative;
+// }
+// .image:hover {
+//   transform: scale(1.5);
+// }
+
+// @media only screen and (max-width: 992px) {
+//   .image img {
+//     max-height: 33vh;
+
+//   }
+// }
+
+// @media only screen and (max-width: 576px) {
+//   .image img {
+//     max-height: 50vh;
+
+//   }
+// }
+
+// img {
+//   max-height: 30vh;
+//   width: auto;
+//   max-width: 10vw;
+// }
+
+// .venta {
+//   color: white;
+// }
+
+// .bandas {
+//   background: #eee7e7;
+// }
+
+.conciuertos-area {
+  padding: 80px 0;
+}
+.card {
+  box-shadow: 0 0 30px rgba(0,0,0,0.5);
+  overflow: hidden;
+  border-radius: 15px;
+}
+.img img {
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  width: 100%;
+  height: auto;
+  max-height: 500px;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.date {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  font-weight: bold;
+}
+
+
+@media only screen and (min-width: 992px) {
+
+  .date {
+    top: 20px; /* Ajusta la posición vertical (puedes cambiar este valor) */
+    left: 20px; /* Ajusta la posición horizontal (puedes cambiar este valor) */
+  }
+}
+
+.date h2 {
+  margin-top: 20px;
+}
+.card:hover .date {
+  border-color: darkcyan;
+}
+.main-text {
+  padding: 30px 0;
+  text-align: center;
+}
+.main-text h2 {
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 20px;
+  margin: 0 0 20px;
+}
+.main-text h4 {
+  font-size: 16px;
+  padding: 0 35px;
+}
+.entradas {
+  text-align: center;
+  padding-bottom: 20px;
+}
+.entradas button {
+  font-size: 20px;
+  background: darkcyan;
+  padding: 0 0px;
+}
+
+@media only screen and (max-width: 1400px){
+  .date {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    border: 6px solid #fff;
+  }
+}
+
+@media only screen and (max-width: 992px){
+  .date {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-top: -50px;
+    border: 5px solid #fff;
+  }
+  .date h2 {
+    font-size: 20px;
+  }
+  .date h4 {
+    font-size: 16px;
+  }
+}
+
+.gallery {
+
+}
+.gallery img {
+	width: 100%;
+	box-shadow: 0 0 15px rgba(0,0,0,0.3);
+	cursor: pointer;
+}
+
+#gallery-modal .modal-dialog {
+  box-sizing: border-box;
+  max-width: 80%; /* Ajusta el valor según tus necesidades */
+  max-height: 80vh; /* Ajusta el valor según tus necesidades */
+  margin: 1em auto; /* Ajusta el valor según tus necesidades */
+}
+#gallery-modal .modal-img {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  box-sizing: border-box;
+}
+@media (min-width: 500px) {
+  #gallery-modal .modal-dialog {
+    box-sizing: border-box;
+    max-width: 40%; /* Ajusta el valor según tus necesidades */
+    max-height: 80vh; /* Ajusta el valor según tus necesidades */
+    margin: 1em auto; /* Ajusta el valor según tus necesidades */
+  }
+  #gallery-modal .modal-img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    box-sizing: border-box;
+  }
+}
+
+@media (min-width: 800px) {
+  #gallery-modal .modal-dialog {
+    box-sizing: border-box;
+    max-width: 30%; /* Ajusta el valor según tus necesidades */
+    max-height: 80vh; /* Ajusta el valor según tus necesidades */
+    margin: 1em auto; /* Ajusta el valor según tus necesidades */
+  }
+  #gallery-modal .modal-img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    box-sizing: border-box;
+  }
+}
+
+#gallery-modal {
+  overflow: hidden; /* Asegúrate de que no haya desbordamiento visible */
+}
+
+
+
+
+
