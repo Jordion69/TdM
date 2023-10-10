@@ -16,7 +16,7 @@
               <img [src]="concierto.src" alt="">
             </div>
             <div class="tranding-slide-content-concerts">
-              <h1 class="date-place-concerts">20/5</h1>
+              <h1 class="date-place-concerts">{{ concierto.fecha_evento | date:'d/M' }}</h1>
               <div class="tranding-slide-content-bottom-concerts">
                 <h2 class="food-name">
                   {{concierto.banda}}

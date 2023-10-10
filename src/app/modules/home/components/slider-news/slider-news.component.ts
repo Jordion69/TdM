@@ -47,11 +47,25 @@ export class SliderNewsComponent {
       console.log("Noticias -> ", res);
     })
   }
+  calcularTiempoTranscurrido(fechaStr: string): string {
+    const fecha = new Date(fechaStr);
+    const fechaActual = new Date();
+    const diferencia = fechaActual.getTime() - fecha.getTime();
+
+    const horasTranscurridas = diferencia / 3600000; // 1 hora = 3600000 ms
+    const diasTranscurridos = Math.floor(diferencia / 86400000); // 1 día = 86400000 ms
+
+    if (horasTranscurridas < 24) {
+      return `Hace ${Math.floor(horasTranscurridas)} horas.`;
+    } else {
+      return `Hace ${diasTranscurridos} días.`;
+    }
+  }
 
   noticias: Array<any> = [
-    { id: 1, title: "Iron Maiden gran gira mundial", img: "/assets/img/new1280(1).jpg", text: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......"},
-    { id: 2, title: "Slayer muere bateria", img: "/assets/img/new1280(2).jpg", text: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......"},
-    { id: 3, title: "Twisted sister arrestado cantante", img: "/assets/img/new1280(3).jpg", text: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......"},
-    { id: 4, title: "Judas Priest muere rod", img: "/assets/img/new1280(1).jpg", text: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......"},
+    { id: 1, updated_at: "2023/10/05" , title: "Iron Maiden gran gira mundial", img: "/assets/img/new1280(1).jpg", text: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......"},
+    { id: 2, updated_at: "2023/10/06" , title: "Slayer muere bateria", img: "/assets/img/new1280(2).jpg", text: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......"},
+    { id: 3, updated_at: "2023/10/07" , title: "Twisted sister arrestado cantante", img: "/assets/img/new1280(3).jpg", text: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......"},
+    { id: 4, updated_at: "2023/10/09" , title: "Judas Priest muere rod", img: "/assets/img/new1280(1).jpg", text: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......"},
   ];
 }

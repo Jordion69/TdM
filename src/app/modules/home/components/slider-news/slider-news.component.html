@@ -16,14 +16,12 @@
               <img [src]="noticia.img" alt="">
             </div>
             <div class="tranding-slide-content-news">
-              <h1 class="date-place-news">20/5</h1>
+              <!-- <h1 class="date-place-news">20/5</h1> -->
+              <h1 class="date-place-news"><small class="">{{calcularTiempoTranscurrido(noticia.updated_at)}}</small></h1>
               <div class="tranding-slide-content-bottom-news">
                 <h2 class="food-name">
                   {{noticia.title}}
                 </h2>
-                <!-- <h3 class="food-rating">
-                  <span>{{garito.place}}</span>
-                </h3> -->
               </div>
             </div>
           </ng-template>

@@ -1,9 +1,12 @@
+.navbar {
+  background-color: rgba(0,0,0,.8);
+  // background: #000;
+}
 
 
 .navbar-brand img {
   height: 60px;
   width: auto;
-  // background-color: rgba(0,0,0,.1);
 }
 
 .header_change {
@@ -12,12 +15,12 @@
 
 ul li {
   font-size: 24px;
-  color: red;
+  color: #e5080D;
   font-weight: 900;
 }
 
 ul li a {
-  color: red;
+  color: #e5080D;
   font-weight: 800;
 }
 ul li a img {
