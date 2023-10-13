@@ -1,0 +1,30 @@
+.card img {
+  max-height: 50vh;
+  }
+
+  .card-text i {
+    font-weight: 600;
+  }
+.text-1 p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.6rem;
+ }
+ @media (max-width: 1200px) {
+  .text-1 p {
+    font-size: 1.2rem;
+   }
+ }
+ @media (max-width: 1200px) {
+  .text-1 p {
+    font-size: 1rem;
+   }
+ }
+ .headline h1 {
+  font-family: 'Metal mania', sans-serif;
+  color: #e5080d;
+ }
+ .image {
+  max-width: 800px;
+  text-align: center;
+  margin: auto;
+ }

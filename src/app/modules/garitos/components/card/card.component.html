@@ -43,31 +43,34 @@
     <ng-container *ngFor="let garito of garitos; let i = index ">
       <ng-container *ngIf="i === 0 || garito.comunidad_autonoma !== garitos[i - 1].comunidad_autonoma">
         <div class="col-12">
-          <h2 class="text-danger display-1 py-1 mt-5">{{ garito.comunidad_autonoma }}</h2>
+          <h2 class="display-1 py-1 mt-5">{{ garito.comunidad_autonoma }}</h2>
         </div>
       </ng-container>
       <div class="col-xxl-2 col-xl-3 col-lg-6 col-sm-6">
-        <div class="card mt-2">
+        <div class="card rounded-5 mt-2">
+          <div class="visited-badge">
+            <img *ngIf="garito.visitado === 1" src="../../../../../assets/img/ruta666black.png" alt="Visited Badge">
+          </div>
           <img class="card-img-top img-fluid" src="{{ garito.src }}" alt="">
           <div class="card-body">
             <h5 class="card-title">{{ garito.title }}</h5>
             <p class="card-text">Calle de la agricultura 25</p>
-            <p class="card-text">Granada 08033</p>
+            <p class="card-text"><strong>Granada</strong></p>
             <div class="row">
-              <ul class="d-flex flex-row flex-wrap list-unstyled col-4 col-lg-3 col-xl-3 justify-content-between">
-                <li class="hover-overlay hover-zoom">
-                  <a href="#">
-                    <span class="bi bi-facebook"></span>
+              <ul class="icons d-flex flex-row flex-wrap list-unstyled col-8 col-lg-6 col-xl-6 justify-content-between">
+                <li class="hover-overlay hover-zoom" *ngIf="garito.facebook && garito.facebook.trim().length > 0">
+                  <a href="{{ garito.facebook }}">
+                    <span class="bi bi-facebook fs-2"></span>
                   </a>
                 </li>
-                <li>
-                  <a href="#">
-                    <span class="bi bi-instagram"></span>
+                <li *ngIf="garito.instagram && garito.instagram.trim().length > 0">
+                  <a href="{{garito.instagram }}">
+                    <span class="bi bi-instagram fs-2"></span>
                   </a>
                 </li>
-                <li>
-                  <a href="39.981185584404315, -0.03775725984301607">
-                    <span class="bi bi-geo-alt-fill"></span>
+                <li *ngIf="garito.latitud && garito.latitud.trim().length > 0">
+                  <a href="">
+                    <span class="bi bi-geo-alt-fill fs-2"></span>
                   </a>
                 </li>
               </ul>

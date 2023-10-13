@@ -29,6 +29,12 @@ const routes: Routes = [
   loadChildren: () => import('./modules/sobre-nosotros/sobre-nosotros.module')
   .then( m => m.SobreNosotrosModule)
   },
+  { path: 'noticias-detalle/:id',
+  loadChildren: () => import('./modules/noticias-detalle/noticias-detalle.module')
+  .then(m => m.NoticiasDetalleModule)
+  },
+
+
   { path: '**', component: PagenotfoundComponent}
 ];
 

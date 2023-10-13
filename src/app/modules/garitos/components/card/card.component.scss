@@ -3,16 +3,16 @@
   max-height: 33wh;
   border-radius: 10% 10% 0 0;
 }
-ul li a {
-  color: red;
+.display-1 {
+  color: #e5080d;
 }
+ul li a {
+  color: #e5080d;
+}
+
 .card {
-  border-radius: 10%;
   box-shadow: 0 0 15px rgba(0,0,0,0.3);
 }
-// .card:hover {
-//   transform: scale(1.05);
-// }
 ul li {
   transition: all 0.3s;
 }
@@ -23,6 +23,16 @@ ul li:hover {
 h2 {
   font-size: 6rem;
  }
+ .visited-badge {
+  position: absolute;
+  top: 10px; /* Ajusta la posición superior según tu preferencia */
+  right: 10px; /* Ajusta la posición derecha según tu preferencia */
+  z-index: 1; /* Para que esté sobre la imagen principal */
+}
+
+.visited-badge img {
+  max-width: 40px; /* Ajusta el ancho de la imagen visitada según tu preferencia */
+}
 
  @media (max-width: 768px) {
   h2 {

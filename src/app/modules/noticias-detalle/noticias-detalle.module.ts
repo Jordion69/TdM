@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { NoticiasDetalleRoutingModule } from './noticias-detalle-routing.module';
 import { PageComponent } from './page/page.component';
+import { NoticiaDetalleComponent } from './components/noticia-detalle/noticia-detalle.component';
 
 
 @NgModule({
   declarations: [
-    PageComponent
+    PageComponent,
+    NoticiaDetalleComponent
   ],
   imports: [
     CommonModule,
@@ -15,3 +17,5 @@ import { PageComponent } from './page/page.component';
   ]
 })
 export class NoticiasDetalleModule { }
+
+export { NoticiaDetalleComponent };
