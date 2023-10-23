@@ -1,19 +1,12 @@
-
-
-@import "swiper/scss";
-// @import "swiper/scss/effect-coverflow";
-@import "swiper/scss/navigation";
-@import "swiper/scss/pagination";
-
-// @import "../../../../../../node_modules/slick-carousel/slick/slick.scss";
-// @import "../../../../../../node_modules/slick-carousel/slick/slick-theme.scss";
-
+@import "../../../../../../node_modules/slick-carousel/slick/slick.scss";
+@import "../../../../../../node_modules/slick-carousel/slick/slick-theme.scss";
 
 .container-news {
-  max-width:  124rem;
+  max-width: 124rem;
   padding: 0 1rem;
-  margin: 0 auto;
+  margin: 1rem 0 4rem 0;
 }
+
 .tranding-slide-news {
   width: 100%;
   margin: 0;
@@ -22,18 +15,18 @@
   height: auto;
   position: relative;
 }
+
 #tranding-news {
   padding: 0;
 }
 
-@media (max-width:1440px) {
+@media (max-width: 1440px) {
   #tranding-news {
     padding: 0;
   }
 }
 
 #tranding-news .tranding-slider {
-  // height: 42rem;
   width: 100%;
   margin: 0;
   padding: 0;
@@ -49,7 +42,7 @@
 }
 
 .tranding-slide-news .tranding-slide-content-news {
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   border-radius: 2rem;
   position: absolute;
   left: 0;
@@ -100,28 +93,28 @@
   transform: translateX(-58%) !important;
 }
 
-@media (max-width:990px) {
+@media (max-width: 990px) {
   .tranding-slider-control .swiper-button-next {
     left: 70% !important;
     transform: translateX(-70%) !important;
   }
 }
 
-@media (max-width:450px) {
+@media (max-width: 450px) {
   .tranding-slider-control .swiper-button-next {
     left: 80% !important;
     transform: translateX(-80%) !important;
   }
 }
 
-@media (max-width:990px) {
+@media (max-width: 990px) {
   .tranding-slider-control .swiper-button-prev {
     left: 30% !important;
     transform: translateX(-30%) !important;
   }
 }
 
-@media (max-width:450px) {
+@media (max-width: 450px) {
   .tranding-slider-control .swiper-button-prev {
     left: 20% !important;
     transform: translateX(-20%) !important;
@@ -143,10 +136,6 @@
   color: #222224;
 }
 
-.tranding-slider-control .slider-arrow::after {
-  content: '';
-}
-
 .tranding-slider-control .swiper-pagination {
   position: relative;
   width: 15rem;
@@ -159,13 +148,15 @@
 }
 
 .tranding-slider-control .swiper-pagination .swiper-pagination-bullet-active {
-  background: #e5080d;
+  background: red;
 }
+
 .swiper-pagination-bullet {
   height: 1rem;
   width: 1rem;
   background: gray;
 }
+
 .swiper-pagination-bullet-active {
-  background:  #e5080d;
+  background: red;
 }

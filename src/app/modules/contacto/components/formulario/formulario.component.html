@@ -19,7 +19,7 @@
       <form  [formGroup]="FormContacto" (ngSubmit)="EnviarEmail()" action="" class="p-4 mt-2">
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">Nombre</label>
-          <input type="nombre" formControlName="nombre" class="form-control" id="exampleFormControlInput0" placeholder="Intorduce tu nombre ...">
+          <input type="text" formControlName="nombre" class="form-control" id="exampleFormControlInput0" placeholder="Intorduce tu nombre ...">
         </div>
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">Email</label>
@@ -27,11 +27,11 @@
         </div>
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">Asunto</label>
-          <input type="asunto" formControlName="asunto" class="form-control" id="exampleFormControlInput2" placeholder="Introduce asunto...">
+          <input type="text" formControlName="asunto" class="form-control" id="exampleFormControlInput2" placeholder="Introduce asunto...">
         </div>
         <div class="mb-3">
           <label for="exampleFormControlTextarea1" class="form-label">Mensaje</label>
-          <textarea class="form-control" formControlName="mensaje" id="exampleFormControlTextarea1" rows="5"></textarea>
+          <textarea type="text" class="form-control" formControlName="mensaje" id="exampleFormControlTextarea1" rows="5"></textarea>
         </div>
         <div class="mb-3">
           <button type="submit" class="btn btn-warning">Enviar</button>

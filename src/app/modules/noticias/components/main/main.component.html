@@ -1,10 +1,10 @@
 <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" data-interval="1000">
-  <div class="carousel-inner  rounded-5">
-    <div class="carousel-item active" *ngFor="let new of noticias">
-      <img src="{{new.img}}" class="d-block w-100" alt="...">
+  <div class="carousel-inner  rounded-5" >
+    <div class="carousel-item active" *ngFor="let new of noticias" (click)="mostrarDetallesNoticia(new.id.toString())">
+      <img src="{{new.foto_inicio}}" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-        <h3 class="text-uppercase">{{new.title}}</h3>
-        <h5>{{calcularTiempoTranscurrido(new.date)}}</h5>
+        <h3 class="text-uppercase">{{new.titular}}</h3>
+        <h5>{{calcularTiempoTranscurrido(new.created_at)}}</h5>
       </div>
     </div>
   </div>

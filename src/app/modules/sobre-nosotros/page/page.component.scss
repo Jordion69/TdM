@@ -1,10 +1,13 @@
-.contenedor{
-  margin-bottom: 20px;
-  background: #0d6efd;
+.textAbout {
+  font-size: 2rem;
+  font-family: 'Poppins', sans-serif;
+}
+h1 {
+  color: #e5080d;
+  font-family: 'Metal mania', sans-serif;
+  font-size: 4rem;
+}
+p {
   color: white;
 }
-.contenedor div {
-  background: rgba(255, 255, 255, .2);
-  padding: 15px;
-  border: 1px solid #0d6efd;
-}
+

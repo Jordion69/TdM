@@ -7,12 +7,12 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
   styleUrls: ['./main-cities.component.scss']
 })
 export class MainCitiesComponent  {
- customOptions: OwlOptions = {
+  customOptions: OwlOptions = {
     loop: false,
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
-    dots: false,
+    dots: true, // Habilita los puntos
     navSpeed: 700,
     navText: ['', ''],
     responsive: {

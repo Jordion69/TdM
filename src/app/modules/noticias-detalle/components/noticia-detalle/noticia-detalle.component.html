@@ -1,4 +1,3 @@
-
 <section>
   <div class="news-detail container-fluid p-3 bg-black">
     <div class="row">
@@ -9,30 +8,34 @@
         </div>
 
         <div class="text-1 col-md-8 offset-md-2 my-5">
-          <p class="h6">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, beatae nulla sequi sint est exercitationem consequuntur qui quos quis? Odio dolorum sed quasi veritatis dolore voluptas, aperiam dolorem expedita adipisci, laboriosam, eveniet odit cumque architecto provident exercitationem reiciendis nisi distinctio omnis doloribus dignissimos officiis labore. Rerum laboriosam architecto at est alias minima nam velit omnis, eligendi quae deserunt laudantium cumque doloremque quia. Eos, aliquid nemo delectus dolores non tempore error voluptas vitae quisquam facilis officia ratione, incidunt consectetur aspernatur ab impedit! Architecto quod tempore numquam blanditiis unde reprehenderit illo optio. Cum quis odit accusantium reprehenderit, pariatur distinctio eos ipsum quisquam sapiente assumenda. Cumque minus ipsa totam culpa, sunt natus et dolores iste beatae repellat cum aliquid dolorem quo ipsam nesciunt ipsum quas doloribus porro magni autem consectetur sit illum mollitia? Unde, deleniti in dignissimos eum hic, tempora cupiditate beatae, nulla adipisci natus quae illum odit. Illo nemo dolore fuga officia!</p>
+          <p class="h6">{{ noticia?.texto1 }}</p>
         </div>
         <div class="image rounded-5 my-2">
           <img class="img-fluid mx-auto rounded-5 d-block" src="{{ noticia ? noticia.foto_inicio : 'Titulo no disponible'}}" alt="">
         </div>
+        <div *ngIf="noticia?.texto2" class="text-1 col-md-8 offset-md-2 my-5">
+          <p class="h6">{{ noticia?.texto2 }}</p>
+        </div>
         <div class="video d-flex justify-content-center my-5">
-          <!-- <iframe width="560" height="315" src="{{ noticia ? noticia.link_video : 'Titulo no disponible'}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
-          <div [innerHtml]="noticia ? noticia.link_video : 'Titulo no disponible'"></div>
+          <iframe width="560" height="315"
+            [src]="sanitizer.bypassSecurityTrustResourceUrl(noticia?.link_video)"
+            title="Reproductor de video de YouTube"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
         </div>
-        <div class="video d-flex justify-content-center my-5" *ngIf="noticia?.link_video">
-          <div [innerHTML]="noticia ? noticia.link_video : 'Titulo no disponible'"></div>
+        <div *ngIf="noticia?.texto3" class="text-1 col-md-8 offset-md-2 my-5">
+            <p class="h6">{{ noticia?.texto3 }}</p>
         </div>
-        <div class="text-1 col-md-8 offset-md-2 my-5">
-          <p class="h6">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, beatae nulla sequi sint est exercitationem consequuntur qui quos quis? Odio dolorum sed quasi veritatis dolore voluptas, aperiam dolorem expedita adipisci, laboriosam, eveniet odit cumque architecto provident exercitationem reiciendis nisi distinctio omnis doloribus dignissimos officiis labore. Rerum laboriosam architecto at est alias minima nam velit omnis, eligendi quae deserunt laudantium cumque doloremque quia. Eos, aliquid nemo delectus dolores non tempore error voluptas vitae quisquam facilis officia ratione, incidunt consectetur aspernatur ab impedit! Architecto quod tempore numquam blanditiis unde reprehenderit illo optio. Cum quis odit accusantium reprehenderit, pariatur distinctio eos ipsum quisquam sapiente assumenda. Cumque minus ipsa totam culpa, sunt natus et dolores iste beatae repellat cum aliquid dolorem quo ipsam nesciunt ipsum quas doloribus porro magni autem consectetur sit illum mollitia? Unde, deleniti in dignissimos eum hic, tempora cupiditate beatae, nulla adipisci natus quae illum odit. Illo nemo dolore fuga officia!</p>
-        </div>
-        <div class="text-1 col-md-8 offset-md-2 my-5">
-          <p class="h6">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, beatae nulla sequi sint est exercitationem consequuntur qui quos quis? Odio dolorum sed quasi veritatis dolore voluptas, aperiam dolorem expedita adipisci, laboriosam, eveniet odit cumque architecto provident exercitationem reiciendis nisi distinctio omnis doloribus dignissimos officiis labore. Rerum laboriosam architecto at est alias minima nam velit omnis, eligendi quae deserunt laudantium cumque doloremque quia. Eos, aliquid nemo delectus dolores non tempore error voluptas vitae quisquam facilis officia ratione, incidunt consectetur aspernatur ab impedit! Architecto quod tempore numquam blanditiis unde reprehenderit illo optio. Cum quis odit accusantium reprehenderit, pariatur distinctio eos ipsum quisquam sapiente assumenda. Cumque minus ipsa totam culpa, sunt natus et dolores iste beatae repellat cum aliquid dolorem quo ipsam nesciunt ipsum quas doloribus porro magni autem consectetur sit illum mollitia? Unde, deleniti in dignissimos eum hic, tempora cupiditate beatae, nulla adipisci natus quae illum odit. Illo nemo dolore fuga officia!</p>
-        </div>
-        <div class="text-1 col-md-8 offset-md-2 my-5">
-          <p class="h6">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, beatae nulla sequi sint est exercitationem consequuntur qui quos quis? Odio dolorum sed quasi veritatis dolore voluptas, aperiam dolorem expedita adipisci, laboriosam, eveniet odit cumque architecto provident exercitationem reiciendis nisi distinctio omnis doloribus dignissimos officiis labore. Rerum laboriosam architecto at est alias minima nam velit omnis, eligendi quae deserunt laudantium cumque doloremque quia. Eos, aliquid nemo delectus dolores non tempore error voluptas vitae quisquam facilis officia ratione, incidunt consectetur aspernatur ab impedit! Architecto quod tempore numquam blanditiis unde reprehenderit illo optio. Cum quis odit accusantium reprehenderit, pariatur distinctio eos ipsum quisquam sapiente assumenda. Cumque minus ipsa totam culpa, sunt natus et dolores iste beatae repellat cum aliquid dolorem quo ipsam nesciunt ipsum quas doloribus porro magni autem consectetur sit illum mollitia? Unde, deleniti in dignissimos eum hic, tempora cupiditate beatae, nulla adipisci natus quae illum odit. Illo nemo dolore fuga officia!</p>
+
+        <div *ngIf="noticia?.texto4" class="text-1 col-md-8 offset-md-2 my-5">
+            <p class="h6">{{ noticia?.texto4 }}</p>
         </div>
 
       </div>
       <div class="col-lg-2"></div>
-      </div>
     </div>
+  </div>
 </section>
+

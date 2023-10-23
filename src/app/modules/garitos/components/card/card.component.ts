@@ -1,13 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { GaritosService } from 'src/app/services/garitos.service';
 
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss']
 })
-export class CardComponent {
+export class CardComponent implements OnInit {
   p: number = 1;
   currentComunidadAutonoma: string = '';
+  garitosAPI: Array<any> = [];
   garitos: Array<any> = [
     { id: 1, facebook: "https://www.facebook.com/motobombabar?locale=es_ES", instagram: "https://www.instagram.com/hellawaitsmetal/", latitud: "https://maps.app.goo.gl/me2ZgMDKmsBrZ3Yf9", visitado: 1, comunidad_autonoma: "Andalucia",src: "../../../../../assets/img/Frame 1.jpg", title: "Pub Cronos" },
     { id: 2, facebook: "https://www.facebook.com/motobombabar?locale=es_ES", instagram: "https://www.instagram.com/hellawaitsmetal/", latitud: "https://maps.app.goo.gl/me2ZgMDKmsBrZ3Yf9", visitado: 1, comunidad_autonoma: "Andalucia",src: "../../../../../assets/img/Frame 2.jpg", title: "Pub ZZTop" },
@@ -34,4 +36,16 @@ export class CardComponent {
     { id: 23, visitado: 0, facebook: "https://www.facebook.com/motobombabar?locale=es_ES", instagram: "https://www.instagram.com/hellawaitsmetal/", latitud: "https://maps.app.goo.gl/me2ZgMDKmsBrZ3Yf9", comunidad_autonoma: "Cantabria", src: "../../../../../assets/img/Frame 4.jpg", title: "Pub Valhala" },
     { id: 24, visitado: 0, facebook: "https://www.facebook.com/motobombabar?locale=es_ES", instagram: "https://www.instagram.com/hellawaitsmetal/", latitud: "https://maps.app.goo.gl/me2ZgMDKmsBrZ3Yf9", comunidad_autonoma: "Cantabria", src: "../../../../../assets/img/Frame 1.jpg", title: "Pub 4 ases" }
   ];
+
+  constructor(private garitosService: GaritosService) {}
+  ngOnInit(): void {
+    this.cargarData();
+  }
+
+  public cargarData () {
+    this.garitosService.getAllGaritos().subscribe((res) => {
+      // Cargar la lista completa de garitos en garitos
+      this.garitosAPI = res;
+    })
+  }
 }

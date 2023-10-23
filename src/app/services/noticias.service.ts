@@ -7,6 +7,10 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class NoticiasService {
+  private generateLoremIpsum(): string {
+    const lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet feugiat purus. Praesent auctor mauris eget purus finibus, a ullamcorper velit euismod. Maecenas quis nunc quis dui cursus fermentum non ac arcu. Vivamus in libero eu ex vestibulum tincidunt. Proin quis tincidunt odio. Nullam eget libero sed justo blandit consectetur. Nulla facilisi. Praesent feugiat enim nec ligula euismod, at pulvinar elit lacinia. Nullam vel felis eros. Vivamus id libero a sapien sollicitudin tincidunt. Suspendisse potenti.";
+    return lorem;
+  }
   private noticiasGeneradas: Noticia[] = [];
   private selectedNoticia: Noticia | null = null;
   constructor(private http: HttpClient) { }
@@ -20,10 +24,11 @@ export class NoticiasService {
     ];
 
     const enlacesVideos = [
-      '<iframe width="560" height="315" src="https://www.youtube.com/embed/UuN6bQOtL-I?si=Xq164kGrFjTjxoog" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>',
-      '<iframe width="560" height="315" src="https://www.youtube.com/embed/UuN6bQOtL-I?si=Xq164kGrFjTjxoog" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>',
-      '<iframe width="560" height="315" src="https://www.youtube.com/embed/UuN6bQOtL-I?si=Xq164kGrFjTjxoog" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>',
+      "https://www.youtube.com/embed/UuN6bQOtL-I?si=Xq164kGrFjTjxoog",
+      "https://www.youtube.com/embed/UuN6bQOtL-I?si=Xq164kGrFjTjxoog",
+      "https://www.youtube.com/embed/UuN6bQOtL-I?si=Xq164kGrFjTjxoog",
     ];
+    const loremText = this.generateLoremIpsum();
 
 
     // Crea un array de 25 elementos aleatorios
@@ -34,16 +39,16 @@ export class NoticiasService {
       foto_inicio: imagenes[index % imagenes.length], // Repite las imágenes
       alt_foto_inicio: `Texto alternativo ${index + 1}`,
       titular: `Título ${index + 1}`,
-      texto1: `Texto 1 ${index + 1}`,
-      texto2: `Texto 2 ${index + 1}`,
-      texto3: `Texto 3 ${index + 1}`,
-      texto4: `Texto 4 ${index + 1}`,
+      texto1: loremText,
+      texto2: loremText,
+      texto3: loremText,
+      texto4: loremText,
       link_video: enlacesVideos[index % enlacesVideos.length], // Repite los enlaces de video
       headline: `Headline ${index + 1}`,
-      text1: `Texto 1 ${index + 1}`,
-      text2: `Texto 2 ${index + 1}`,
-      text3: `Texto 3 ${index + 1}`,
-      text4: `Texto 4 ${index + 1}`,
+      text1: loremText,
+      text2: loremText,
+      text3: loremText,
+      text4: loremText,
       palabras_clave: `Palabras clave ${index + 1}`,
       created_at: new Date(), // Puedes ajustar la fecha según tus necesidades
       updated_at: new Date(), // Puedes ajustar la fecha según tus necesidades

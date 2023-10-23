@@ -1,4 +1,4 @@
-import { Component,  ViewEncapsulation } from '@angular/core';
+import { Component,  OnInit,  ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
 import { Noticia } from 'src/app/interfaces/noticia';
 import { NoticiasService } from 'src/app/services/noticias.service';
 import { environment } from 'src/environments/environments';
@@ -16,9 +16,10 @@ SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
   templateUrl: './slider-news.component.html',
   styleUrls: ['./slider-news.component.scss'],
   encapsulation: ViewEncapsulation.None
-
 })
-export class SliderNewsComponent {
+
+export class SliderNewsComponent implements OnInit{
+  @ViewChild('sliderRef', { static: false }) slider: ElementRef | undefined;
   UrlNewsFirstSeven: string = environment.URL_NEWS_FIRST_7;
   noticias1: Noticia[] = [];
   swiperConfig: any = {
@@ -35,18 +36,39 @@ export class SliderNewsComponent {
     },
   };
 
+    // swiperConfig: any = {
+    //   infinite: true,
+    //   slidesToShow: 3, // Cuantas diapositivas deseas mostrar a la vez. Modifica según tu necesidad.
+    //   slidesToScroll: 1, // Cuantas diapositivas desplazar a la vez. Modifica según tu necesidad.
+    //   autoplay: true,
+    //   autoplaySpeed: 2000,
+    //   dots: true
+    // };
+
   public  first3: Array<Noticia> = [];
   constructor(private NoticiasService:NoticiasService) {}
   ngOnInit(): void {
+
+if (this.slider && this.slider.nativeElement) {
+  setTimeout(() => {
+    const sliderElement = this.slider!.nativeElement as HTMLElement;
+    sliderElement.style.display = 'none';
+    sliderElement.offsetHeight;
+    sliderElement.style.display = '';
     this.cargarData();
-  }
+}, 1000);
+
+}
+}
+
   public cargarData () {
     this.NoticiasService.getFirstSeven('http://127.0.0.1:8000/noticias/first-seven')
     .subscribe(res => {
-
       console.log("Noticias -> ", res);
     })
   }
+
+
   calcularTiempoTranscurrido(fechaStr: string): string {
     const fecha = new Date(fechaStr);
     const fechaActual = new Date();

@@ -4,30 +4,52 @@
   border-radius: 20px;
 }
 h1 {
-color: red;
+color: #e5080d;
+
 }
 button {
-background-color: grey;
-color: red;
+background-color: #e5080d;
+color: white;
 font-weight: bold;
 }
 form label {
-color: red;
+color: #e5080d;
 font-weight: bold;
+font-size: 2rem;
 }
 .main {
 border-radius: 50px;
 }
-.title {
-border: 2px white solid;
-}
+// .title {
+// border: 2px white solid;
+// }
 
-.title h1 {
-font-size: 6rem;
+.contact h1 {
+font-size: 4rem;
+font-family: 'Metal mania', sans-serif;
 }
 .title img {
 max-width: 20vw;
 width: 100px;
 text-align: center;
 display: flex;
+}
+button:hover {
+  background: #9E2629;
+}
+@media (max-width: 1400px) {
+  .contact h1 {
+    font-size: 3rem;
+    }
+  form label {
+    font-size: 1.4rem;
+    }
+}
+@media (max-width: 990px) {
+  .contact h1 {
+    font-size: 2.5rem;
+    }
+  form label {
+    font-size: 1.2rem;
+    }
 }

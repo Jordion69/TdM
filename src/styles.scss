@@ -33,6 +33,12 @@ $lead-font-size:              $font-size-base * 1.25;
 $custom-color: (
   "custom-color": #900
 );
+* {
+  box-sizing: border-box
+}
+.active {
+  background: #dcdcdc;
+}
 
 
 

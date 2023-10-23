@@ -41,11 +41,15 @@ showTelonerosDialog(teloneros: string[]) {
   this.telonerosActuales  = teloneros;
   $('#teloneros-modal').modal('show');
 }
+replaceUnderscoreAndHyphen(banda: string): string {
+  // Utiliza la función replace para reemplazar _ y - con espacios en blanco
+  return banda.replace(/[_-]/g, ' ');
+}
 
   conciertos: Array<any> = [
     {
       "id": 1,
-      "nombre": "Marea_Bilbao",
+      "nombre": "GinetaRock",
       "imagen": "../../../../assets/img/concert3.jpg",
       "alt_imagen": "Cartel de concierto Marea \"Gira sin riendas\" en Bilbao donde se ven dos caballos con gotero en modo cariñoso",
       "banda_principal": "GinetaRock",
@@ -109,10 +113,9 @@ showTelonerosDialog(teloneros: string[]) {
         }
       ]
       },
-
   {
   "id": 2,
-  "nombre": "Marea_Bilbao",
+  "nombre": "GinetaRock",
   "imagen": "../../../../assets/img/concert3.jpg",
   "alt_imagen": "Cartel de concierto Marea \"Gira sin riendas\" en Bilbao donde se ven dos caballos con gotero en modo cariñoso",
   "banda_principal": "GinetaRock",
@@ -177,20 +180,51 @@ showTelonerosDialog(teloneros: string[]) {
   ]
 },
 {
+  "id": 8,
+  "nombre": "Ciclone_Granada",
+  "imagen": "../../../../assets/img/concert2.jpg",
+  "alt_imagen": "Cartel de concierto Marea \"Gira sin riendas\" en Bilbao donde se ven dos caballos con gotero en modo cariñoso",
+  "banda_principal": "Ciclone",
+  "sala": "Rainbow Metal Pub",
+  "direccion": "Azkue kalea 1",
+  "poblacion": "Granada",
+  "provincia": "Granada",
+  "fecha_evento": "2023-09-01",
+  "link_entrada": "https://www.madnesslive.es/es/conciertos-en-barcelona/1213-comprar-entrada-abbath-toxic-holocaust-hellripper-barcelona.html",
+  "created_at": "2023-09-30T08:23:29.000000Z",
+  "updated_at": null,
+  "teloneros": [
+    {
+      "id": 5,
+      "concierto_id": 3,
+      "telonero": "Bocanada",
+      "created_at": "2023-09-30T08:24:46.000000Z",
+      "updated_at": "2023-09-30T08:28:55.000000Z"
+    }
+  ]
+},
+{
 "id": 3,
 "nombre": "Atalaya_Rock",
 "imagen": "../../../../assets/img/concert4.jpg",
 "alt_imagen": "Cartel de concierto Marea \"Gira sin riendas\" en Bilbao donde se ven dos caballos con gotero en modo cariñoso",
-"banda_principal": "Tierra Santa",
+"banda_principal": "Atalaya_Rock",
 "sala": "Pabellon Samuel Rodriguez",
 "direccion": "Camino Visitación",
 "poblacion": "Pozal de las Gallinas",
 "provincia": "Valladolid",
-"fecha_evento": "2023-10-14",
+"fecha_evento": "2023-09-30",
 "link_entrada": "https://www.madnesslive.es/es/conciertos-en-barcelona/1213-comprar-entrada-abbath-toxic-holocaust-hellripper-barcelona.html",
 "created_at": "2023-09-30T08:23:29.000000Z",
 "updated_at": null,
 "teloneros": [
+  {
+    "id": 6,
+    "concierto_id": 3,
+    "telonero": "Tierra Santa",
+    "created_at": "2023-09-30T08:24:46.000000Z",
+    "updated_at": "2023-09-30T08:28:55.000000Z"
+  },
   {
     "id": 5,
     "concierto_id": 3,
@@ -222,11 +256,351 @@ showTelonerosDialog(teloneros: string[]) {
 ]
 },
 {
+  "id": 1,
+  "nombre": "GinetaRock",
+  "imagen": "../../../../assets/img/concert3.jpg",
+  "alt_imagen": "Cartel de concierto Marea \"Gira sin riendas\" en Bilbao donde se ven dos caballos con gotero en modo cariñoso",
+  "banda_principal": "GinetaRock",
+  "sala": "Salon Municipal",
+  "direccion": "Calle Guarderia 6",
+  "poblacion": "La Gineta",
+  "provincia": "Albacete",
+  "fecha_evento": "2023-09-29",
+  "link_entrada": "https://www.madnesslive.es/es/conciertos-en-barcelona/1213-comprar-entrada-abbath-toxic-holocaust-hellripper-barcelona.html",
+  "created_at": "2023-10-03T08:23:29.000000Z",
+  "updated_at": null,
+  "teloneros": [
+    {
+      "id": 5,
+      "concierto_id": 3,
+      "telonero": "Angelus Apatrida",
+      "created_at": "2023-09-30T08:24:46.000000Z",
+      "updated_at": "2023-09-30T08:28:55.000000Z"
+    },
+    {
+      "id": 6,
+      "concierto_id": 3,
+      "telonero": "Tierra Santa",
+      "created_at": "2023-09-30T08:24:46.000000Z",
+      "updated_at": "2023-09-30T08:28:55.000000Z"
+    },
+    {
+      "id": 7,
+      "concierto_id": 3,
+      "telonero": "Celtibeerian",
+      "created_at": "2023-09-30T08:24:46.000000Z",
+      "updated_at": "2023-09-30T08:28:55.000000Z"
+    },
+    {
+      "id": 8,
+      "concierto_id": 3,
+      "telonero": "Infamia",
+      "created_at": "2023-09-30T08:24:46.000000Z",
+      "updated_at": "2023-09-30T08:28:55.000000Z"
+    },
+    {
+      "id": 9,
+      "concierto_id": 3,
+      "telonero": "Daeria",
+      "created_at": "2023-09-30T08:24:46.000000Z",
+      "updated_at": "2023-09-30T08:28:55.000000Z"
+    },
+    {
+      "id": 10,
+      "concierto_id": 3,
+      "telonero": "Vhaldemar",
+      "created_at": "2023-09-30T08:24:46.000000Z",
+      "updated_at": "2023-09-30T08:28:55.000000Z"
+    },
+    {
+      "id": 11,
+      "concierto_id": 3,
+      "telonero": "Sylvania",
+      "created_at": "2023-09-30T08:24:46.000000Z",
+      "updated_at": "2023-09-30T08:28:55.000000Z"
+    }
+  ]
+  },
+  {
+    "id": 1,
+    "nombre": "GinetaRock",
+    "imagen": "../../../../assets/img/concert3.jpg",
+    "alt_imagen": "Cartel de concierto Marea \"Gira sin riendas\" en Bilbao donde se ven dos caballos con gotero en modo cariñoso",
+    "banda_principal": "GinetaRock",
+    "sala": "Salon Municipal",
+    "direccion": "Calle Guarderia 6",
+    "poblacion": "La Gineta",
+    "provincia": "Albacete",
+    "fecha_evento": "2023-09-29",
+    "link_entrada": "https://www.madnesslive.es/es/conciertos-en-barcelona/1213-comprar-entrada-abbath-toxic-holocaust-hellripper-barcelona.html",
+    "created_at": "2023-09-30T08:23:29.000000Z",
+    "updated_at": null,
+    "teloneros": [
+      {
+        "id": 5,
+        "concierto_id": 3,
+        "telonero": "Angelus Apatrida",
+        "created_at": "2023-09-30T08:24:46.000000Z",
+        "updated_at": "2023-09-30T08:28:55.000000Z"
+      },
+      {
+        "id": 6,
+        "concierto_id": 3,
+        "telonero": "Tierra Santa",
+        "created_at": "2023-09-30T08:24:46.000000Z",
+        "updated_at": "2023-09-30T08:28:55.000000Z"
+      },
+      {
+        "id": 7,
+        "concierto_id": 3,
+        "telonero": "Celtibeerian",
+        "created_at": "2023-09-30T08:24:46.000000Z",
+        "updated_at": "2023-09-30T08:28:55.000000Z"
+      },
+      {
+        "id": 8,
+        "concierto_id": 3,
+        "telonero": "Infamia",
+        "created_at": "2023-09-30T08:24:46.000000Z",
+        "updated_at": "2023-09-30T08:28:55.000000Z"
+      },
+      {
+        "id": 9,
+        "concierto_id": 3,
+        "telonero": "Daeria",
+        "created_at": "2023-09-30T08:24:46.000000Z",
+        "updated_at": "2023-09-30T08:28:55.000000Z"
+      },
+      {
+        "id": 10,
+        "concierto_id": 3,
+        "telonero": "Vhaldemar",
+        "created_at": "2023-09-30T08:24:46.000000Z",
+        "updated_at": "2023-09-30T08:28:55.000000Z"
+      },
+      {
+        "id": 11,
+        "concierto_id": 3,
+        "telonero": "Sylvania",
+        "created_at": "2023-09-30T08:24:46.000000Z",
+        "updated_at": "2023-09-30T08:28:55.000000Z"
+      }
+    ]
+    },
+{
+"id": 2,
+"nombre": "GinetaRock",
+"imagen": "../../../../assets/img/concert3.jpg",
+"alt_imagen": "Cartel de concierto Marea \"Gira sin riendas\" en Bilbao donde se ven dos caballos con gotero en modo cariñoso",
+"banda_principal": "GinetaRock",
+"sala": "Salon Municipal",
+"direccion": "Calle Guarderia 6",
+"poblacion": "La Gineta",
+"provincia": "Albacete",
+"fecha_evento": "2023-09-30",
+"link_entrada": "https://www.madnesslive.es/es/conciertos-en-barcelona/1213-comprar-entrada-abbath-toxic-holocaust-hellripper-barcelona.html",
+"created_at": "2023-09-30T08:23:29.000000Z",
+"updated_at": null,
+"teloneros": [
+  {
+    "id": 5,
+    "concierto_id": 3,
+    "telonero": "Angelus Apatrida",
+    "created_at": "2023-09-30T08:24:46.000000Z",
+    "updated_at": "2023-09-30T08:28:55.000000Z"
+  },
+  {
+    "id": 6,
+    "concierto_id": 3,
+    "telonero": "Tierra Santa",
+    "created_at": "2023-09-30T08:24:46.000000Z",
+    "updated_at": "2023-09-30T08:28:55.000000Z"
+  },
+  {
+    "id": 7,
+    "concierto_id": 3,
+    "telonero": "Celtibeerian",
+    "created_at": "2023-09-30T08:24:46.000000Z",
+    "updated_at": "2023-09-30T08:28:55.000000Z"
+  },
+  {
+    "id": 8,
+    "concierto_id": 3,
+    "telonero": "Infamia",
+    "created_at": "2023-09-30T08:24:46.000000Z",
+    "updated_at": "2023-09-30T08:28:55.000000Z"
+  },
+  {
+    "id": 9,
+    "concierto_id": 3,
+    "telonero": "Daeria",
+    "created_at": "2023-09-30T08:24:46.000000Z",
+    "updated_at": "2023-09-30T08:28:55.000000Z"
+  },
+  {
+    "id": 10,
+    "concierto_id": 3,
+    "telonero": "Vhaldemar",
+    "created_at": "2023-09-30T08:24:46.000000Z",
+    "updated_at": "2023-09-30T08:28:55.000000Z"
+  },
+  {
+    "id": 11,
+    "concierto_id": 3,
+    "telonero": "Sylvania",
+    "created_at": "2023-09-30T08:24:46.000000Z",
+    "updated_at": "2023-09-30T08:28:55.000000Z"
+  }
+]
+},
+{
+"id": 8,
+"nombre": "Ciclone_Granada",
+"imagen": "../../../../assets/img/concert2.jpg",
+"alt_imagen": "Cartel de concierto Marea \"Gira sin riendas\" en Bilbao donde se ven dos caballos con gotero en modo cariñoso",
+"banda_principal": "Ciclone",
+"sala": "Rainbow Metal Pub",
+"direccion": "Azkue kalea 1",
+"poblacion": "Granada",
+"provincia": "Granada",
+"fecha_evento": "2023-09-01",
+"link_entrada": "https://www.madnesslive.es/es/conciertos-en-barcelona/1213-comprar-entrada-abbath-toxic-holocaust-hellripper-barcelona.html",
+"created_at": "2023-09-30T08:23:29.000000Z",
+"updated_at": null,
+"teloneros": [
+  {
+    "id": 5,
+    "concierto_id": 3,
+    "telonero": "Bocanada",
+    "created_at": "2023-09-30T08:24:46.000000Z",
+    "updated_at": "2023-09-30T08:28:55.000000Z"
+  }
+]
+},
+{
+"id": 3,
+"nombre": "Atalaya_Rock",
+"imagen": "../../../../assets/img/concert4.jpg",
+"alt_imagen": "Cartel de concierto Marea \"Gira sin riendas\" en Bilbao donde se ven dos caballos con gotero en modo cariñoso",
+"banda_principal": "Atalaya_Rock",
+"sala": "Pabellon Samuel Rodriguez",
+"direccion": "Camino Visitación",
+"poblacion": "Pozal de las Gallinas",
+"provincia": "Valladolid",
+"fecha_evento": "2023-09-30",
+"link_entrada": "https://www.madnesslive.es/es/conciertos-en-barcelona/1213-comprar-entrada-abbath-toxic-holocaust-hellripper-barcelona.html",
+"created_at": "2023-09-30T08:23:29.000000Z",
+"updated_at": null,
+"teloneros": [
+{
+  "id": 6,
+  "concierto_id": 3,
+  "telonero": "Tierra Santa",
+  "created_at": "2023-09-30T08:24:46.000000Z",
+  "updated_at": "2023-09-30T08:28:55.000000Z"
+},
+{
+  "id": 5,
+  "concierto_id": 3,
+  "telonero": "Diabulus in Musica",
+  "created_at": "2023-09-30T08:24:46.000000Z",
+  "updated_at": "2023-09-30T08:28:55.000000Z"
+},
+{
+  "id": 6,
+  "concierto_id": 3,
+  "telonero": "DelAlma",
+  "created_at": "2023-09-30T08:24:46.000000Z",
+  "updated_at": "2023-09-30T08:28:55.000000Z"
+},
+{
+  "id": 7,
+  "concierto_id": 3,
+  "telonero": "BloodHunter",
+  "created_at": "2023-09-30T08:24:46.000000Z",
+  "updated_at": "2023-09-30T08:28:55.000000Z"
+},
+{
+  "id": 8,
+  "concierto_id": 3,
+  "telonero": "Grave Noise",
+  "created_at": "2023-09-30T08:24:46.000000Z",
+  "updated_at": "2023-09-30T08:28:55.000000Z"
+}
+]
+},
+{
+"id": 1,
+"nombre": "GinetaRock",
+"imagen": "../../../../assets/img/concert3.jpg",
+"alt_imagen": "Cartel de concierto Marea \"Gira sin riendas\" en Bilbao donde se ven dos caballos con gotero en modo cariñoso",
+"banda_principal": "GinetaRock",
+"sala": "Salon Municipal",
+"direccion": "Calle Guarderia 6",
+"poblacion": "La Gineta",
+"provincia": "Albacete",
+"fecha_evento": "2023-09-29",
+"link_entrada": "gratis",
+"created_at": "2023-10-03T08:23:29.000000Z",
+"updated_at": null,
+"teloneros": [
+  {
+    "id": 5,
+    "concierto_id": 3,
+    "telonero": "Angelus Apatrida",
+    "created_at": "2023-09-30T08:24:46.000000Z",
+    "updated_at": "2023-09-30T08:28:55.000000Z"
+  },
+  {
+    "id": 6,
+    "concierto_id": 3,
+    "telonero": "Tierra Santa",
+    "created_at": "2023-09-30T08:24:46.000000Z",
+    "updated_at": "2023-09-30T08:28:55.000000Z"
+  },
+  {
+    "id": 7,
+    "concierto_id": 3,
+    "telonero": "Celtibeerian",
+    "created_at": "2023-09-30T08:24:46.000000Z",
+    "updated_at": "2023-09-30T08:28:55.000000Z"
+  },
+  {
+    "id": 8,
+    "concierto_id": 3,
+    "telonero": "Infamia",
+    "created_at": "2023-09-30T08:24:46.000000Z",
+    "updated_at": "2023-09-30T08:28:55.000000Z"
+  },
+  {
+    "id": 9,
+    "concierto_id": 3,
+    "telonero": "Daeria",
+    "created_at": "2023-09-30T08:24:46.000000Z",
+    "updated_at": "2023-09-30T08:28:55.000000Z"
+  },
+  {
+    "id": 10,
+    "concierto_id": 3,
+    "telonero": "Vhaldemar",
+    "created_at": "2023-09-30T08:24:46.000000Z",
+    "updated_at": "2023-09-30T08:28:55.000000Z"
+  },
+  {
+    "id": 11,
+    "concierto_id": 3,
+    "telonero": "Sylvania",
+    "created_at": "2023-09-30T08:24:46.000000Z",
+    "updated_at": "2023-09-30T08:28:55.000000Z"
+  }
+]
+},
+{
   "id": 4,
   "nombre": "Atalaya_Rock",
   "imagen": "../../../../assets/img/concert4.jpg",
   "alt_imagen": "Cartel de concierto Marea \"Gira sin riendas\" en Bilbao donde se ven dos caballos con gotero en modo cariñoso",
-  "banda_principal": "Tierra Santa",
+  "banda_principal": "Atalaya_Rock",
   "sala": "Pabellon Samuel Rodriguez",
   "direccion": "Camino Visitación",
   "poblacion": "Pozal de las Gallinas",
@@ -290,9 +664,6 @@ showTelonerosDialog(teloneros: string[]) {
   }
 ]
 },
-
-
-
 {
 "id": 6,
 "nombre": "KillingMachine_L'Hospitalet",
@@ -319,7 +690,7 @@ showTelonerosDialog(teloneros: string[]) {
 },
 {
   "id": 7,
-  "nombre": "",
+  "nombre": "Ciclone_Granada",
   "imagen": "../../../../assets/img/concert2.jpg",
   "alt_imagen": "Cartel de concierto Marea \"Gira sin riendas\" en Bilbao donde se ven dos caballos con gotero en modo cariñoso",
   "banda_principal": "Ciclone",
@@ -343,7 +714,7 @@ showTelonerosDialog(teloneros: string[]) {
 },
 {
   "id": 8,
-  "nombre": "",
+  "nombre": "Ciclone_Granada",
   "imagen": "../../../../assets/img/concert2.jpg",
   "alt_imagen": "Cartel de concierto Marea \"Gira sin riendas\" en Bilbao donde se ven dos caballos con gotero en modo cariñoso",
   "banda_principal": "Ciclone",

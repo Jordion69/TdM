@@ -12,16 +12,16 @@ import { filter, map } from 'rxjs';
 })
 export class NavbarComponent implements OnInit, AfterViewInit {
 
-
   constructor(private readonly route: ActivatedRoute, private router: Router) {
     // console.log(this.router.url)
+  }
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
   }
 
   ngAfterViewInit(): void {
   }
 
-  ngOnInit(): void {
-  }
 
   public onToggleSidenav = () => {};
 

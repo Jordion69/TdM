@@ -1,12 +1,10 @@
-
-
 <div class="container-fluid gallery">
   <div class="row">
     <ng-container *ngFor="let concierto of conciertos | paginate: { itemsPerPage: 30, currentPage: p }; let i = index ">
       <!-- Extraer el mes de la fecha del concierto -->
-      <ng-container *ngIf="i === 0 || (concierto.fecha_evento | date: 'MMMM y') !== (conciertos[i - 1].fecha_evento | date: 'MMMM y')">
+      <ng-container *ngIf="i === 0 || (concierto.fecha_evento | date: 'MMMM y' : 'es') !== (conciertos[i - 1].fecha_evento | date: 'MMMM y')">
         <div class="col-12">
-          <h2 class="text-danger display-1 py-1 mt-5">{{ concierto.fecha_evento | date: 'MMMM y' }}</h2>
+          <h2 class="display-1 py-1 mt-5">{{ concierto.fecha_evento | date: 'MMMM y' : 'es' }}</h2>
         </div>
       </ng-container>
       <!-- Tarjeta de concierto -->
@@ -15,29 +13,42 @@
           <div class="img">
             <div class="date">
               {{ concierto.fecha_evento | date: 'dd/MM' }}
-              <!-- <h2>{{ concierto.fecha_evento.day }}</h2>
-              <h4>{{ concierto.fecha_evento.month }}</h4> -->
             </div>
             <img src="{{concierto.imagen}}" alt="" (click)="openModal(concierto.imagen)">
           </div>
           <div class="main-text">
-            <h2>{{concierto.banda_principal}}</h2>
-
+            <h2>{{ replaceUnderscoreAndHyphen(concierto.banda_principal) }}</h2>
             <h4>
               <ng-container *ngIf="concierto.teloneros && concierto.teloneros.length > 0; else noTeloneros">
-                <a (click)="showTelonerosDialog(concierto.teloneros)">Ver Teloneros</a>
+                <ng-container *ngIf="concierto.nombre === concierto.banda_principal; else verTeloneros">
+                  <a (click)="showTelonerosDialog(concierto.teloneros)">
+                    <i class="bi bi-info-circle"></i> Ver Bandas
+                  </a>
+                </ng-container>
+                <ng-template #verTeloneros>
+                  <a (click)="showTelonerosDialog(concierto.teloneros)">
+                    <i class="bi bi-info-circle"></i> Ver Teloneros
+                  </a>
+                </ng-template>
               </ng-container>
               <ng-template #noTeloneros>
                 Sin teloneros
               </ng-template>
             </h4>
-
             <h4>{{concierto.sala}}</h4>
             <h2>{{concierto.poblacion}}</h2>
           </div>
           <div class="entradas">
-            <button class="btn btn-secondary"><a href="{{concierto.link_entrada}}">Entradas</a></button>
+            <ng-container *ngIf="concierto.link_entrada === 'gratis'; else mostrarBotonEntradas">
+              <p class="entrada-gratuita text-uppercase">Entrada gratuita</p>
+            </ng-container>
+            <ng-template #mostrarBotonEntradas>
+              <a [href]="concierto.link_entrada" class="btn btn-entradas">
+                {{ concierto.link_entrada === 'gratis' ? 'Entrada gratuita' : 'Entradas' }}
+              </a>
+            </ng-template>
           </div>
+
         </div>
       </div>
     </ng-container>
@@ -46,8 +57,6 @@
     <pagination-controls (pageChange)="p = $event"></pagination-controls>
   </div>
 </div>
-
-
 
 
 <div id="gallery-modal" class="modal fade" tabindex="-1" role="dialog">
@@ -78,14 +87,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
