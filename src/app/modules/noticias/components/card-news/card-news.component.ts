@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Noticia } from 'src/app/interfaces/noticia';
 import { environment } from 'src/environments/environments';
 import { NoticiasService } from 'src/app/services/noticias.service';
@@ -15,6 +15,7 @@ export class CardNewsComponent implements OnInit {
   UrlNewsFromFourth: string = environment.URL_NEWS_FROM_4;
   public first3: Array<Noticia> = [];
   noticias: Noticia[] = [];
+  numberOfWords = 50;
 
   constructor(private NoticiasService: NoticiasService, private router: Router) {}
 
@@ -38,6 +39,23 @@ export class CardNewsComponent implements OnInit {
       this.router.navigate(['noticias-detalle', numericId]);
     }
   }
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    const windowWidth = window.innerWidth;
+    if (windowWidth <= 1800 && windowWidth >= 1600) {
+      this.numberOfWords = 40; // Ajusta este valor según lo que necesites
+    } else if (windowWidth <= 1599 && windowWidth >= 1400) {
+      this.numberOfWords = 30; // Valor original
+    } else if (windowWidth <= 1399 && windowWidth >= 1150) {
+      this.numberOfWords = 25; // Valor original
+    } else if (windowWidth <= 1149 && windowWidth >= 993) {
+      this.numberOfWords = 18; // Valor original
+    } else if (windowWidth <= 992 && windowWidth >= 451) {
+      this.numberOfWords = 50; // Valor original
+    }else if (windowWidth < 450) {
+      this.numberOfWords = 30; // Valor original
+    }
+  }
 
 
 
@@ -59,23 +77,9 @@ export class CardNewsComponent implements OnInit {
     // Dividir el texto en palabras utilizando espacios en blanco como delimitadores
     const words = inputText.split(' ');
 
-    // Tomar las primeras 100 palabras o menos si el texto contiene menos de 100 palabras
-    const first100Words = words.slice(0, 50).join(' ');
+    // Tomar las primeras 50 palabras o menos si el texto contiene menos de 100 palabras
+    const first100Words = words.slice(0, this.numberOfWords).join(' ');
 
     return first100Words;
   }
-  // noticias: Array<any> = [
-  //   { id: 1,date: "2023/09/25", title: "Iron Maiden gran gira mundial", img: "../../../../../assets/img/new1280(1).jpg", text: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......"},
-  //   { id: 2,date: "2023/09/03", title: "Iron Maiden gran gira mundial", img: "../../../../../assets/img/new1280(2).jpg", text: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......"},
-  //   { id: 3,date: "2023/09/04",title: "Iron Maiden gran gira mundial", img: "../../../../../assets/img/new1280(3).jpg", text: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......"},
-  //   { id: 4,date: "2023/09/05", title: "Iron Maiden gran gira mundial", img: "../../../../../assets/img/new1280(1).jpg", text: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......"},
-  //   { id: 5,date: "2023/09/06", title: "Sonata Arctica nuevo disco el próximo", img: "../../../../../assets/img//new1280(2).jpg", text: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......"},
-  //   { id: 6,date: "2023/09/07", title: "Sonata Arctica nuevo disco el próximo", img: "../../../../../assets/img/new1280(3).jpg", text: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......"},
-  //   { id: 7,date: "2023/09/08", title: "Sonata Arctica nuevo disco el próximo", img: "../../../../../assets/img/new1280(1).jpg", text: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......"},
-  //   { id: 8,date: "2023/09/09", title: "Sonata Arctica nuevo disco el próximo", img: "../../../../../assets/img//new1280(2).jpg", text: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......"},
-  //   { id: 9,date: "2023/09/04",title: "Iron Maiden gran gira mundial", img: "../../../../../assets/img/new1280(3).jpg", text: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......"}
-  // ]
-
-
-
 }

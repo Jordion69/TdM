@@ -52,6 +52,7 @@ ul li a img {
 }
 
 ul.navbar-nav li:hover {
-  background-color: #ff6600; /* Cambia el color de fondo al pasar el cursor */
-  /* Otros estilos que desees aplicar al elemento en el hover */
+  // background-color: #ff6600;
+  transform: scale(1.2);
+  transition: transform 0.3s;
 }

@@ -25,3 +25,28 @@
     margin: 0;
   }
 }
+/* Estilos iniciales */
+.fade-in-left {
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: opacity 1.5s, transform 1.5s;
+}
+
+.fade-in-right {
+  opacity: 0;
+  transform: translateX(100%);
+  transition: opacity 1.5s, transform 1.5s;
+}
+
+/* Estilos cuando el elemento es visible */
+.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+@media (max-width: 768px) {
+  .fade-in-left, .fade-in-right {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+

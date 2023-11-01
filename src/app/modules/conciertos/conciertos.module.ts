@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { FormsModule } from '@angular/forms';
 // import { ConciertosRoutingModule } from './conciertos-routing.module';
 import { PageComponent } from './page/page.component';
 import { ConciertosRoutingModule} from './conciertos-routing.module';
@@ -19,6 +19,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
   imports: [
     ConciertosRoutingModule,
     CommonModule,
+    FormsModule,
     NgxPaginationModule
 
   ]

@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <div class="row d-flex">
     <div class="col-md-12 col-lg-5 text-left my-5">
         <div class="h-search-form search">
@@ -24,6 +24,31 @@
     <div class="col-md-12 col-lg-2 text-right my-5">
       <div class="h-search-form">
         <button class="btn-ultimas-novedades"  data-bs-toggle="tooltip" data-bs-placement="top" title="Conciertos añadidos recientemente">NOVEDADES</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+<div class="container">
+  <div class="row d-flex">
+    <div class="col-md-12 col-lg-5 text-left my-5">
+      <div class="h-search-form search">
+        <form (submit)="search()" [ngClass]="{ 'fix-search': isFixedHeader }">
+          <input type="search" [(ngModel)]="keyword" placeholder="Buscar......." name="keyword">
+          <button type="submit"><i class="bi bi-search"></i></button>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-12 col-lg-5 text-right my-5">
+      <div class="h-search-form">
+        <select class=" form-select form-select-sm" [(ngModel)]="selectedProvincia" name="provincia">
+          <option value="" disabled selected>Provincias ....</option>
+          <option *ngFor="let provincia of provincias" [value]="provincia.id">{{provincia.name}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-12 col-lg-2 text-right my-5">
+      <div class="h-search-form">
+        <button class="btn-ultimas-novedades" (click)="getNovedades()" data-bs-toggle="tooltip" data-bs-placement="top" title="Conciertos añadidos recientemente">NOVEDADES</button>
       </div>
     </div>
   </div>

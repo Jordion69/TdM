@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-page',
@@ -6,6 +6,35 @@ import { Component } from '@angular/core';
   styleUrls: ['./page.component.scss']
 })
 export class PageComponent {
+  readonly someProperty: string = "initial value";
+  sliders: NodeListOf<Element> = document.querySelectorAll('.slider');
+
+  @HostListener('window:scroll', ['$event'])
+  onScroll(event: Event) {
+    const titles = document.querySelectorAll('.color-overlay');
+    const sliders = document.querySelectorAll('.slider-news, .slider-concerts, .slider-clubs');
+
+    titles.forEach((title, index) => {
+      const position = title.getBoundingClientRect().top;
+      const windowHeight = window.innerHeight;
+      const windowWidth = window.innerWidth;
+      if (position < windowHeight) {
+        title.classList.add('is-visible');
+        sliders[index].classList.add('is-visible');
+
+        // Comprobamos si la ventana es mayor que 768px antes de aplicar los efectos
+        if (windowWidth > 768) {
+          if (index % 2 === 0) {
+            title.classList.add('fade-in-left');
+            sliders[index].classList.add('fade-in-right');
+          } else {
+            title.classList.add('fade-in-right');
+            sliders[index].classList.add('fade-in-left');
+          }
+        }
+      }
+    });
+  }
 
   garitos: Array<any> = [
     { id: 1, place: "Barcelona", src: "../../../../../assets/img/w1.jpg", title: "Pub Cronos" },
