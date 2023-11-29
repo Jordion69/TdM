@@ -1,4 +1,6 @@
-import { Component,  ViewEncapsulation } from '@angular/core';
+import { Component,  OnInit,  ViewEncapsulation, ChangeDetectorRef, ElementRef, ViewChild, AfterViewInit, ChangeDetectionStrategy } from '@angular/core';
+import { Garito } from 'src/app/interfaces/garito';
+import { GaritosService } from 'src/app/services/garitos.service';
 import SwiperCore, {
   Navigation,
   Pagination,
@@ -11,14 +13,19 @@ SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
   selector: 'app-slider-clubs',
   templateUrl: './slider-clubs.component.html',
   styleUrls: ['./slider-clubs.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SliderClubsComponent {
+export class SliderClubsComponent implements OnInit, AfterViewInit{
+  @ViewChild('swiperContainer', { static: false }) swiperContainer: ElementRef | undefined;
+  private swiper: Swiper | undefined;
+  errorMessage: string = '';
+  dataLoaded = false;
   swiperConfig: any = {
     effect: 'coverflow',
     grabCursor: true,
     centeredSlides: true,
-    loop: true,
+    loop: false,
     slidesPerView: 'auto',
     coverflowEffect: {
       rotate: 0,
@@ -26,16 +33,53 @@ export class SliderClubsComponent {
       depth: 100,
       modifier: 2.5,
     },
+    pagination: { clickable: true } // Moved pagination here as part of swiperConfig
   };
-  garitos: Array<any> = [
-    { id: 1,date: "2023/09/21",place: "Barcelona", src: "/assets/img/Frame 1.jpg", title: "Pub Cronos" },
-    { id: 2,date: "2023/09/22",place: "Tarragona", src: "/assets/img/Frame 2.jpg", title: "Pub ZZTop" },
-    { id: 3,date: "2023/09/23",place: "Lleida", src: "/assets/img/Frame 3.jpg", title: "Pub Valhala" },
-    { id: 4,date: "2023/09/24",place: "Girona", src: "/assets/img/Frame 4.jpg", title: "Pub 4 ases" },
-    { id: 5,date: "2023/09/25",place: "Murcia", src: "/assets/img/Frame 1.jpg", title: "Pub Cronos" },
-    { id: 6,date: "2023/09/26",place: "La rioja", src: "/assets/img/Frame 2.jpg", title: "Pub ZZTop" },
-    { id: 7,date: "2023/09/27",place: "Burgos", src: "/assets/img/Frame 3.jpg", title: "Pub Valhala" },
-    { id: 8,date: "2023/09/28",place: "Canarias", src: "/assets/img/Frame 4.jpg", title: "Pub 4 ases" },
-    { id: 9,date: "2023/09/29",place: "Soria", src: "/assets/img/Frame 1.jpg", title: "Pub 4 ases" }
-  ];
+  garitos: Array<Garito> = []; // Inicializa el array vacío
+  constructor(private garitosService: GaritosService, private cdr: ChangeDetectorRef) {}
+
+
+  ngOnInit(): void {
+    console.log('ngOnInit - SliderClubsComponent');
+
+
+    this.getGaritos();
+  }
+  ngAfterViewInit(): void {
+    console.log('ngAfterViewInit - SliderClubsComponent');
+    this.initializeSwiper();
+  }
+  getGaritos(): void {
+    console.log('getGaritos - Solicitando datos');
+    this.garitos = [];
+    this.garitosService.getRandomSeven().subscribe({
+      next: (garitos) => {
+        let arrayExterno = Object.values(garitos);
+        if (arrayExterno.length > 0 && Array.isArray(arrayExterno[0])) {
+          this.garitos = arrayExterno[0] as Array<Garito>;
+          this.dataLoaded = true;
+          console.log('dataLoaded set to true');
+          this.cdr.detectChanges();
+        } else {
+          console.error('La estructura de datos no es la esperada:', garitos);
+        }
+      },
+      error: (error) => {
+        console.log('getGaritos - Error al recibir datos');
+        this.errorMessage = 'Error al cargar los garitos. Por favor, intente de nuevo más tarde.';
+        console.error('Error al obtener los garitos', error);
+      }
+    });
+  }
+  initializeSwiper(): void {
+    console.log('initializeSwiper - Intentando inicializar/actualizar');
+    if (this.dataLoaded && this.swiperContainer?.nativeElement) {
+      console.log('initializeSwiper - Data is loaded, initializing/updating swiper');
+      if (this.swiper) {
+        this.swiper.update();
+      } else {
+        this.swiper = new Swiper(this.swiperContainer.nativeElement, this.swiperConfig);
+      }
+    }
+  }
 }

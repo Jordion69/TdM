@@ -32,6 +32,8 @@ h2 {
 
 .visited-badge img {
   max-width: 40px; /* Ajusta el ancho de la imagen visitada según tu preferencia */
+  border-radius: 50%; /* Hace que el borde de la imagen sea completamente redondo */
+  border: 2px solid #e5080d; /* Añade un borde con el color especificado */
 }
 
  @media (max-width: 768px) {

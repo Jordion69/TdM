@@ -9,6 +9,8 @@ import { TooltipsComponent } from './shared/components/tooltips/tooltips.compone
 import { ConciertosModule } from './modules/conciertos/conciertos.module';
 import { PagenotfoundComponent } from './modules/pagenotfound/page/pagenotfound.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
+
 
 
 
@@ -30,7 +32,7 @@ import { HttpClientModule } from '@angular/common/http';
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

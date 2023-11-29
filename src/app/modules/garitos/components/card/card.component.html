@@ -38,7 +38,7 @@
 
 
 
-<div class="container-fluid">
+<div class="container-fluid search-container">
   <div class="row">
     <ng-container *ngFor="let garito of garitos; let i = index ">
       <ng-container *ngIf="i === 0 || garito.comunidad_autonoma !== garitos[i - 1].comunidad_autonoma">
@@ -51,11 +51,11 @@
           <div class="visited-badge">
             <img *ngIf="garito.visitado === 1" src="../../../../../assets/img/ruta666black.png" alt="Visited Badge">
           </div>
-          <img class="card-img-top img-fluid" src="{{ garito.src }}" alt="">
+          <img class="card-img-top img-fluid" [src]="'http://127.0.0.1:8000/storage/' + garito.imagen" alt="">
           <div class="card-body">
-            <h5 class="card-title">{{ garito.title }}</h5>
-            <p class="card-text">Calle de la agricultura 25</p>
-            <p class="card-text"><strong>Granada</strong></p>
+            <h5 class="card-title">{{ garito.nombre_garito }}</h5>
+            <p class="card-text">{{garito.direccion}}</p>
+            <p class="card-text"><strong>{{garito.poblacion}}</strong></p>
             <div class="row">
               <ul class="icons d-flex flex-row flex-wrap list-unstyled col-8 col-lg-6 col-xl-6 justify-content-between">
                 <li class="hover-overlay hover-zoom" *ngIf="garito.facebook && garito.facebook.trim().length > 0">
@@ -64,12 +64,12 @@
                   </a>
                 </li>
                 <li *ngIf="garito.instagram && garito.instagram.trim().length > 0">
-                  <a href="{{garito.instagram }}">
+                  <a href="{{ garito.instagram }}">
                     <span class="bi bi-instagram fs-2"></span>
                   </a>
                 </li>
                 <li *ngIf="garito.latitud && garito.latitud.trim().length > 0">
-                  <a href="">
+                  <a href="{{garito.latitud}}">
                     <span class="bi bi-geo-alt-fill fs-2"></span>
                   </a>
                 </li>

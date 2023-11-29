@@ -1,57 +1,155 @@
 
-.h-search-form {
-  width: 100%;
+// .h-search-form {
+//   width: 100%;
+//   position: relative;
+// }
+
+// .h-search-form input {
+//   width: 100%;
+//   padding: 0 30px;
+//   border-radius: 50px;
+//   border: 2px solid;
+//   font-size: 16px;
+//   text-transform: capitalize;
+//   position: relative;
+//   color: #333;
+//   height: 70px;
+// }
+// .h-search-form select {
+//   width: 100%;
+//   padding: 0 30px;
+//   border-radius: 50px;
+//   border: 2px solid;
+//   font-size: 16px;
+//   text-transform: capitalize;
+//   position: relative;
+//   color: #333;
+//   height: 70px;
+// }
+
+// .h-search-form button {
+//   position: absolute;
+//   right: 6px;
+//   height: 60px;
+//   border: none;
+//   color: #fff;
+//   background: #e5080d;
+//   top: 5px;
+//   border-radius: 50px;
+//   width: 100px;
+// }
+// @media (max-width: 768px) {
+//   .h-search-form input {
+//     height: 50px;
+//   }
+//   .h-search-form button {
+//     height: 40px;
+//     width: 80px;
+//   }
+// }
+
+
+
+// .h-search-form {
+//   display: flex;
+//   position: relative;
+
+//   .form-control {
+//     border-radius: 50px;
+//     border: 2px solid #ddd;
+//     padding: 0.5rem 1rem;
+//     height: auto;
+//   }
+
+//   .btn-search {
+//     position: absolute;
+//     right: 1rem;
+//     border: none;
+//     background: none;
+//     cursor: pointer;
+
+//     i {
+//       color: #e5080d;
+//     }
+//   }
+
+//   @media (max-width: 768px) {
+//     .form-control {
+//       padding: 0.25rem 0.5rem;
+//     }
+//   }
+// }
+// .search-container {
+//   position: relative;
+//   z-index: 2; // Asegúrate de que la búsqueda esté por encima de otros elementos si es necesario
+// }
+
+// .search-form {
+//   position: sticky;
+//   top: 0; // Ajusta según sea necesario
+// }
+.search-container {
   position: relative;
+  z-index: 2; /* Ensure this is above other elements */
 }
 
-.h-search-form input {
-  width: 100%;
-  padding: 0 30px;
-  border-radius: 50px;
-  border: 2px solid;
-  font-size: 16px;
-  text-transform: capitalize;
-  position: relative;
-  color: #333;
-  height: 70px;
-}
-.h-search-form select {
-  width: 100%;
-  padding: 0 30px;
-  border-radius: 50px;
-  border: 2px solid;
-  font-size: 16px;
-  text-transform: capitalize;
-  position: relative;
-  color: #333;
-  height: 70px;
+.search-form {
+  display: flex; /* Use flexbox for better control */
+  position: relative; /* Relative to position the button */
+  align-items: center; /* Align items vertically */
 }
 
-.h-search-form button {
+.form-control, .form-select {
+  border-radius: 30px; /* Less rounded edges for the form elements */
+  border: 1px solid #ddd;
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem; /* Spacing between input and select */
+  flex-grow: 1; /* Allow elements to fill space */
+  appearance: none; /* Remove default styles of select dropdown */
+}
+
+.form-control {
+  flex-basis: 60%; /* Default width for input */
+}
+
+.form-select {
+  flex-basis: calc(40% - 0.5rem); /* Default width for select, minus margin */
+  background: url('data:image/svg+xml;utf8,<svg fill="%23ddd" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 0.75rem center; /* Dropdown arrow */
+  background-size: 1em; /* Size of the dropdown arrow */
+}
+
+.btn-search {
   position: absolute;
-  right: 6px;
-  height: 60px;
+  right: 1rem; /* Adjust as necessary */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Adjust for exact vertical center */
   border: none;
-  color: #fff;
-  background: #e5080d;
-  top: 5px;
-  border-radius: 50px;
-  width: 100px;
+  background-color: #ffffff; /* Set a background color that contrasts with the icon color */
+  cursor: pointer;
+  padding: 0.25rem 0.5rem; /* Add padding for better visibility */
+  border-radius: 50%; /* Optional: style as a round button */
 }
+
+.btn-search i {
+  color: #e5080d; /* Icon color, ensure it contrasts with the button background */
+}
+
 @media (max-width: 768px) {
-  .h-search-form input {
-    height: 50px;
+  .search-form {
+    flex-direction: column; /* Stack elements vertically on small screens */
+    align-items: stretch; /* Stretch items to fill width */
   }
-  .h-search-form button {
-    height: 40px;
-    width: 80px;
+
+  .form-control, .form-select {
+    margin-right: 0; /* Remove margin between elements */
+    margin-bottom: 0.5rem; /* Add space below elements */
+    flex-basis: auto; /* Auto width for inputs */
+  }
+
+  .btn-search {
+    position: static; /* Remove absolute positioning on small screens */
+    transform: none; /* Reset transform */
+    margin-top: -0.5rem; /* Adjust position */
+    align-self: flex-end; /* Align button to the end of the flex container */
   }
 }
-
-
-
-
-
-
-
-

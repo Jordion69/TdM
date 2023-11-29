@@ -7,6 +7,7 @@ import { CardComponent } from './components/card/card.component';
 import { MainCitiesComponent } from './components/main-cities/main-cities.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     CommonModule,
     GaritosRoutingModule,
     CarouselModule,
+    FormsModule,
     NgxPaginationModule
   ]
 })

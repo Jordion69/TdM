@@ -1,26 +1,30 @@
+<!-- <pre>{{ garitos | json }}</pre> -->
 <section id="tranding-clubs">
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
   <div class="container-clubs">
     <div class="swiper-container tranding-slider" >
       <div class="swiper-wrapper" >
         <swiper
+          *ngIf="garitos"
           [config]="swiperConfig"
-          [pagination]="{ clickable: true }"
           >
           <ng-template
             class="swiper-slide tranding-slide-clubs"
             swiperSlide
             *ngFor="let garito of garitos"
             >
-            <div class="tranding-slide-clubs-img">
-              <img [src]="garito.src" alt="">
+            <div class="tranding-slide-clubs-img">'
+              <img [src]="'http://127.0.0.1:8000/storage/' + garito.imagen " alt="garito.alt_imagen">
             </div>
             <div class="tranding-slide-content-clubs">
               <div class="tranding-slide-content-bottom-clubs">
                 <h2 class="food-name">
-                  {{garito.title}}
+                  {{garito.nombre_garito}}
                 </h2>
                 <h3 class="food-rating">
-                  <span>{{garito.place}}</span>
+                  <span *ngIf="dataLoaded">{{garito.provincia}}</span>
                 </h3>
               </div>
             </div>
@@ -30,3 +34,4 @@
     </div>
   </div>
 </section>
+

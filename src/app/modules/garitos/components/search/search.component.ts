@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ConciertosService } from 'src/app/services/conciertos.service';
 import { GaritosService } from 'src/app/services/garitos.service';
-import { FormsModule } from '@angular/forms';
+// import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-search',
@@ -11,20 +12,20 @@ export class SearchComponent implements OnInit {
 
   isFixedHeader: boolean = false;
   searchText: string = '';
-  selectedProvince: number = 0;
+  selectedProvince: string = '';
   provincias: any[] = []; // Variable para almacenar las provincias
 
-  constructor(private garitosService: GaritosService) {}
+  constructor(private garitosService: GaritosService, private conciertosService: ConciertosService) {}
   ngOnInit() {
     this.cargarData();
     this.cargarProvincias();
   }
 
   public cargarProvincias() {
-    this.garitosService.getProvincias('http://127.0.0.1:8000/api/provincias/list')
-      .subscribe(res => {
-        this.provincias = res; // Almacena las provincias en la variable
-      });
+    this.conciertosService.getProvincias()
+    .subscribe(res => {
+      this.provincias = res;
+    })
   }
 
   public cargarData() {
@@ -34,9 +35,12 @@ export class SearchComponent implements OnInit {
   }
 
   public buscarGaritos() {
-    this.garitosService.searchGaritos(this.searchText, this.selectedProvince).subscribe((res) => {
-      // Procesar la lista filtrada de garitos aquí
-    });
+    this.garitosService.searchGaritos(this.searchText, this.selectedProvince);
+    this.limpiarCampos();
+  }
+  private limpiarCampos() {
+    this.searchText = '';
+    this.selectedProvince = "0";
   }
 
   onScroll(event: Event) {

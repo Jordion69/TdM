@@ -1,13 +1,84 @@
-.textAbout {
-  font-size: 2rem;
-  font-family: 'Poppins', sans-serif;
+// .textAbout {
+//   font-size: 2rem;
+//   font-family: 'Poppins', sans-serif;
+// }
+// h1 {
+//   color: #e5080d;
+//   font-family: 'Metal mania', sans-serif;
+//   font-size: 4rem;
+// }
+// p {
+//   color: white;
+// }
+/* who-we-are.component.css */
+// .container {
+//   background-color: white;
+//   min-height: 100vh;
+//   padding-top: 50px;
+// }
+
+// h1 {
+//   font-size: 3rem;
+//   font-weight: bold;
+//   margin-bottom: 0;
+// }
+
+// .lead {
+//   font-size: 1.5rem;
+//   color: #ddd;
+// }
+
+// .icon {
+//   width: 100px; /* o el tamaño que desees */
+//   height: auto; /* para mantener la proporción */
+//   margin-bottom: 15px; /* espacio debajo del ícono */
+// }
+
+// /* Clases de responsive y utilidad de Bootstrap */
+// @media (max-width: 768px) {
+//   h1 {
+//     font-size: 2rem;
+//   }
+//   .lead {
+//     font-size: 1rem;
+//   }
+// }
+
+/* who-we-are.component.css */
+.header{
+  font-family: 'Metal Mania', cursive; /* Aplica la fuente Metal Mania */
+  color: #e8050d; /* Color gris para metal */
+  font-size: 4rem; /* Tamaño de letra grande para el título */
+  font-weight: bold; /* Negrita */
+  margin-bottom: 0; /* Sin margen abajo para pegar con el siguiente título */
 }
-h1 {
-  color: #e5080d;
-  font-family: 'Metal mania', sans-serif;
-  font-size: 4rem;
+.main {
+  font-family: 'Metal Mania', cursive; /* Aplica la fuente Metal Mania */
+  color: #e8050d; /* Color gris para metal */
+  font-size: 3rem; /* Tamaño de letra grande para el título */
+  font-weight: bold; /* Negrita */
+  margin-bottom: 0; /* Sin margen abajo para pegar con el siguiente título */
 }
-p {
+img {
+  max-height: 25vh;
+  width: auto;
+}
+.center h1 {
+  font-family: 'Metal Mania', cursive; /* Aplica la fuente Metal Mania */
+  color: #e8050d; /* Color gris para metal */
+  font-size: 4rem; /* Tamaño de letra grande para el título */
+  font-weight: bold; /* Negrita */
+  margin-bottom: 0; /* Sin margen abajo para pegar con el siguiente título */
+}
+hr {
+  margin-top: 10px;
+  border-top: 5px solid white; /* Ajusta el grosor y el color del borde superior */
+}
+.conciertos {
   color: white;
+  font-family: 'Poppins', sans-serif;
+  font-size: 2rem;
+  margin: 0 60px;
 }
+
 

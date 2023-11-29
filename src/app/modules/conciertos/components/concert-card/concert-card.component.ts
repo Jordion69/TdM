@@ -45,6 +45,28 @@ replaceUnderscoreAndHyphen(banda: string): string {
   // Utiliza la función replace para reemplazar _ y - con espacios en blanco
   return banda.replace(/[_-]/g, ' ');
 }
+tipoDeEntrada(linkEntrada: string) {
+  return linkEntrada.toLowerCase().includes('gratis') || linkEntrada.toLowerCase().includes('inversa');
+}
+textoEntrada(linkEntrada:string) {
+  if (linkEntrada.toLowerCase().includes('gratis')) {
+    return 'Entrada gratuita';
+  }
+  if (linkEntrada.toLowerCase().includes('inversa')) {
+    return 'Taquilla inversa';
+  }
+  return 'Entrada sin denominación';
+}
+estadoConcierto(linkEntrada: string): string {
+  const entradaLower = linkEntrada.toLowerCase();
+  if (entradaLower.includes('anulado')) {
+    return 'anulado';
+  } else if (entradaLower.includes('aplazado')) {
+    return 'aplazado';
+  } else {
+    return '';
+  }
+}
 
   conciertos: Array<any> = [
     {
@@ -332,7 +354,7 @@ replaceUnderscoreAndHyphen(banda: string): string {
     "poblacion": "La Gineta",
     "provincia": "Albacete",
     "fecha_evento": "2023-09-29",
-    "link_entrada": "https://www.madnesslive.es/es/conciertos-en-barcelona/1213-comprar-entrada-abbath-toxic-holocaust-hellripper-barcelona.html",
+    "link_entrada": "anulado",
     "created_at": "2023-09-30T08:23:29.000000Z",
     "updated_at": null,
     "teloneros": [
@@ -606,7 +628,7 @@ replaceUnderscoreAndHyphen(banda: string): string {
   "poblacion": "Pozal de las Gallinas",
   "provincia": "Valladolid",
   "fecha_evento": "2023-10-15",
-  "link_entrada": "https://www.madnesslive.es/es/conciertos-en-barcelona/1213-comprar-entrada-abbath-toxic-holocaust-hellripper-barcelona.html",
+  "link_entrada": "taquilla inversa",
   "created_at": "2023-09-30T08:23:29.000000Z",
   "updated_at": null,
   "teloneros": [

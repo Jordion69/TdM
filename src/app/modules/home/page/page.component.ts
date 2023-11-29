@@ -1,40 +1,61 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener,  OnInit, OnDestroy} from '@angular/core';
+import { Subject } from 'rxjs';
+import { throttleTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-page',
   templateUrl: './page.component.html',
   styleUrls: ['./page.component.scss']
 })
-export class PageComponent {
-  readonly someProperty: string = "initial value";
-  sliders: NodeListOf<Element> = document.querySelectorAll('.slider');
+export class PageComponent implements OnInit, OnDestroy {
 
-  @HostListener('window:scroll', ['$event'])
-  onScroll(event: Event) {
-    const titles = document.querySelectorAll('.color-overlay');
-    const sliders = document.querySelectorAll('.slider-news, .slider-concerts, .slider-clubs');
+    private scrollEvents = new Subject<Event>();
 
-    titles.forEach((title, index) => {
-      const position = title.getBoundingClientRect().top;
-      const windowHeight = window.innerHeight;
-      const windowWidth = window.innerWidth;
-      if (position < windowHeight) {
-        title.classList.add('is-visible');
-        sliders[index].classList.add('is-visible');
+    constructor() {
+      this.scrollEvents.pipe(
+        throttleTime(100) // Ajusta este tiempo según tus necesidades
+      ).subscribe(event => this.handleScroll(event));
+    }
+    ngOnInit() {
+      console.log('PageComponent - ngOnInit');
+      // Otras inicializaciones necesarias
+    }
 
-        // Comprobamos si la ventana es mayor que 768px antes de aplicar los efectos
-        if (windowWidth > 768) {
-          if (index % 2 === 0) {
-            title.classList.add('fade-in-left');
-            sliders[index].classList.add('fade-in-right');
-          } else {
-            title.classList.add('fade-in-right');
-            sliders[index].classList.add('fade-in-left');
+    ngOnDestroy() {
+      console.log('PageComponent - ngOnDestroy');
+      // Limpieza necesaria
+    }
+
+    @HostListener('window:scroll', ['$event'])
+    onScroll(event: Event) {
+      this.scrollEvents.next(event);
+    }
+
+    private handleScroll(event: Event) {
+      // Tu lógica existente de onScroll va aquí
+      const titles = document.querySelectorAll('.color-overlay');
+      const sliders = document.querySelectorAll('.slider-news, .slider-concerts, .slider-clubs');
+
+      titles.forEach((title, index) => {
+        const position = title.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        const windowWidth = window.innerWidth;
+        if (position < windowHeight) {
+          title.classList.add('is-visible');
+          sliders[index].classList.add('is-visible');
+
+          if (windowWidth > 768) {
+            if (index % 2 === 0) {
+              title.classList.add('fade-in-left');
+              sliders[index].classList.add('fade-in-right');
+            } else {
+              title.classList.add('fade-in-right');
+              sliders[index].classList.add('fade-in-left');
+            }
           }
         }
-      }
-    });
-  }
+      });
+    }
 
   garitos: Array<any> = [
     { id: 1, place: "Barcelona", src: "../../../../../assets/img/w1.jpg", title: "Pub Cronos" },

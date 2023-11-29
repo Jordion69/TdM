@@ -11,6 +11,10 @@
       <div class="col-xxl-2 col-xl-3 col-lg-6 col-sm-6">
         <div class="card mt-4">
           <div class="img">
+            <div class="estado-concierto" *ngIf="estadoConcierto(concierto.link_entrada) as estado"
+            [ngClass]="{'diagonal-anulado': estado === 'anulado', 'diagonal-aplazado': estado === 'aplazado'}">
+              {{ estado | uppercase }}
+            </div>
             <div class="date">
               {{ concierto.fecha_evento | date: 'dd/MM' }}
             </div>
@@ -39,8 +43,8 @@
             <h2>{{concierto.poblacion}}</h2>
           </div>
           <div class="entradas">
-            <ng-container *ngIf="concierto.link_entrada === 'gratis'; else mostrarBotonEntradas">
-              <p class="entrada-gratuita text-uppercase">Entrada gratuita</p>
+            <ng-container *ngIf="tipoDeEntrada(concierto.link_entrada); else mostrarBotonEntradas">
+              <p class="entrada-gratuita text-uppercase">{{textoEntrada(concierto.link_entrada)}}</p>
             </ng-container>
             <ng-template #mostrarBotonEntradas>
               <a [href]="concierto.link_entrada" class="btn btn-entradas">

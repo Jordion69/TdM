@@ -1,12 +1,12 @@
-<div class="container">
+<!-- <div class="container">
   <div class="row d-flex">
     <div class="col-md-12 col-lg-6 text-left my-5">
         <div class="h-search-form search">
-          <!-- <form action="#" [ngClass]="{ 'fix-search': isFixedHeader }">
+          <form action="#" [ngClass]="{ 'fix-search': isFixedHeader }">
             <input type="search" placeholder="Buscar.......">
             <button><i class="bi bi-search"></i></button>
-          </form> -->
-          <!-- <form (submit)="buscarGaritos()">
+          </form>
+          <form (submit)="buscarGaritos()">
             <input type="text" [(ngModel)]="searchText" placeholder="Buscar por nombre...">
             <select [(ngModel)]="selectedProvince">
               <option value="0">Selecciona provincia...</option>
@@ -14,13 +14,13 @@
             </select>
 
             <button type="submit">Buscar</button>
-          </form> -->
+          </form>
         </div>
         <div class="top">
           <div class="hero"></div>
         </div>
     </div>
-    <!-- <div class="col-md-12 col-lg-6 text-right my-5">
+    <div class="col-md-12 col-lg-6 text-right my-5">
       <div class="h-search-form">
         <select class=" form-select form-select-sm" aria-label=".form-select-sm example">
           <option selected>Selecciona comunidad autónoma ...</option>
@@ -29,6 +29,30 @@
           <option value="3">Three</option>
         </select>
       </div>
-    </div> -->
+    </div>
+  </div>
+</div> -->
+<div class="container search-container">
+  <div class="row">
+    <!-- Search by name -->
+    <div class="col-12 col-md-6 my-3">
+      <div class="search-form">
+        <form (submit)="buscarGaritos()">
+          <input type="text" [(ngModel)]="searchText" placeholder="Buscar por nombre..." class="form-control">
+          <button type="submit" class="btn btn-search"><i class="bi bi-search"></i></button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Search by province -->
+    <div class="col-12 col-md-6 my-3">
+      <div class="search-form">
+        <select [(ngModel)]="selectedProvince" (change)="buscarGaritos()" class="form-control">
+          <option value="0">Selecciona provincia...</option>
+          <option *ngFor="let provincia of provincias" [value]="provincia.provincia">{{ provincia.provincia }}</option>
+        </select>
+      </div>
+    </div>
   </div>
 </div>
+
