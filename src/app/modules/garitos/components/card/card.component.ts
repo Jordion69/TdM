@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Garito } from 'src/app/interfaces/garito';
 import { GaritosService } from 'src/app/services/garitos.service';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-card',
@@ -8,6 +9,7 @@ import { GaritosService } from 'src/app/services/garitos.service';
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent implements OnInit {
+  showNoResultsMessage: boolean = false;
   p: number = 1;
   currentComunidadAutonoma: string = '';
   garitos: Garito[] = [];
@@ -16,29 +18,35 @@ export class CardComponent implements OnInit {
 
   constructor(private garitosService: GaritosService) {}
   ngOnInit(): void {
-    // this.cargarData();
-    console.log("length ---->", this.garitos.length);
-
     this.cargarTodosLosGaritos();
-
-    this.garitosService.filteredGaritos$.subscribe(filtrados => {
-      console.log("Filtrados ---> ",typeof filtrados)
-      console.log("Filtrados L---> ",filtrados.length)
-      // this.garitosAPI = filtrados;
-      this.garitos = Object.values(filtrados);
-      console.log("length after update ---->", this.garitos[0]);
+    this.garitosService.filteredGaritos$.subscribe(result => {
+      console.log("Prueba1", result.data);
+      if (result.data && result.data.length > 0) {
+        // Si hay datos en la propiedad 'data', los usamos
+        this.garitos = result.data;
+        this.showNoResultsMessage = false;
+      } else if (result.message) {
+        this.showNoResultsMessage = true;
+        console.log(result.message);
+      } else {
+        this.garitos = [];
+        this.showNoResultsMessage = false;
+      }
     });
+  }
+  handleVolverAtras(): void {
+    // Ocultar el mensaje
+    this.showNoResultsMessage = false;
+
+    // Otras acciones como navegar a una ruta anterior, etc.
+    // Por ejemplo: this.router.navigate(['/ruta-anterior']);
   }
   cargarTodosLosGaritos(): void {
     this.garitosService.getAllGaritos().subscribe(garitos => {
       let arrayExterno = Object.values(garitos);
       if (arrayExterno.length > 0 && Array.isArray(arrayExterno[0])) {
-        this.garitos = arrayExterno[0] as Array<Garito>;;
-        console.log("Garitos ----->", this.garitos);
+        this.garitos = arrayExterno[0] as Array<Garito>;
       }
-
-
-      // Si necesitas actualizar el BehaviorSubject con los datos recién cargados.
       this.garitosService.updateFilteredGaritos(this.garitos);
     });
   }

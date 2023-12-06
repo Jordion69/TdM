@@ -1,7 +1,5 @@
-@import "swiper/scss";
-// @import "swiper/scss/effect-coverflow";
-@import "swiper/scss/navigation";
-@import "swiper/scss/pagination";
+
+@import "../../../../../../node_modules/swiper/swiper-bundle.min.css";
 
 .container-clubs {
   max-width:  124rem;
@@ -171,7 +169,7 @@
 }
 
 .tranding-slider-control .swiper-pagination .swiper-pagination-bullet-active {
-  background: red;
+  background: #e5080d;
 }
 .swiper-pagination-bullet {
   height: 1rem;
@@ -179,5 +177,5 @@
   background: gray;
 }
 .swiper-pagination-bullet-active {
-  background: red;
+  background: #e5080d;
 }

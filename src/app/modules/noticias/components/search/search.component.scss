@@ -1,36 +1,101 @@
-.h-search-form {
-  width: 100%;
+// .h-search-form {
+//   width: 100%;
+//   position: relative;
+// }
+// .h-search-form input {
+//   width: 100%;
+//   padding: 0 30px;
+//   border-radius: 50px;
+//   border: 2px solid;
+//   font-size: 16px;
+//   text-transform: capitalize;
+//   position: relative;
+//   color: #333;
+//   height: 70px;
+// }
+
+// .h-search-form button {
+//   position: absolute;
+//   right: 6px;
+//   height: 60px;
+//   border: none;
+//   color: #fff;
+//   background: red;
+//   top: 5px;
+//   border-radius: 50px;
+//   width: 100px;
+// }
+// @media (max-width: 768px) {
+//   .h-search-form input {
+//     height: 50px;
+//   }
+//   .h-search-form button {
+//     height: 40px;
+//     width: 80px;
+//   }
+// }
+@import "../../../../../../node_modules/swiper/swiper-bundle.min.css";
+
+.search-container {
   position: relative;
-}
-.h-search-form input {
-  width: 100%;
-  padding: 0 30px;
-  border-radius: 50px;
-  border: 2px solid;
-  font-size: 16px;
-  text-transform: capitalize;
-  position: relative;
-  color: #333;
-  height: 70px;
+  z-index: 2;
+  padding-top: 1rem;
 }
 
-.h-search-form button {
-  position: absolute;
-  right: 6px;
-  height: 60px;
-  border: none;
-  color: #fff;
-  background: red;
-  top: 5px;
-  border-radius: 50px;
-  width: 100px;
+.search-form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
 }
+
+.input-group {
+  display: flex;
+  .form-control {
+    border-radius: 30px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border: 1px solid #ddd;
+    padding: 0.5rem 1rem;
+  }
+  .btn-search {
+    border-radius: 30px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border: 1px solid #ddd;
+    background-color: #e5080d;
+    cursor: pointer;
+    padding: 0.5rem 1rem; // Aumentar el tamaño del botón
+    border-left: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .btn-search i {
+    color: #ffffff; // Icono blanco para mejor contraste
+  }
+}
+
+.form-select {
+  border-radius: 30px;
+  border: 1px solid #ddd;
+  padding: 0.5rem 1rem;
+  appearance: none;
+  flex-grow: 1;
+}
+
 @media (max-width: 768px) {
-  .h-search-form input {
-    height: 50px;
+  .search-form {
+    flex-direction: column;
+    align-items: stretch;
   }
-  .h-search-form button {
-    height: 40px;
-    width: 80px;
+
+  .input-group, .form-select {
+    width: 100%;
+    margin-bottom: 0.5rem;
   }
 }
+
+
+
+

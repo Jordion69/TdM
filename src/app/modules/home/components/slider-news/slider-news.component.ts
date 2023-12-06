@@ -2,14 +2,15 @@ import { Component,  OnInit,  ViewEncapsulation, ViewChild, ElementRef } from '@
 import { Noticia } from 'src/app/interfaces/noticia';
 import { NoticiasService } from 'src/app/services/noticias.service';
 import { environment } from 'src/environments/environments';
-
-import SwiperCore, {
-  Navigation,
-  Pagination,
-  Swiper,
-  EffectCoverflow,
-} from 'swiper';
-SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
+// import Swiper from 'swiper';
+// import { Navigation, Pagination } from 'swiper/modules';
+// import SwiperCore, {
+//   Navigation,
+//   Pagination,
+//   Swiper,
+//   EffectCoverflow,
+// } from 'swiper';
+// SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
 
 @Component({
   selector: 'app-slider-news',
@@ -87,7 +88,7 @@ if (this.slider && this.slider.nativeElement) {
   noticias: Array<any> = [
     { id: 1, updated_at: "2023/10/05" , title: "Iron Maiden gran gira mundial", img: "/assets/img/new1280(1).jpg", text: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......"},
     { id: 2, updated_at: "2023/10/06" , title: "Slayer muere bateria", img: "/assets/img/new1280(2).jpg", text: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......"},
-    // { id: 3, updated_at: "2023/10/07" , title: "Twisted sister arrestado cantante", img: "/assets/img/new1280(3).jpg", text: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......"},
-    // { id: 4, updated_at: "2023/10/09" , title: "Judas Priest muere rod", img: "/assets/img/new1280(1).jpg", text: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......"},
+    { id: 3, updated_at: "2023/10/07" , title: "Twisted sister arrestado cantante", img: "/assets/img/new1280(3).jpg", text: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......"},
+    { id: 4, updated_at: "2023/10/09" , title: "Judas Priest muere rod", img: "/assets/img/new1280(1).jpg", text: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......"},
   ];
 }

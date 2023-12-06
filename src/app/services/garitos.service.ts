@@ -1,21 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map, delay, of, tap, BehaviorSubject } from 'rxjs';
+import { Observable, map, delay, of, tap, BehaviorSubject, catchError } from 'rxjs';
 import { Garito } from '../interfaces/garito';
 import { environment } from 'src/environments/environments';
+type GaritosResult = {
+  data: Garito[];
+  message?: string;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class GaritosService {
+
   private apiUrl = environment.apiUrl;
-  private _filteredGaritos = new BehaviorSubject<Garito[]>([]);
+  private _filteredGaritos = new BehaviorSubject<GaritosResult>({ data: [] });
   filteredGaritos$ = this._filteredGaritos.asObservable();
   constructor(private http: HttpClient) {}
 
   public getRandomSeven(): Observable<Garito[]> {
-    console.log('getRandomSeven - Solicitando datos de garitos');
-    debugger;
     return this.http.get<Garito[]>(`${this.apiUrl}/garitos/random-seven`).pipe(
       tap(garitos => {
         console.log('getRandomSeven - Datos recibidos', garitos);
@@ -24,51 +27,104 @@ export class GaritosService {
     )
   }
   public getRandomFromCities(): Observable<Garito[]> {
-    return this.http.get<Garito[]>(`${this.apiUrl}/garitos/random-from-cities`);
+    return this.http.get<Garito[]>(`${this.apiUrl}/garitos/random-from-cities`).pipe(
+      tap(garitosByCity => {
+        console.log('get from city', garitosByCity);
+
+      })
+    )
   }
 
   public getAllGaritos(): Observable<Garito[]> {
     const dataFromSession = sessionStorage.getItem('garitos');
     if (dataFromSession) {
-      try {
-        const parsedData = JSON.parse(dataFromSession);
-        const now = new Date().getTime();
-        if (now - parsedData.timestamp < 24 * 60 * 60 * 1000 && Array.isArray(parsedData.data)) {
-          return of(parsedData.data);
+        try {
+            const parsedData = JSON.parse(dataFromSession);
+            const now = new Date().getTime();
+            if (now - parsedData.timestamp < 24 * 60 * 60 * 1000 && Array.isArray(parsedData.data)) {
+                return of(parsedData.data);
+            }
+        } catch (e) {
+            console.error('Error al parsear datos de sessionStorage:', e);
+            sessionStorage.removeItem('garitos');
         }
-      } catch (e) {
-        console.error('Error al parsear datos de sessionStorage:', e);
-        // Datos corruptos, así que procedemos a eliminarlos.
-        sessionStorage.removeItem('garitos');
-      }
     }
     return this.http.get<Garito[]>(`${this.apiUrl}/garitos/all-by-province`).pipe(
-      tap(garitos => {
-        const dataToStore = {
-          timestamp: new Date().getTime(),
-          data: garitos
-        };
-        sessionStorage.setItem('garitos', JSON.stringify(dataToStore));
-      })
+        tap(garitos => {
+            const dataToStore = {
+                timestamp: new Date().getTime(),
+                data: garitos
+            };
+            sessionStorage.setItem('garitos', JSON.stringify(dataToStore));
+        }),
+        catchError(error => {
+            console.error('Error al obtener garitos:', error);
+            return of([]); // Devolver un arreglo vacío en caso de error
+        })
     );
-  }
+}
+ updateFilteredGaritos(garitos: Garito[]): void {
+    // Crear un objeto GaritosResult con los garitos como la propiedad 'data'
+    const result: GaritosResult = { data: garitos };
+    // Pasar el objeto result al BehaviorSubject
+    this._filteredGaritos.next(result);
+}
+public searchGaritos(searchText: string, selectedProvince: string): void {
+  this.getAllGaritos().subscribe(response => {
+      const garitosArray = Object.values(response)[0];
 
-  updateFilteredGaritos(garitos: Garito[]): void {
-    this._filteredGaritos.next(garitos);
-  }
+      // Comprobar si garitosArray es realmente un arreglo
+      if (Array.isArray(garitosArray)) {
+          const filtrados = garitosArray.filter(garito => {
+              const garitoString = JSON.stringify(garito).toLowerCase();
+              const matchText = searchText ? garitoString.includes(searchText.toLowerCase()) : true;
+              const matchProvince = selectedProvince && selectedProvince !== '0' ? garito.provincia === selectedProvince : true;
+              return matchText && matchProvince;
+          });
 
-  private fakeFilterMethod(searchText: string, selectedProvince: string): any[] {
-    // Aquí debería ir tu lógica de filtrado real
-    // Por ejemplo, filtrar la lista de todos los garitos basado en searchText y selectedProvince
-    // Retornar la lista filtrada
-    return []; // Retornar la lista filtrada de garitos
-  }
-  public searchGaritos(searchText: string, selectedProvince: string) {
-    // ... lógica para filtrar garitos
-    const filtrados = this.fakeFilterMethod(searchText, selectedProvince);
-    this._filteredGaritos.next(filtrados); // Suponiendo que 'filtrados' es tu lista de garitos filtrados
-  }
-  // public searchGaritos(searchText: string, selectedProvince: number): Observable<any> {
-  //   return this.http.get(`${this.apiUrl}/search?searchText=${searchText}&provinceId=${selectedProvince}`);
+          if (filtrados.length === 0) {
+              const result: GaritosResult = { data: [], message: "No se encontraron garitos que coincidan con la búsqueda." };
+              this._filteredGaritos.next(result);
+          } else {
+              const result: GaritosResult = { data: filtrados };
+              this._filteredGaritos.next(result);
+          }
+      } else {
+          console.error('Formato de respuesta inesperado:', garitosArray);
+          const result: GaritosResult = { data: [], message: "Error en los datos recibidos." };
+          this._filteredGaritos.next(result);
+      }
+  });
+}
+
+
+  // public searchGaritos(searchText: string, selectedProvince: string): void {
+  //   this.getAllGaritos().subscribe(garitos => {
+  //     const garitosArray = Object.values(garitos)[0];
+  //     if (!Array.isArray(garitosArray)) {
+  //       console.error('Se esperaba un arreglo de garitos, se recibió:', garitos);
+  //       const result: GaritosResult = { data: [], message: "Error en los datos recibidos." };
+  //       this._filteredGaritos.next(result);
+  //       return;
+  //   }
+  //     const filtrados = garitos.filter(garito => {
+
+  //       // Buscar en todos los atributos
+  //       const garitoString = JSON.stringify(garito).toLowerCase();
+  //       const matchText = searchText ? garitoString.includes(searchText.toLowerCase()) : true;
+  //       const matchProvince = selectedProvince && selectedProvince !== '0' ? garito.provincia === selectedProvince : true;
+  //       return matchText && matchProvince;
+  //     });
+
+  //     if (filtrados.length === 0) {
+  //       // Emitir un mensaje si no hay resultados
+  //       const result: GaritosResult = { data: [], message: "No se encontraron garitos que coincidan con la búsqueda." };
+  //       this._filteredGaritos.next(result);
+  //     } else {
+  //       // Emitir los garitos filtrados
+  //       const result: GaritosResult = { data: filtrados };
+  //       this._filteredGaritos.next(result);
+  //     }
+  //   });
   // }
 }

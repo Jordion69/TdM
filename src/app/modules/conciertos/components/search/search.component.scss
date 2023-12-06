@@ -1,49 +1,85 @@
-.h-search-form {
-  width: 100%;
+@import "../../../../../../node_modules/swiper/swiper-bundle.min.css";
+
+.search-container {
   position: relative;
+  z-index: 2;
+  padding: 0 1rem;
+  max-width: 124rem;
+  margin: 0 auto;
 }
 
-.h-search-form input {
-  width: 100%;
-  padding: 0 30px;
-  border-radius: 50px;
-  border: 2px solid;
-  font-size: 16px;
-  text-transform: capitalize;
-  position: relative;
-  color: #333;
-  height: 70px;
-}
-.h-search-form select {
-  width: 100%;
-  padding: 0 30px;
-  border-radius: 50px;
-  border: 2px solid;
-  font-size: 16px;
-  text-transform: capitalize;
-  position: relative;
-  color: #333;
-  height: 70px;
+.search-form .input-group {
+  display: flex;
+  border-radius: 30px;
+  overflow: hidden;
 }
 
-.h-search-form button {
-  position: absolute;
-  right: 6px;
-  height: 60px;
+.form-control {
+  flex-grow: 1;
+  border: 1px solid #ddd;
+  padding: 0.5rem 1rem;
+  border-radius: 30px 0 0 30px;
+}
+
+.input-group-btn {
+  display: flex;
+}
+
+.btn-search {
   border: none;
-  color: #fff;
-  // background: #5f3afc;
-  background: #e5080d;
-  top: 5px;
-  border-radius: 50px;
-  width: 100px;
+  background-color: #e5080d;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 0 30px 30px 0;
 }
+
+.btn-search i {
+  color: #ffffff;
+}
+
+/* Estilos para el select */
+.search-form .form-select {
+  flex-grow: 1;
+  border: 1px solid #ddd;
+  padding: 0.5rem 1rem;
+  border-radius: 30px; /* Aplicar bordes redondeados */
+}
+
+/* Estilos para el botón 'NOVEDADES' */
+.btn-ultimas-novedades {
+  background-color: #e5080d; /* Color corporativo */
+  color: #ffffff;
+  border-radius: 30px; /* Bordes redondeados */
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+}
+
 @media (max-width: 768px) {
-  .h-search-form input {
-    height: 50px;
+  .search-form {
+    flex-direction: column;
+    align-items: stretch;
+    margin-bottom: 0.5rem;
   }
-  .h-search-form button {
-    height: 40px;
-    width: 80px;
+
+  .form-control, .form-select {
+    margin: 0;
+    flex-basis: auto;
+  }
+
+  .btn-search, .btn-ultimas-novedades {
+    margin-top: 0;
+    width: 100%;
+    border-radius: 0;
   }
 }
+
+@media (max-width: 750px) {
+  .search-container {
+    padding: 0 0.5rem;
+  }
+}
+
+
+

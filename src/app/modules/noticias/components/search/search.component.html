@@ -1,14 +1,13 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12 col-lg-8 offset-lg-2 text-center my-3">
-
-        <div class="h-search-form">
-          <form action="#">
-            <input type="search" placeholder="Buscar.......">
-            <button><i class="bi bi-search"></i></button>
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 my-3">
+        <div class="search-form">
+          <form (submit)="buscarNoticias()" class="input-group">
+            <input type="text" [(ngModel)]="searchText" name="searchText" placeholder="Buscar por nombre..." class="form-control">
+            <button type="submit" class="btn btn-search input-group-append"><i class="bi bi-search"></i></button>
           </form>
         </div>
-
-    </div>
+      </div>
   </div>
 </div>

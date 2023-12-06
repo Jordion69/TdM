@@ -3,7 +3,7 @@
   <div class="container-news">
     <div #sliderRef class="swiper-container tranding-slider" >
       <div class="swiper-wrapper" >
-        <swiper
+        <!-- <swiper
         [config]="swiperConfig"
         [pagination]="{ clickable: true }"
           >
@@ -24,7 +24,41 @@
               </div>
             </div>
           </ng-template>
-        </swiper>
+        </swiper> -->
+        <swiper-container
+        class="swiper-wrapper"
+        effect="coverflow"
+        grab-cursor="true"
+        centered-slides="true"
+        initial-slide="1"
+        loop="true"
+        slides-per-view="auto"
+        coverflow-effect-rotate="0"
+        coverflow-effect-stretch="0"
+        coverflow-effect-depth="300"
+        coverflow-effect-modifier="1"
+        coverflow-effect-slide-shadows="false"
+        pagination="{ clickable: true }"
+        navigation="true"
+        >
+          <swiper-slide
+          class="swiper-slide tranding-slide-news"
+            swiperSlide
+            *ngFor="let noticia of noticias"
+          >
+            <div class="tranding-slide-news-img">
+              <img [src]="noticia.img" alt="">
+            </div>
+            <div class="tranding-slide-content-news">
+              <h1 class="date-place-news"><small class="">{{calcularTiempoTranscurrido(noticia.updated_at)}}</small></h1>
+              <div class="tranding-slide-content-bottom-news">
+                <h2 class="food-name">
+                  {{noticia.title}}
+                </h2>
+              </div>
+            </div>
+          </swiper-slide>
+        </swiper-container>
       </div>
     </div>
   </div>

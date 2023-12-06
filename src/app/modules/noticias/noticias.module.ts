@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { FormsModule } from '@angular/forms';
 import { NoticiasRoutingModule } from './noticias-routing.module';
 import { PageComponent } from './page/page.component';
 import { CardComponent } from './components/card/card.component';
@@ -23,7 +23,8 @@ import { SharedModule } from "../../shared/shared.module";
     imports: [
         CommonModule,
         NoticiasRoutingModule,
-        SharedModule
+        SharedModule,
+        FormsModule
     ]
 })
 export class NoticiasModule { }

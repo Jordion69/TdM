@@ -1,15 +1,15 @@
 <section class="cities">
-  <div class="containers">
+  <div class="containers my-5">
     <owl-carousel-o [options]="customOptions" class="d-flex">
-      <ng-template carouselSlide>
+      <ng-template carouselSlide *ngFor="let garito of garitos">
         <div class="city-slide">
-          <img src="../../../../../assets/img/Frame 1.jpg" alt="">
+          <img [src]="'http://127.0.0.1:8000/storage/' + garito.imagen" alt="">
           <div class="city-overlay">
-            <p class="city-text">Barcelona</p>
+            <p class="city-text">{{ garito.poblacion }}</p>
           </div>
         </div>
       </ng-template>
-      <ng-template carouselSlide>
+      <!-- <ng-template carouselSlide>
         <div class="city-slide">
           <img src="../../../../../assets/img/Frame 2.jpg" alt="">
           <div class="city-overlay">
@@ -32,9 +32,7 @@
           <p class="city-text">Bilbao</p>
         </div>
       </div>
-    </ng-template>
-      <!-- <ng-template carouselSlide><img src="../../../../../assets/img/pub_manowar.jpg" alt=""></ng-template>
-      <ng-template carouselSlide><img src="../../../../../assets/img/pub_manowar.jpg" alt=""></ng-template> -->
+    </ng-template> -->
     </owl-carousel-o>
   </div>
 </section>

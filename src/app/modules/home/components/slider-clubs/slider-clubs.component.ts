@@ -1,12 +1,16 @@
 import { Component,  OnInit,  ViewEncapsulation, ChangeDetectorRef, ElementRef, ViewChild, AfterViewInit, ChangeDetectionStrategy } from '@angular/core';
 import { Garito } from 'src/app/interfaces/garito';
 import { GaritosService } from 'src/app/services/garitos.service';
-import SwiperCore, {
-  Navigation,
-  Pagination,
-  Swiper,
-  EffectCoverflow,
-} from 'swiper';
+import SwiperCore, { A11y, Mousewheel, Navigation, Pagination, Scrollbar, EffectCoverflow } from 'swiper';
+// import {A11y, Mousewheel, Navigation, Pagination, SwiperOptions} from "swiper";
+// import Swiper from 'swiper';
+// import { Navigation, Pagination } from 'swiper/modules';
+// import SwiperCore, {
+//   Navigation,
+//   Pagination,
+//   Swiper,
+//   EffectCoverflow,
+// } from 'swiper';
 SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
 
 @Component({
@@ -18,14 +22,14 @@ SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
 })
 export class SliderClubsComponent implements OnInit, AfterViewInit{
   @ViewChild('swiperContainer', { static: false }) swiperContainer: ElementRef | undefined;
-  private swiper: Swiper | undefined;
+  // private swiper: Swiper | undefined;
   errorMessage: string = '';
   dataLoaded = false;
   swiperConfig: any = {
     effect: 'coverflow',
     grabCursor: true,
     centeredSlides: true,
-    loop: false,
+    loop: true,
     slidesPerView: 'auto',
     coverflowEffect: {
       rotate: 0,
@@ -33,21 +37,42 @@ export class SliderClubsComponent implements OnInit, AfterViewInit{
       depth: 100,
       modifier: 2.5,
     },
-    pagination: { clickable: true } // Moved pagination here as part of swiperConfig
   };
+
+  // public  SwiperOptions: any = {
+  //   modules: [Navigation, Pagination, A11y, Mousewheel],
+  //   effect: 'coverflow',
+  //   coverflowEffect: {
+  //     rotate: 50,
+  //     stretch: 0,
+  //     depth: 100,
+  //     modifier: 1,
+  //     slideShadows: true,
+  //   },
+  //   autoHeight: true,
+  //   spaceBetween: 20,
+  //   navigation: false,
+  //   pagination: {clickable: true, dynamicBullets: true},
+  //   slidesPerView: 1,
+  //   centeredSlides: true,
+  //   breakpoints: {
+  //     400: {
+  //       slidesPerView: "auto",
+  //       centeredSlides: false
+  //     },
+  //   }
+  // }
   garitos: Array<Garito> = []; // Inicializa el array vacío
   constructor(private garitosService: GaritosService, private cdr: ChangeDetectorRef) {}
 
 
   ngOnInit(): void {
     console.log('ngOnInit - SliderClubsComponent');
-
-
     this.getGaritos();
   }
   ngAfterViewInit(): void {
     console.log('ngAfterViewInit - SliderClubsComponent');
-    this.initializeSwiper();
+    // this.initializeSwiper();
   }
   getGaritos(): void {
     console.log('getGaritos - Solicitando datos');
@@ -71,15 +96,15 @@ export class SliderClubsComponent implements OnInit, AfterViewInit{
       }
     });
   }
-  initializeSwiper(): void {
-    console.log('initializeSwiper - Intentando inicializar/actualizar');
-    if (this.dataLoaded && this.swiperContainer?.nativeElement) {
-      console.log('initializeSwiper - Data is loaded, initializing/updating swiper');
-      if (this.swiper) {
-        this.swiper.update();
-      } else {
-        this.swiper = new Swiper(this.swiperContainer.nativeElement, this.swiperConfig);
-      }
-    }
-  }
+//   initializeSwiper(): void {
+//     console.log('initializeSwiper - Intentando inicializar/actualizar');
+//     if (this.dataLoaded && this.swiperContainer?.nativeElement) {
+//       console.log('initializeSwiper - Data is loaded, initializing/updating swiper');
+//       if (this.swiper) {
+//         this.swiper.update();
+//       } else {
+//         this.swiper = new Swiper(this.swiperContainer.nativeElement, this.swiperConfig);
+//       }
+//     }
+//   }
 }

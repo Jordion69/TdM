@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ConciertosService } from 'src/app/services/conciertos.service';
 import { Concierto } from 'src/app/interfaces/conciertos';
 
@@ -7,20 +7,27 @@ import { Concierto } from 'src/app/interfaces/conciertos';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent {
+export class SearchComponent implements OnInit {
   isFixedHeader: boolean = false;
-  keyword: string = ''; // Palabra clave
-  provincias: any[] = []; // Lista de provincias
-  selectedProvincia: string = ''; // Provincia seleccionada
+  searchText: string = '';
+  selectedProvince: string = '0';
+  provincias: any[] = []; // Provincia seleccionada
+  keyword: any;
 
-  constructor(private conciertosService: ConciertosService) {}
+  constructor(private conciertosService: ConciertosService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
-    // Obtener la lista de provincias al iniciar el componente
-    this.conciertosService.getProvincias().subscribe(data  => {
-      this.provincias = data;
-      console.log("Data    ----> ", data);
-
+    this.cargarProvincias();
+  }
+  public cargarProvincias() {
+    console.log("empezando Province", this.selectedProvince);
+    this.conciertosService.getProvincias().subscribe(res => {
+      this.provincias = res;
+      if (this.provincias.length > 0 && !this.selectedProvince) {
+        this.selectedProvince = "0"; // Establecer solo si aún no se ha elegido una provincia
+      }
+      this.cdr.detectChanges();
+      console.log("acabando Province", this.selectedProvince);
     });
   }
   onScroll(event: Event) {
@@ -33,10 +40,13 @@ export class SearchComponent {
       // Puedes utilizar un pipe para filtrar la lista o enviar una solicitud al servidor
     }
 
-    if (this.selectedProvincia) {
+    if (this.selectedProvince) {
       // Búsqueda por provincia
       // Filtra la lista de conciertos basada en la provincia seleccionada
     }
+  }
+  buscarConciertosByProvince() {
+    
   }
   getNovedades() {
     this.conciertosService.getLastWeekUpdates().subscribe(data => {

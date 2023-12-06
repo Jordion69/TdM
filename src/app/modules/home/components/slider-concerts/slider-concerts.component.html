@@ -2,33 +2,43 @@
 <section id="tranding-concerts">
   <div class="container-concerts">
     <div class="swiper-container tranding-slider" >
-      <div class="swiper-wrapper">
-        <swiper
-        [config]="swiperConfig"
-        [pagination]="{ clickable: true }"
-          >
-          <ng-template
-            class="swiper-slide tranding-slide-concerts"
-            swiperSlide
-            *ngFor="let concierto of conciertos"
-            >
-            <div class="tranding-slide-concerts-img">
-              <img [src]="concierto.src" alt="">
+      <swiper-container
+      class="swiper-wrapper"
+      effect="coverflow"
+      grab-cursor="true"
+      centered-slides="true"
+      initial-slide="3"
+      loop="true"
+      slides-per-view="auto"
+      coverflow-effect-rotate="0"
+      coverflow-effect-stretch="0"
+      coverflow-effect-depth="300"
+      coverflow-effect-modifier="1"
+      coverflow-effect-slide-shadows="false"
+      pagination="{ clickable: true }"
+      navigation="true"
+      >
+        <swiper-slide
+        class="swiper-slide tranding-slide-concerts"
+        swiperSlide
+        *ngFor="let concierto of conciertos"
+        >
+          <div class="tranding-slide-concerts-img">
+            <img [src]="concierto.src" alt="">
+          </div>
+          <div class="tranding-slide-content-concerts">
+            <h1 class="date-place-concerts">{{ concierto.fecha_evento | date:'d/M' }}</h1>
+            <div class="tranding-slide-content-bottom-concerts">
+              <h2 class="food-name">
+                {{concierto.banda}}
+              </h2>
+              <h3 class="food-rating">
+                <span>{{concierto.ciudad}}</span>
+              </h3>
             </div>
-            <div class="tranding-slide-content-concerts">
-              <h1 class="date-place-concerts">{{ concierto.fecha_evento | date:'d/M' }}</h1>
-              <div class="tranding-slide-content-bottom-concerts">
-                <h2 class="food-name">
-                  {{concierto.banda}}
-                </h2>
-                <h3 class="food-rating">
-                  <span>{{concierto.ciudad}}</span>
-                </h3>
-              </div>
-            </div>
-          </ng-template>
-        </swiper>
-      </div>
+          </div>
+        </swiper-slide>
+      </swiper-container>
     </div>
   </div>
 </section>
