@@ -34,6 +34,10 @@ export class GaritosService {
       })
     )
   }
+  public resetSearch(): void {
+    // Restablecer el BehaviorSubject a su estado inicial
+    this._filteredGaritos.next({ data: [] });
+  }
 
   public getAllGaritos(): Observable<Garito[]> {
     const dataFromSession = sessionStorage.getItem('garitos');
@@ -96,35 +100,4 @@ public searchGaritos(searchText: string, selectedProvince: string): void {
       }
   });
 }
-
-
-  // public searchGaritos(searchText: string, selectedProvince: string): void {
-  //   this.getAllGaritos().subscribe(garitos => {
-  //     const garitosArray = Object.values(garitos)[0];
-  //     if (!Array.isArray(garitosArray)) {
-  //       console.error('Se esperaba un arreglo de garitos, se recibió:', garitos);
-  //       const result: GaritosResult = { data: [], message: "Error en los datos recibidos." };
-  //       this._filteredGaritos.next(result);
-  //       return;
-  //   }
-  //     const filtrados = garitos.filter(garito => {
-
-  //       // Buscar en todos los atributos
-  //       const garitoString = JSON.stringify(garito).toLowerCase();
-  //       const matchText = searchText ? garitoString.includes(searchText.toLowerCase()) : true;
-  //       const matchProvince = selectedProvince && selectedProvince !== '0' ? garito.provincia === selectedProvince : true;
-  //       return matchText && matchProvince;
-  //     });
-
-  //     if (filtrados.length === 0) {
-  //       // Emitir un mensaje si no hay resultados
-  //       const result: GaritosResult = { data: [], message: "No se encontraron garitos que coincidan con la búsqueda." };
-  //       this._filteredGaritos.next(result);
-  //     } else {
-  //       // Emitir los garitos filtrados
-  //       const result: GaritosResult = { data: filtrados };
-  //       this._filteredGaritos.next(result);
-  //     }
-  //   });
-  // }
 }

@@ -7,19 +7,36 @@
           <div class="col-md-3"></div>
           <div class="col-lg-6 contact">
             <h1 class="text-center mt-3">CONTÁCTANOS</h1>
-            <div class="title">
-              <!-- <h1 class="text-center mt-4">R.I.P.</h1> -->
+            <!-- <div class="title">
               <img class="img-fluid mx-auto" src="../../../../../assets/img/skull-removebg-preview.png" alt="">
-            </div>
+            </div> -->
           </div>
           <div class="col-md-3"></div>
         </div>
 
       </div>
       <form  [formGroup]="FormContacto" (ngSubmit)="EnviarEmail()" action="" class="p-4 mt-2">
+        <div *ngIf="formSubmitted" class="text-center">
+          <div *ngIf="submitSuccess" class="message-success bg-success">
+            <p>Formulario enviado con éxito. Te contactaremos pronto.</p>
+          </div>
+          <div *ngIf="!submitSuccess" class="message-error">
+            <p>{{ errorMessage }}</p>
+            <button (click)="formSubmitted = false">Reintentar</button>
+          </div>
+        </div>
+
+        <!-- Resto del formulario aquí -->
+
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">Nombre</label>
-          <input type="nombre" formControlName="nombre" class="form-control" id="exampleFormControlInput0" placeholder="Intorduce tu nombre ...">
+          <input type="nombre" formControlName="nombre" class="form-control" id="nombre" placeholder="Intorduce tu nombre ...">
+          <div *ngIf="FormContacto.get('nombre')?.touched && FormContacto.get('nombre')?.errors" class="error-message">
+            <div *ngIf="FormContacto.get('nombre')?.errors?.['required']">
+              El nombre es obligatorio.
+            </div>
+            <!-- Aquí puedes agregar más mensajes para otros errores específicos -->
+          </div>
         </div>
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">Email</label>
@@ -33,8 +50,9 @@
           <label for="exampleFormControlTextarea1" class="form-label">Mensaje</label>
           <textarea class="form-control" formControlName="mensaje" id="exampleFormControlTextarea1" rows="5"></textarea>
         </div>
-        <div class="mb-3">
-          <button type="submit" class="btn">Enviar</button>
+        <div class="mb-3 button-group">
+          <button type="submit" class="btn send">Enviar</button>
+          <button type="button" class="btn btn-danger return" (click)="volver()">Volver</button>
         </div>
       </form>
     </div>

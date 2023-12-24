@@ -3,28 +3,7 @@
   <div class="container-news">
     <div #sliderRef class="swiper-container tranding-slider" >
       <div class="swiper-wrapper" >
-        <!-- <swiper
-        [config]="swiperConfig"
-        [pagination]="{ clickable: true }"
-          >
-          <ng-template
-            class="swiper-slide tranding-slide-news"
-            swiperSlide
-            *ngFor="let noticia of noticias"
-            >
-            <div class="tranding-slide-news-img">
-              <img [src]="noticia.img" alt="">
-            </div>
-            <div class="tranding-slide-content-news">
-              <h1 class="date-place-news"><small class="">{{calcularTiempoTranscurrido(noticia.updated_at)}}</small></h1>
-              <div class="tranding-slide-content-bottom-news">
-                <h2 class="food-name">
-                  {{noticia.title}}
-                </h2>
-              </div>
-            </div>
-          </ng-template>
-        </swiper> -->
+
         <swiper-container
         class="swiper-wrapper"
         effect="coverflow"
@@ -44,16 +23,17 @@
           <swiper-slide
           class="swiper-slide tranding-slide-news"
             swiperSlide
-            *ngFor="let noticia of noticias"
+            *ngFor="let noticia of noticias1"
+            (click)="mostrarDetallesNoticia(noticia.id.toString())"
           >
             <div class="tranding-slide-news-img">
-              <img [src]="noticia.img" alt="">
+              <img [src]="'http://127.0.0.1:8000/storage/' + noticia.foto_inicio " alt="">
             </div>
             <div class="tranding-slide-content-news">
               <h1 class="date-place-news"><small class="">{{calcularTiempoTranscurrido(noticia.updated_at)}}</small></h1>
               <div class="tranding-slide-content-bottom-news">
                 <h2 class="food-name">
-                  {{noticia.title}}
+                  {{noticia.titular_inicial}}
                 </h2>
               </div>
             </div>

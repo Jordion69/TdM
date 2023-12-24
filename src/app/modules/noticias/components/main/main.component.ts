@@ -16,12 +16,25 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
     this.cargarData();
   }
-  public cargarData () {
-    this.NoticiasService.getFirstThree(this.UrlNewsFirstThree)
-    .subscribe(res => {
-      console.log(res);
-    })
+  public cargarData() {
+    this.NoticiasService.getFirstThree().subscribe({
+      next: (noticias) => {
+        let arrayExterno = Object.values(noticias);
+        if (arrayExterno.length > 0 && Array.isArray(arrayExterno[0])) {
+          this.noticiasDia = arrayExterno[0] as Array<Noticia>; // Asigna el arreglo de noticias
+          console.log("Primeras tres noticias:", this.noticiasDia);
+        } else {
+          console.error('Formato de respuesta inesperado:', noticias);
+          // Maneja situaciones donde la respuesta no contiene las noticias esperadas
+        }
+      },
+      error: (error) => {
+        console.error('Error al cargar las primeras tres noticias:', error);
+        // Manejar el error según sea necesario
+      }
+    });
   }
+
 calcularTiempoTranscurrido(fechaStr: string): string {
     const fecha = new Date(fechaStr);
     const fechaActual = new Date();

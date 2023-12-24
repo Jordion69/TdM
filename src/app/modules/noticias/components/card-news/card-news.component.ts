@@ -1,8 +1,12 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
 import { Noticia } from 'src/app/interfaces/noticia';
 import { environment } from 'src/environments/environments';
 import { NoticiasService } from 'src/app/services/noticias.service';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd, NavigationStart } from '@angular/router';
+import { ChangeDetectorRef } from '@angular/core';
+import { Subscription} from 'rxjs';
+import { filter } from 'rxjs/operators';
+
 
 
 @Component({
@@ -10,27 +14,101 @@ import { Router } from '@angular/router';
   templateUrl: './card-news.component.html',
   styleUrls: ['./card-news.component.scss']
 })
-export class CardNewsComponent implements OnInit {
+export class CardNewsComponent implements OnInit, OnDestroy {
   capturedText: string = '';
   UrlNewsFromFourth: string = environment.URL_NEWS_FROM_4;
   public first3: Array<Noticia> = [];
+  private busquedaSub?: Subscription;
+  private routeSub: Subscription
   noticias: Noticia[] = [];
+  noticias1: Noticia[] = [];
   numberOfWords = 50;
+  titular = 14;
 
-  constructor(private NoticiasService: NoticiasService, private router: Router) {}
-
-  ngOnInit(): void {
-    this.cargarData();
-    this.noticias = this.NoticiasService.generateRandomNoticias();
-  }
-
-  public cargarData() {
-    this.NoticiasService.getFirstThree(this.UrlNewsFromFourth).subscribe(res => {
-      // Aquí puedes procesar la respuesta de la solicitud HTTP si es necesario
-      console.log(res);
+  constructor(private NoticiasService: NoticiasService, private router: Router, private cdr: ChangeDetectorRef) {
+    this.routeSub = this.router.events.pipe(
+      filter(event => event instanceof NavigationStart)
+    ).subscribe(event => {
+      // Aquí se hace un casting seguro al tipo NavigationStart
+      const navigationEvent = event as NavigationStart;
+      if (navigationEvent.navigationTrigger === 'popstate') {
+        console.log("Navegación hacia atrás detectada en CardNewsComponent");
+        // Restablecer el estado de búsqueda
+        this.NoticiasService.resetBusqueda();
+        this.NoticiasService.setBusquedaActiva(false);
+      }
     });
   }
 
+
+  ngOnInit(): void {
+    // this.cargarData();
+    // this.noticias = this.NoticiasService.generateRandomNoticias();
+    const ultimaBusqueda = this.NoticiasService.getUltimaBusqueda();
+    if (ultimaBusqueda) {
+      // Si hay una última búsqueda, realiza esa búsqueda
+      console.log("Ultima busqueda", ultimaBusqueda);
+
+      this.NoticiasService.searchNoticias(ultimaBusqueda);
+    } else {
+      // Si no hay una última búsqueda, carga los datos por defecto
+      this.cargarData();
+      this.noticias = this.NoticiasService.generateRandomNoticias();
+    }
+    this.NoticiasService.busquedaActual$.subscribe((data: any) => {
+      console.log("Datos recibidos en CardNewsComponent:", data);
+      if (Array.isArray(data)) {
+        // Si los datos son un array, se asignan directamente
+        this.noticias1 = data;
+        console.log("Busqueda actual", data);
+
+      } else if (data && data.noticias && Array.isArray(data.noticias)) {
+        // Si los datos son un objeto con una propiedad 'noticias'
+        this.noticias1 = data.noticias;
+      } else {
+        // Si los datos no son ninguno de los anteriores, puedes manejar el caso o asignar un valor por defecto
+        console.log("Formato de datos no reconocido", data);
+        this.noticias1 = [];
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.busquedaSub) {
+      this.busquedaSub.unsubscribe();
+      // this.NoticiasService.searchNoticias("");
+      // this.NoticiasService.setBusquedaActiva(true);
+    }
+    if (this.routeSub) {
+      this.routeSub.unsubscribe();
+    }
+    // this.NoticiasService.resetBusqueda();
+    // this.NoticiasService.setBusquedaActiva(false);
+  }
+  cargarData(): void {
+    this.NoticiasService.getFromFourth().subscribe({
+      next: (noticias) => {
+        let arrayExterno = Object.values(noticias);
+        if (arrayExterno.length > 0 && Array.isArray(arrayExterno[0])) {
+          this.noticias1 = arrayExterno[0] as Array<Noticia>;
+          console.log("noticias1", this.noticias1);
+
+        }
+        console.log("Noticias recibidades del service", this.noticias1);
+      },
+      error: (error) => {
+        console.error('Error al cargar noticias:', error);
+        // Manejar el error según sea necesario
+      }
+    });
+  }
+  mostrarDetallesNoticia1(id: number): void {
+    const selectedNoticia = this.NoticiasService.getNoticiaFromFourthById(id);
+    if(selectedNoticia) {
+      this.NoticiasService.setSelectedNoticia(selectedNoticia);
+      this.router.navigate(['noticias-detalle', id]);
+    }
+  }
   mostrarDetallesNoticia(id: string) {
     const numericId = Number(id);
     const selectedNoticia = this.NoticiasService.getNoticiaById(numericId);
@@ -43,20 +121,43 @@ export class CardNewsComponent implements OnInit {
   onResize(event: Event) {
     const windowWidth = window.innerWidth;
     if (windowWidth <= 1800 && windowWidth >= 1600) {
+      this.titular = 14;
       this.numberOfWords = 40; // Ajusta este valor según lo que necesites
     } else if (windowWidth <= 1599 && windowWidth >= 1400) {
       this.numberOfWords = 30; // Valor original
+      this.titular = 13;
     } else if (windowWidth <= 1399 && windowWidth >= 1150) {
       this.numberOfWords = 25; // Valor original
-    } else if (windowWidth <= 1149 && windowWidth >= 993) {
+      this.titular = 11;
+    } else if (windowWidth <= 1149 && windowWidth >= 990) {
       this.numberOfWords = 18; // Valor original
-    } else if (windowWidth <= 992 && windowWidth >= 451) {
-      this.numberOfWords = 50; // Valor original
-    }else if (windowWidth < 450) {
-      this.numberOfWords = 30; // Valor original
+      this.titular = 6;
+    } else if (windowWidth <= 989 && windowWidth >= 500) {
+      this.numberOfWords = 40; // Valor original
+      this.titular = 6;
+    }else if (windowWidth < 499 && windowWidth >= 440) {
+      this.numberOfWords = 20; // Valor original
+      this.titular = 5;
+    } else if (windowWidth < 439) {
+      this.numberOfWords = 15; // Valor original
+      this.titular = 5;
     }
+    this.cdr.detectChanges();
   }
 
+  lengthTitular(titular: string): string {
+    const words = titular.split(' ');
+
+    // Si la longitud del titular es menor o igual que el límite establecido
+    if (words.length <= this.titular) {
+      // Devolver el titular como está
+      return titular;
+    } else {
+      // Si el titular es más largo, truncarlo y añadir "..."
+      const truncated = words.slice(0, this.titular).join(' ');
+      return `${truncated}<strong> ...</strong>`;
+    }
+  }
 
 
   calcularTiempoTranscurrido(fechaStr: string): string {

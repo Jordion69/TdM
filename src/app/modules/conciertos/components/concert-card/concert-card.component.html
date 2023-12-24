@@ -18,7 +18,7 @@
             <div class="date">
               {{ concierto.fecha_evento | date: 'dd/MM' }}
             </div>
-            <img src="{{concierto.imagen}}" alt="" (click)="openModal(concierto.imagen)">
+            <img [src]="'../../../../assets/img/' + concierto.imagen" alt="" (click)="openModal(concierto.imagen)">
           </div>
           <div class="main-text">
             <h2>{{ replaceUnderscoreAndHyphen(concierto.banda_principal) }}</h2>

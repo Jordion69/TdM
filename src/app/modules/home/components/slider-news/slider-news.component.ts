@@ -1,16 +1,7 @@
-import { Component,  OnInit,  ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
+import { Component,  OnInit,  ViewEncapsulation, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
+import { Router } from '@angular/router';
 import { Noticia } from 'src/app/interfaces/noticia';
 import { NoticiasService } from 'src/app/services/noticias.service';
-import { environment } from 'src/environments/environments';
-// import Swiper from 'swiper';
-// import { Navigation, Pagination } from 'swiper/modules';
-// import SwiperCore, {
-//   Navigation,
-//   Pagination,
-//   Swiper,
-//   EffectCoverflow,
-// } from 'swiper';
-// SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
 
 @Component({
   selector: 'app-slider-news',
@@ -20,9 +11,10 @@ import { environment } from 'src/environments/environments';
 })
 
 export class SliderNewsComponent implements OnInit{
+  noticias1: Array<Noticia> = [];
+  errorMessage: string = '';
+  dataLoaded = false;
   @ViewChild('sliderRef', { static: false }) slider: ElementRef | undefined;
-  // UrlNewsFirstSeven: string = environment.URL_NEWS_FIRST_7;
-  noticias1: Noticia[] = [];
   swiperConfig: any = {
     effect: 'coverflow',
     grabCursor: true,
@@ -47,27 +39,62 @@ export class SliderNewsComponent implements OnInit{
     // };
 
   public  first3: Array<Noticia> = [];
-  constructor(private NoticiasService:NoticiasService) {}
+  constructor(private NoticiasService:NoticiasService, private cdr: ChangeDetectorRef, private router: Router) {}
   ngOnInit(): void {
-
 if (this.slider && this.slider.nativeElement) {
   setTimeout(() => {
     const sliderElement = this.slider!.nativeElement as HTMLElement;
     sliderElement.style.display = 'none';
     sliderElement.offsetHeight;
     sliderElement.style.display = '';
-    this.cargarData();
 }, 1000);
 
 }
+this.cargarData();
 }
 
-  public cargarData () {
-    this.NoticiasService.getFirstSeven('http://127.0.0.1:8000/noticias/first-seven')
-    .subscribe(res => {
-      console.log("Noticias -> ", res);
-    })
+  // public cargarData () {
+  //   this.NoticiasService.getFirstSeven('http://127.0.0.1:8000/noticias/first-seven')
+  //   .subscribe(res => {
+  //     console.log("Noticias -> ", res);
+  //   })
+  // }
+  public cargarData(): void {
+    console.log('getGaritos - Solicitando datos');
+    this.noticias1 = [];
+    this.NoticiasService.getFirstSeven().subscribe({
+      next: (noticias) => {
+        let arrayExterno = Object.values(noticias);
+        if (arrayExterno.length > 0 && Array.isArray(arrayExterno[0])) {
+          this.noticias1 = arrayExterno[0] as Array<Noticia>;
+          console.log("Siete primeros", this.noticias1);
+
+          this.dataLoaded = true;
+          console.log('dataLoaded set to true');
+          this.cdr.detectChanges();
+        } else {
+          console.error('La estructura de datos no es la esperada:', noticias);
+        }
+      },
+      error: (error) => {
+        console.log('getGaritos - Error al recibir datos');
+        this.errorMessage = 'Error al cargar los garitos. Por favor, intente de nuevo más tarde.';
+        console.error('Error al obtener los garitos', error);
+      }
+    });
   }
+
+// En tu componente de swiper
+mostrarDetallesNoticia(id: string) {
+
+  const numericId = Number(id);
+  const selectedNoticia = this.NoticiasService.getOnlyNewFromSeven(numericId);
+  console.log("hola", selectedNoticia);
+  if(selectedNoticia) {
+    this.NoticiasService.setSelectedNoticia(selectedNoticia);
+    this.router.navigate(['noticias-detalle', numericId]);
+  }
+}
 
 
   calcularTiempoTranscurrido(fechaStr: string): string {

@@ -1,8 +1,8 @@
 <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" data-interval="1000">
   <div class="carousel-inner  rounded-5" >
-    <div class="carousel-item active" *ngFor="let new of noticias" (click)="mostrarDetallesNoticia(new.id.toString())">
-      <img src="{{new.foto_inicio}}" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
+    <div class="carousel-item active" *ngFor="let new of noticiasDia" (click)="mostrarDetallesNoticia(new.id.toString())">
+      <img [src]="'http://127.0.0.1:8000/storage/' + new.foto_inicio" class="d-block w-100" alt="...">
+      <div class="carousel-caption">
         <h3 class="text-uppercase">{{new.titular}}</h3>
         <h5>{{calcularTiempoTranscurrido(new.created_at)}}</h5>
       </div>
@@ -17,34 +17,3 @@
     <span class="visually-hidden">Siguiente</span>
   </button>
 </div>
-
-
-<!-- <div class="container-sm-fluid m-3">
-  <div class="row">
-    <div class="col-lg-8">
-      <div class="card bg-dark text-white">
-        <img src="../../../../../assets/img/news3.jpg" class="card-img" alt="...">
-        <div class="card-img-overlay">
-          <h5 class="card-title">Iron Maiden gran gira mundial</h5>
-          <p class="card-text"><i class="bi bi-clock-history"></i> Hace 17 horas</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-4">
-      <div class="card bg-dark text-white">
-        <img src="../../../../../assets/img/news3.jpg" class="card-img" alt="...">
-        <div class="card-img-overlay">
-          <h6 class="card-title-2">Concierto running wild</h6>
-          <p class="card-text"><i class="bi bi-clock-history"></i> Hace 17 horas</p>
-        </div>
-        <div class="card bg-dark text-white mt-md-2">
-          <img src="../../../../../assets/img/news3.jpg" class="card-img" alt="...">
-          <div class="card-img-overlay">
-            <h6 class="card-title-2">Último video de alice cooper</h6>
-            <p class="card-text"><i class="bi bi-clock-history"></i> Hace 17 horas</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->

@@ -1,3 +1,9 @@
 .body {
-  padding-top: 101.75px;
+  padding-top: 90.75px;
+}
+@media (max-width: 1200px) {
+  .body {
+    // Aquí puedes ajustar el padding-top como necesites para pantallas más pequeñas
+    padding-top: 76px;
+  }
 }

@@ -2,54 +2,54 @@
 .image {
   background-color: black;
 }
+.row {
+  text-align: center;
+}
 .main-img {
   position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: fit-content; // Asegura que el contenedor no sea más ancho que la imagen
 }
+
+.main-img-content {
+  max-height: 90vh;
+  width: auto;
+  object-fit: cover;
+  display: block; // Asegúrate de que sea block para respetar el margin auto
+  margin-left: auto;
+  margin-right: auto;
+}
+
 
 .main-img img {
   max-height: 90vh;
-  width: 100vw;
+  width: 100%; // Cambio clave: asegúrate de que ocupe todo el ancho del contenedor
   object-fit: cover;
 }
 
+
 .contact-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.1);
-  color: #e5080d;
-  text-align: center;
+  bottom: 20px;
+  right: 20px;
+  width: auto;
+  height: auto;
+  // padding: 20px;
 }
 
-.contact-overlay h2 {
-  font-size: 8rem; /* Ajusta el tamaño de fuente según sea necesario */
-  margin: 0;
-  padding: 20px;
-}
 
-@media (max-width: 1200px) {
-  .contact-overlay h2 {
-    font-size: 6rem; /* Tamaño de fuente para dispositivos móviles */
-    padding: 10px;
-  }
-}
 
-@media (max-width: 900px) {
-  .contact-overlay h2 {
-    font-size: 4rem; /* Tamaño de fuente para dispositivos móviles */
-    padding: 10px;
-  }
+.contact-overlay button {
+  background-color: #e5080d;
+  color: white;
+  font-weight: bolder;
 }
-
-@media (max-width: 576px) {
-  .contact-overlay h2 {
-    font-size: 2rem; /* Tamaño de fuente para dispositivos móviles */
-    padding: 10px;
+@media (max-width: 450px) {
+  .contact-overlay button {
+    font-size: 0.6rem; /* Tamaño de fuente para dispositivos móviles */
+    padding: 10px 15px;
   }
 }
 

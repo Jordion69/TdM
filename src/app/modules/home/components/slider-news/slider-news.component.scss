@@ -41,12 +41,35 @@
   transform: translateZ(0);
 }
 
-.tranding-slide-news .tranding-slide-news-img img {
-  width: 100%;
-  height: auto;
-  border-radius: 2rem;
-  object-fit: cover;
+.tranding-slide-news-img {
+  width: 100%; // Anchura total del contenedor
+  max-width: 45rem; // Máxima anchura del contenedor
+  height: 25rem; // Altura fija del contenedor
+  overflow: hidden; // Oculta cualquier parte de la imagen que exceda del contenedor
+  border-radius: 2rem; // Redondea las esquinas del contenedor
+  position: relative; // Posición relativa para posicionar absolutamente los elementos internos
 }
+
+.tranding-slide-news-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; // Ajusta la imagen para cubrir el contenedor
+  border-radius: 2rem; // Redondea las esquinas de la imagen para que coincidan con el contenedor
+}
+
+@media (max-width: 768px) {
+  .tranding-slide-news-img {
+    height: 20rem; // Altura más pequeña para dispositivos móviles
+  }
+}
+
+
+// .tranding-slide-news .tranding-slide-news-img img {
+//   width: 100%;
+//   height: auto;
+//   border-radius: 2rem;
+//   object-fit: cover;
+// }
 
 .tranding-slide-news .tranding-slide-content-news {
   background-color: rgba(0,0,0,0.5);

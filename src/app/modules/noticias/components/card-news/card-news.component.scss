@@ -17,6 +17,29 @@
   font-family: 'Poppins', sans-serif;
   font-size: 1.1rem;
 }
+.imagen {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Asegura que la imagen cubra el espacio disponible */
+  object-position: center;
+}
+
+/* Clase para el contenedor de la imagen */
+.cont-img {
+  overflow: hidden; /* Oculta cualquier parte de la imagen que exceda el contenedor */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 324px;
+//  width: 100%;
+}
+
+/* Asegúrate de que el ancho máximo de la tarjeta no exceda el contenedor */
+.card.mb-3 {
+  max-width: 1280px;
+  width: 100%;
+}
+
 
 @media (max-width: 1800px) and (min-width: 1400px) {
   .card-text {
@@ -26,16 +49,54 @@
     font-size: 1.3rem;
   }
 }
+@media (min-width: 1450px) and (max-width: 1560px) {
+  .cont-img {
+    max-height: 300px; // Mantiene la misma altura para este rango
+  }
+}
+@media (min-width: 1350px) and (max-width: 1449px) {
+  .cont-img {
+    max-height: 270px; // Mantiene la misma altura para este rango
+  }
+}
+@media (min-width: 1175px) and (max-width: 1349px) {
+  .cont-img {
+    max-height: 240px; // Mantiene la misma altura para este rango
+  }
+}
+@media (min-width: 1040px) and (max-width: 1174px) {
+  .cont-img {
+    max-height: 210px; // Mantiene la misma altura para este rango
+  }
+}
+@media (min-width: 992px) and (max-width: 1039px) {
+  .cont-img {
+    max-height: 180px; // Mantiene la misma altura para este rango
+  }
+}
 @media (max-width: 1399px) and (min-width: 993px) {
   .card-text {
     font-size: 0.8rem; /* Puedes ajustar el tamaño de fuente si es necesario */
   }
   .card-title {
-    font-size: 1.1rem;
+    font-size: 0.9rem;
   }
+
 }
 @media (max-width: 992px) {
   .card-text {
     font-size: 0.8rem; /* Puedes ajustar el tamaño de fuente si es necesario */
+  }
+  .cont-img {
+    height: calc(100% / 1.5); // Altura ajustada para pantallas más pequeñas
+  }
+
+}
+@media (max-width: 500px) {
+  .card-title {
+    font-size: 0.9rem;
+  }
+  .cont-img {
+    height: calc(100% / 1.5); // Altura ajustada para pantallas más pequeñas
   }
 }

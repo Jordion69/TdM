@@ -7,10 +7,15 @@ h1 {
 color: #e5080d;
 
 }
-button {
+.send {
 background-color: #e5080d;
 color: white;
 font-weight: bold;
+}
+.return {
+  background-color: #1561a3;
+  color: white;
+  font-weight: bold;
 }
 form label {
 color: #e5080d;
@@ -20,9 +25,11 @@ font-size: 2rem;
 .main {
 border-radius: 50px;
 }
-// .title {
-// border: 2px white solid;
-// }
+.button-group {
+  display: flex;
+  justify-content: space-between; // Esto coloca un botón a cada extremo; ajusta según sea necesario
+  // Otras propiedades si son necesarias
+}
 
 .contact h1 {
 font-size: 4rem;
@@ -34,8 +41,26 @@ width: 100px;
 text-align: center;
 display: flex;
 }
-button:hover {
+.message-success, .message-error {
+  color: white; // Cambia a un color que destaque en el fondo negro
+  background-color: rgba(255, 255, 255, 0.1); // Fondo ligeramente visible
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  font-family: 'Poppins', sans-serif;
+}
+.error-message {
+  color: #e5080d;
+  margin-top: 5px;
+  font-size: 0.8rem;
+}
+
+
+.send:hover {
   background: #9E2629;
+}
+.return:hover {
+  background: #77a6cf;
 }
 @media (max-width: 1400px) {
   .contact h1 {

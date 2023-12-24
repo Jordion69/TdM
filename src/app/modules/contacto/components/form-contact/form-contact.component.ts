@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ContactService } from 'src/app/services/contact.service';
 import { HttpClient } from '@angular/common/http';
@@ -10,8 +10,13 @@ import { HttpClient } from '@angular/common/http';
 })
 export class FormContactComponent {
   FormContacto: FormGroup;
-  UrlEmail: string = 'http://127.0.0.1:8000/EnviarCorreo';
   csrfToken!: string;
+  formSubmitted = false;
+  submitSuccess = false;
+  errorMessage = '';
+  showForm = false;
+  @Output() formSuccess = new EventEmitter<boolean>();
+  @Output() volverEvent = new EventEmitter<void>();
 
   constructor(private formBuilder: FormBuilder, private contactService: ContactService, private http: HttpClient) {
     this.FormContacto = this.formBuilder.group({
@@ -29,7 +34,9 @@ export class FormContactComponent {
       });
     });
   }
-
+  volver() {
+    this.volverEvent.emit(); // Emitir el evento
+  }
   EnviarEmail() {
     if (this.FormContacto.valid) {
       const formData = {
@@ -37,16 +44,32 @@ export class FormContactComponent {
         ...this.FormContacto.value,
       };
 
-      this.contactService.sendContactForm(formData).subscribe(
-        (response) => {
-          console.log('Formulario enviado con éxito:', response);
+      this.contactService.sendContactForm(formData).subscribe({
+        next: (response) => {
+          // Manejo del éxito
+          this.formSubmitted = true;
+          this.submitSuccess = true;
           this.FormContacto.reset();
+          setTimeout(() => {
+            this.formSubmitted = false;
+            this.submitSuccess = false;
+            this.formSuccess.emit(true);
+          }, 5000);
         },
-        (error) => {
-          console.error('Error al enviar el formulario:', error);
+        error: (error) => {
+          // Manejo del error
+          this.submitSuccess = false;
+          this.errorMessage = 'Error al enviar el formulario. Por favor, inténtalo de nuevo.';
         }
-      );
+      });
+    } else {
+      Object.keys(this.FormContacto.controls).forEach(key => {
+        const control = this.FormContacto.get(key);
+        if (control) {
+          control.markAsTouched();
+        }
+      });
     }
   }
+  }
 
-}
