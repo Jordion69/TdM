@@ -5,7 +5,7 @@
       <div class="swiper-wrapper" >
 
         <swiper-container
-        class="swiper-wrapper"
+
         effect="coverflow"
         grab-cursor="true"
         centered-slides="true"
@@ -23,7 +23,7 @@
           <swiper-slide
           class="swiper-slide tranding-slide-news"
             swiperSlide
-            *ngFor="let noticia of noticias1"
+            *ngFor="let noticia of noticias"
             (click)="mostrarDetallesNoticia(noticia.id.toString())"
           >
             <div class="tranding-slide-news-img">

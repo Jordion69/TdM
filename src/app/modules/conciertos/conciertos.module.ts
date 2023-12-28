@@ -8,6 +8,7 @@ import { CardComponent } from './components/card/card.component';
 import { SearchComponent } from './components/search/search.component';
 import { ConcertCardComponent } from './components/concert-card/concert-card.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ConciertosRoutingModule,
     CommonModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    SharedModule
 
   ]
 })

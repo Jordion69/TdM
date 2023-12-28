@@ -43,12 +43,11 @@
     margin-right: 20px;
   }
 }
-// .img-fluid {
-//   width: auto;
-//   height: 100%;
-//   object-fit: cover;
-//   margin: 0;
-// }
+.img-fluid {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
 // Estilos responsivos
 
 @media (max-width: 1200px) {
@@ -71,6 +70,12 @@
     background-position: center bottom; // Centra el fondo en la parte inferior
     padding: 1rem; // Añade un poco de relleno si es necesario para evitar que el texto toque los bordes
     order: 2;
+    h1 {
+      font-size: 1.5rem;
+    }
+    p {
+      font-size: 0.8rem;
+    }
   }
 
   // Asegúrate de que las imágenes y los textos se apilen verticalmente en pantallas pequeñas

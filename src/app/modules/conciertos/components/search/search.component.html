@@ -2,8 +2,8 @@
   <div class="row">
     <div class="col-md-12 col-lg-5 my-3">
       <div class="search-form">
-        <form (submit)="search()" [ngClass]="{ 'fix-search': isFixedHeader }" class="input-group">
-          <input type="search" [(ngModel)]="keyword" name="keyword" placeholder="Buscar concierto ......" class="form-control">
+        <form (submit)="buscarConciertos()" [ngClass]="{ 'fix-search': isFixedHeader }" class="input-group">
+          <input type="search" [(ngModel)]="searchText" name="keyword" placeholder="Buscar concierto ......" class="form-control">
           <span class="input-group-btn">
             <button type="submit" class="btn btn-search"><i class="bi bi-search"></i></button>
           </span>
@@ -12,7 +12,7 @@
     </div>
     <div class="col-md-12 col-lg-5 my-3">
       <div class="search-form">
-        <select [(ngModel)]="selectedProvince" name="selectedProvince" (change)="buscarConciertosByProvince()" class="form-select">
+        <select [(ngModel)]="selectedProvince" name="selectedProvince" (change)="buscarConciertos()" class="form-select">
           <option value="0">Selecciona provincia...</option>
           <option *ngFor="let provincia of provincias" [value]="provincia.provincia">{{ provincia.provincia }}</option>
         </select>
@@ -20,7 +20,7 @@
     </div>
     <div class="col-md-12 col-lg-2 my-3">
       <div class="search-form">
-        <button (click)="getNovedades()" class="btn btn-ultimas-novedades" data-bs-toggle="tooltip" data-bs-placement="top" title="Conciertos añadidos recientemente">NOVEDADES</button>
+        <button (click)="getNovedades()" class="btn btn-ultimas-novedades" data-bs-toggle="tooltip" data-bs-placement="top" title="Conciertos añadidos recientemente">RECIENTES</button>
       </div>
     </div>
   </div>

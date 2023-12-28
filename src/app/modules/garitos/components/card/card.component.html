@@ -16,15 +16,32 @@
           <h2 class="display-1 py-1 mt-5">{{ garito.comunidad_autonoma }}</h2>
         </div>
       </ng-container>
-      <div class="col-xxl-2 col-xl-3 col-lg-6 col-sm-6">
+      <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
         <div class="card rounded-5 mt-2">
           <div class="visited-badge">
             <img *ngIf="garito.visitado === 1" src="../../../../../assets/img/ruta666black.png" alt="Visited Badge">
           </div>
+          <!-- <app-lazy-image class="card-img-top img-fluid" [imageSrc]="'http://127.0.0.1:8000/storage/' + garito.imagen" [alt]="garito.alt_imagen"></app-lazy-image> -->
           <img class="card-img-top img-fluid" [src]="'http://127.0.0.1:8000/storage/' + garito.imagen" alt="">
           <div class="card-body">
-            <h5 class="card-title">{{ garito.nombre_garito }}</h5>
-            <p class="card-text">{{garito.direccion}}</p>
+            <!-- <h5 class="card-title" (click)="showTextDialog(garito.nombre_garito, garito.direccion)">{{ truncateText(garito.nombre_garito, 19) }}</h5>
+            <p class="card-text"  (click)="showTextDialog(garito.nombre_garito, garito.direccion)">{{ truncateText(garito.direccion, 19) }}</p> -->
+            <div>
+              <span>{{ truncateText(garito.nombre_garito, 19).text }}</span>
+              <a *ngIf="truncateText(garito.nombre_garito, 19).truncated"
+                 style="color: blue; cursor: pointer;"
+                 (click)="showTextDialog(garito.nombre_garito, garito.direccion)">
+                (ver más)
+              </a>
+            </div>
+            <div (click)="showTextDialog(garito.nombre_garito, garito.direccion)">
+              <span>{{ truncateText(garito.direccion, 19).text }}</span>
+              <a *ngIf="truncateText(garito.direccion, 19).truncated"
+                 style="color: blue; cursor: pointer;"
+                 (click)="showTextDialog(garito.nombre_garito, garito.direccion)">
+                (ver más)
+              </a>
+            </div>
             <p class="card-text"><strong>{{garito.poblacion}}</strong></p>
             <div class="row">
               <ul class="icons d-flex flex-row flex-wrap list-unstyled col-8 col-lg-6 col-xl-6 justify-content-between">
@@ -52,6 +69,21 @@
   </div>
   <div class="d-flex justify-content-center">
     <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>
+<div id="gallery-modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ modalTitle }}</h5>
+        <button type="button" class="close" (click)="closeModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <p>{{ modalText }}</p>
+      </div>
+    </div>
   </div>
 </div>
 

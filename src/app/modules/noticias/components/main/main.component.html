@@ -1,19 +1,12 @@
-<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" data-interval="1000">
-  <div class="carousel-inner  rounded-5" >
-    <div class="carousel-item active" *ngFor="let new of noticiasDia" (click)="mostrarDetallesNoticia(new.id.toString())">
-      <img [src]="'http://127.0.0.1:8000/storage/' + new.foto_inicio" class="d-block w-100" alt="...">
+
+<owl-carousel-o [options]="customOptions">
+  <ng-template carouselSlide *ngFor="let new of noticiasDia">
+    <div (click)="mostrarDetallesNoticia(new.id.toString())">
+      <img #carouselImage [src]="'http://127.0.0.1:8000/storage/' + new.foto_inicio" class="d-block w-100" alt="...">
       <div class="carousel-caption">
-        <h3 class="text-uppercase">{{new.titular}}</h3>
+        <h3 class="text-uppercase">{{new.titular_inicial}}</h3>
         <h5>{{calcularTiempoTranscurrido(new.created_at)}}</h5>
       </div>
     </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Anterior</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Siguiente</span>
-  </button>
-</div>
+  </ng-template>
+</owl-carousel-o>

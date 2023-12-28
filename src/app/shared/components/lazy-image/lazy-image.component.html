@@ -1,0 +1,10 @@
+<!-- lazy-image.component.html -->
+<div class="lazy-image-container">
+  <img
+    [src]="imageSrc"
+    [alt]="alt"
+    (load)="onImageLoad()"
+    class="lazy-image"
+  />
+</div>
+

@@ -14,57 +14,12 @@ export class NoticiasService {
   private completedArray: Noticia[] = [];
   private _busquedaActiva = new BehaviorSubject<boolean>(false);
   private ultimaBusqueda: string = '';
-  private generateLoremIpsum(): string {
-    const lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet feugiat purus. Praesent auctor mauris eget purus finibus, a ullamcorper velit euismod. Maecenas quis nunc quis dui cursus fermentum non ac arcu. Vivamus in libero eu ex vestibulum tincidunt. Proin quis tincidunt odio. Nullam eget libero sed justo blandit consectetur. Nulla facilisi. Praesent feugiat enim nec ligula euismod, at pulvinar elit lacinia. Nullam vel felis eros. Vivamus id libero a sapien sollicitudin tincidunt. Suspendisse potenti.";
-    return lorem;
-  }
-  private noticiasGeneradas: Noticia[] = [];
+
   private selectedNoticia: Noticia | null = null;
   constructor(private http: HttpClient) { }
 
-  generateRandomNoticias(): Noticia[] {
-    // Tu código para generar noticias aleatorias
-    const imagenes = [
-      "../../../../../assets/img/test_imd1.jpg",
-      "../../../../../assets/img/test_img2.jpg",
-      "../../../../../assets/img/test_img3.jpg"
-    ];
-
-    const enlacesVideos = [
-      "https://www.youtube.com/embed/UuN6bQOtL-I?si=Xq164kGrFjTjxoog",
-      "https://www.youtube.com/embed/UuN6bQOtL-I?si=Xq164kGrFjTjxoog",
-      "https://www.youtube.com/embed/UuN6bQOtL-I?si=Xq164kGrFjTjxoog",
-    ];
-    const loremText = this.generateLoremIpsum();
-
-
-    // Crea un array de 25 elementos aleatorios
-    this.noticiasGeneradas = Array.from({ length: 25 }, (_, index) => ({
-      id: index + 1,
-      titular_inicial: `Título inicial ${index + 1}`,
-      texto_inicial: `Texto inicial ${index + 1}`,
-      foto_inicio: imagenes[index % imagenes.length], // Repite las imágenes
-      alt_foto_inicio: `Texto alternativo ${index + 1}`,
-      titular: `Título ${index + 1}`,
-      texto1: loremText,
-      texto2: loremText,
-      texto3: loremText,
-      texto4: loremText,
-      link_video: enlacesVideos[index % enlacesVideos.length], // Repite los enlaces de video
-      headline: `Headline ${index + 1}`,
-      text1: loremText,
-      text2: loremText,
-      text3: loremText,
-      text4: loremText,
-      palabras_clave: `Palabras clave ${index + 1}`,
-      created_at: new Date(), // Puedes ajustar la fecha según tus necesidades
-      updated_at: new Date(), // Puedes ajustar la fecha según tus necesidades
-    }));
-    console.log("Noticias generadas ---->",this.noticiasGeneradas);
-
-    return this.noticiasGeneradas;
-  }
   setSelectedNoticia(noticia: Noticia | null) {
+    console.log("setSelectedNoticia - Noticia seleccionada:", noticia);
     this.selectedNoticia = noticia;
   }
 
@@ -84,9 +39,6 @@ export class NoticiasService {
 
   getUltimaBusqueda(): string {
     return this.ultimaBusqueda;
-  }
-  getNoticiasGeneradas(): Noticia[] {
-    return this.noticiasGeneradas;
   }
 
   public getFirstSeven() {
@@ -139,12 +91,15 @@ export class NoticiasService {
     );
   }
 
-  public getNoticiaFromFourthById(id: number): Noticia | undefined {
-    return this.noticiasRecibidas.find(noticia => noticia.id === id);
-  }
+  // public getNoticiaFromFourthById(id: number): Noticia | undefined {
+  //   // return this.noticiasRecibidas.find(noticia => noticia.id === id);
+  //   const noticia = this.noticiasRecibidas.find(n => n.id === id);
+  //   console.log("getNoticiaFromFourthById - Buscando ID:", id, "Resultado:", noticia);
+  //   return noticia;
+  // }
 
   public searchNoticias(searchText: string): void {
-    console.log("searchNoticias iniciado con texto de búsqueda:", searchText);
+    console.log("searchNoticias - Texto de búsqueda:", searchText);
 
     forkJoin({
       firstThree: this.getFirstThree(),
@@ -209,11 +164,6 @@ export class NoticiasService {
     });
   }
 
-
-
-  public getNoticiaById(id: number): Noticia | undefined {
-    return this.noticiasGeneradas.find(noticia => noticia.id === id);
-  }
 
   public convertirEnlaceVideo(url: string): string {
     const videoIdMatch = url.match(/(?:\/|v=)([a-zA-Z0-9_-]+)(\?|\z)/);

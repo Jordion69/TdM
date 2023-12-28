@@ -38,6 +38,36 @@ export class GaritosService {
     // Restablecer el BehaviorSubject a su estado inicial
     this._filteredGaritos.next({ data: [] });
   }
+  public getAllGaritosMin(): Observable<Garito[]> {
+    console.log('Llamando a getAllGaritosMin');
+    const dataFromSession = sessionStorage.getItem('garitosMin'); // Cambia el nombre de la sesión si es necesario
+    if (dataFromSession) {
+        try {
+            const parsedData = JSON.parse(dataFromSession);
+            const now = new Date().getTime();
+            if (now - parsedData.timestamp < 24 * 60 * 60 * 1000 && Array.isArray(parsedData.data)) {
+                return of(parsedData.data);
+            }
+        } catch (e) {
+            console.error('Error al parsear datos de sessionStorage:', e);
+            sessionStorage.removeItem('garitosMin');
+        }
+    }
+    return this.http.get<Garito[]>(`${this.apiUrl}/garitos/all-by-province-min`).pipe(
+        tap(garitos => {
+            const dataToStore = {
+                timestamp: new Date().getTime(),
+                data: garitos
+            };
+            sessionStorage.setItem('garitosMin', JSON.stringify(dataToStore));
+            console.log('Respuesta de getAllGaritosMin:', garitos);
+        }),
+        catchError(error => {
+            console.error('Error al obtener garitos mínimos:', error);
+            return of([]); // Devolver un arreglo vacío en caso de error
+        })
+    );
+}
 
   public getAllGaritos(): Observable<Garito[]> {
     const dataFromSession = sessionStorage.getItem('garitos');

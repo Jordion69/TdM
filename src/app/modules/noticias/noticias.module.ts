@@ -8,7 +8,9 @@ import { SearchComponent } from './components/search/search.component';
 import { MainComponent } from './components/main/main.component';
 import { HeadingComponent } from './components/heading/heading.component';
 import { CardNewsComponent } from './components/card-news/card-news.component';
-import { SharedModule } from "../../shared/shared.module";
+// import { SharedModule } from "../../shared/shared.module";
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -23,8 +25,9 @@ import { SharedModule } from "../../shared/shared.module";
     imports: [
         CommonModule,
         NoticiasRoutingModule,
-        SharedModule,
-        FormsModule
+        FormsModule,
+        CarouselModule,
+        NgxPaginationModule
     ]
 })
 export class NoticiasModule { }

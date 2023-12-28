@@ -5,19 +5,19 @@ import { PagenotfoundComponent } from './modules/pagenotfound/page/pagenotfound.
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full'},
 
-  { path: 'conciertos',
+  { path: 'lista_conciertos',
     loadChildren: () => import('./modules/conciertos/conciertos.module')
     .then( m => m.ConciertosModule)
   },
-  { path: 'contacto',
+  { path: 'formulario_contacto',
   loadChildren: () => import('./modules/contacto/contacto.module')
   .then( m => m.ContactoModule)
 },
-  { path: 'noticias',
+  { path: 'lista_noticias',
     loadChildren: () => import('./modules/noticias/noticias.module')
     .then( m => m.NoticiasModule)
   },
-  { path: 'garitos',
+  { path: 'lista_garitos',
     loadChildren: () => import('./modules/garitos/garitos.module')
     .then( m => m.GaritosModule)
   },

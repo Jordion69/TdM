@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-lg-2"></div>
       <div class="col-lg-8 bg-white rounded-5">
-        <div class="headline d-flex justify-content-center bg-light text-wrap my-4">
+        <div class="headline d-flex justify-content-center bg-light text-wrap col-md-8 offset-md-2 my-5">
           <h1 class="text-uppercase mt-3"><strong>{{noticia ? noticia.titular : 'Titulo no disponible'}}</strong></h1>
         </div>
 
@@ -11,7 +11,7 @@
           <p class="h6">{{ noticia?.texto1 }}</p>
         </div>
         <div class="image rounded-5 my-2">
-          <img class="img-fluid mx-auto rounded-5 d-block" src="{{ noticia ? noticia.foto_inicio : 'Titulo no disponible'}}" alt="">
+          <img class="img-fluid mx-auto rounded-5 d-block" [src]="'http://127.0.0.1:8000/storage/' + noticia?.foto_inicio" alt="">
         </div>
         <div *ngIf="noticia?.texto2" class="text-1 col-md-8 offset-md-2 my-5">
           <p class="h6">{{ noticia?.texto2 }}</p>

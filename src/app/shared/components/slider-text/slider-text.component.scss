@@ -1,0 +1,43 @@
+@import "swiper/scss";
+// @import "swiper/scss/effect-coverflow";
+@import "swiper/scss/navigation";
+@import "swiper/scss/pagination";
+/* Estilo para el contenedor principal del swiper */
+.swiper-container {
+  width: 100%;
+  height: 6vh; /* 10% de la altura de la pantalla */
+  background-color: #e5080d; /* Fondo rojo */
+}
+
+/* Estilo para cada slide individual dentro del swiper */
+.swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Estilo para el texto dentro de cada slide */
+.swiper-slide p {
+  color: white; /* Texto en blanco */
+  font-weight: bold; /* Texto en negrita */
+  font-size: 1.5rem; /* Tamaño del texto */
+  white-space: nowrap; /* Evita que el texto se ajuste a líneas múltiples */
+}
+@media (max-width: 1200px) {
+  .swiper-container {
+    width: 100%; /* Asegúrate de que el ancho no exceda el 100% de la pantalla */
+    /* Ajusta la altura si es necesario para evitar la deformación */
+    height: auto; /* Otra opción podría ser un valor específico en 'vh' o 'px' */
+  }
+
+  .swiper-slide p {
+    /* Ajustes adicionales para swiper-slide si son necesarios */
+    font-size: 0.8rem;
+  }
+}
+/* Ajustes de estilo responsivo para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .swiper-slide p {
+    font-size: 0.6rem; /* Tamaño del texto más pequeño en pantallas más estrechas */
+  }
+}

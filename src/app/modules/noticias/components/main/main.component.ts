@@ -1,31 +1,55 @@
-import { Component, OnInit } from '@angular/core';
+import {  Component, OnInit,  HostListener, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { Noticia, Root } from 'src/app/interfaces/noticia';
 import { NoticiasService } from 'src/app/services/noticias.service';
 import { environment } from 'src/environments/environments';
 import { Router } from '@angular/router';
+import { OwlOptions, CarouselComponent } from 'ngx-owl-carousel-o';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
+  @ViewChild(CarouselComponent) carousel: CarouselComponent | undefined;
   UrlNewsFirstThree: string = environment.URL_NEWS_FIRST_3;
   noticiasDia!: Noticia[];
   public  first3: Array<Noticia> = [];
-  constructor(private NoticiasService:NoticiasService, private router: Router) {}
+  customOptions: OwlOptions = {
+    loop: true,
+    autoplay: true,
+    autoplayTimeout: 3000,
+    items: 1,
+    dots: true,
+    nav: false
+    // Otras opciones según sea necesario
+  };
+  constructor(private NoticiasService:NoticiasService, private router: Router, private cdr: ChangeDetectorRef) {}
   ngOnInit(): void {
     this.cargarData();
+  }
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.refreshCarousel();
+  }
+  private refreshCarousel() {
+    if (this.carousel) {
+      // Lógica para actualizar/refrescar el carrusel
+      // Esto depende de cómo ngx-owl-carousel-o maneje el refresco
+      // Por ejemplo, podría ser algo como:
+      this.cdr.detectChanges();
+    }
   }
   public cargarData() {
     this.NoticiasService.getFirstThree().subscribe({
       next: (noticias) => {
         let arrayExterno = Object.values(noticias);
         if (arrayExterno.length > 0 && Array.isArray(arrayExterno[0])) {
-          this.noticiasDia = arrayExterno[0] as Array<Noticia>; // Asigna el arreglo de noticias
+          this.noticiasDia = arrayExterno[0] as Array<Noticia>;
           console.log("Primeras tres noticias:", this.noticiasDia);
+          sessionStorage.setItem('noticiasFirstThree', JSON.stringify(this.noticiasDia));
         } else {
           console.error('Formato de respuesta inesperado:', noticias);
-          // Maneja situaciones donde la respuesta no contiene las noticias esperadas
+          // Manejar casos donde la respuesta no contiene las noticias esperadas
         }
       },
       error: (error) => {
@@ -34,6 +58,7 @@ export class MainComponent implements OnInit {
       }
     });
   }
+
 
 calcularTiempoTranscurrido(fechaStr: string): string {
     const fecha = new Date(fechaStr);
@@ -51,16 +76,13 @@ calcularTiempoTranscurrido(fechaStr: string): string {
   }
   mostrarDetallesNoticia(id: string) {
     const numericId = Number(id);
-    const selectedNoticia = this.NoticiasService.getNoticiaById(numericId);
+    const noticias = JSON.parse(sessionStorage.getItem('noticiasFirstThree') || '[]');
+    const selectedNoticia = noticias.find((noticia: Noticia) => noticia.id === numericId);
+
     if(selectedNoticia) {
       this.NoticiasService.setSelectedNoticia(selectedNoticia);
       this.router.navigate(['noticias-detalle', numericId]);
     }
   }
 
-  noticias: Array<any> = [
-    { id: 1,created_at: "2023/09/03", titular: "Iron Maiden gran gira mundial", foto_inicio: "/assets/img/new1280(1).jpg", texto1: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......", texto2: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......", texto3: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......", texto4: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......", link_video:  "https://www.youtube.com/embed/UuN6bQOtL-I?si=Xq164kGrFjTjxoog"},
-    { id: 2,created_at: "2023/09/02", titular: "Slayer muere bateria", foto_inicio: "/assets/img/new1280(2).jpg", texto1: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......", texto2: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......", texto3: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......", texto4: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......", link_video:  "https://www.youtube.com/embed/UuN6bQOtL-I?si=Xq164kGrFjTjxoog"},
-    { id: 3,created_at: "2023/09/01", titular: "Twisted sister arrestado cantante", foto_inicio: "/assets/img/new1280(3).jpg", texto1: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......", texto2: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......", texto3: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......", texto4: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......", link_video:  "https://www.youtube.com/embed/UuN6bQOtL-I?si=Xq164kGrFjTjxoog"},
-  ];
 }

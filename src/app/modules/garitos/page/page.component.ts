@@ -9,6 +9,7 @@ import { GaritosService } from 'src/app/services/garitos.service';
   styleUrls: ['./page.component.scss']
 })
 export class PageComponent implements OnInit, OnDestroy{
+  textToDisplay: string[] = ['¿Ves algo que no mola en nuestros garitos?', 'Si pillas algún fallo o algo que no suene a puro metal o punk...', '¡Dínoslo ya! Manda un correo a [templodelmetal1969@gmail.com] y únete al mosh.'];
   private routerSubscription: Subscription | undefined;
   constructor(private router: Router, private garitosService: GaritosService) { }
 

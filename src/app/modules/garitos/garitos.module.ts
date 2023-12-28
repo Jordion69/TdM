@@ -8,6 +8,8 @@ import { MainCitiesComponent } from './components/main-cities/main-cities.compon
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
+import { LazyImageComponent } from 'src/app/shared/components/lazy-image/lazy-image.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -15,14 +17,17 @@ import { FormsModule } from '@angular/forms';
     PageComponent,
     SearchComponent,
     CardComponent,
-    MainCitiesComponent
+    MainCitiesComponent,
+    LazyImageComponent
+
   ],
   imports: [
     CommonModule,
     GaritosRoutingModule,
     CarouselModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    SharedModule
   ]
 })
 export class GaritosModule { }

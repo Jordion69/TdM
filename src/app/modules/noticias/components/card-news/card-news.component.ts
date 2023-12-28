@@ -42,8 +42,7 @@ export class CardNewsComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
-    // this.cargarData();
-    // this.noticias = this.NoticiasService.generateRandomNoticias();
+    this.cargarData();
     const ultimaBusqueda = this.NoticiasService.getUltimaBusqueda();
     if (ultimaBusqueda) {
       // Si hay una última búsqueda, realiza esa búsqueda
@@ -53,7 +52,6 @@ export class CardNewsComponent implements OnInit, OnDestroy {
     } else {
       // Si no hay una última búsqueda, carga los datos por defecto
       this.cargarData();
-      this.noticias = this.NoticiasService.generateRandomNoticias();
     }
     this.NoticiasService.busquedaActual$.subscribe((data: any) => {
       console.log("Datos recibidos en CardNewsComponent:", data);
@@ -86,8 +84,10 @@ export class CardNewsComponent implements OnInit, OnDestroy {
     // this.NoticiasService.setBusquedaActiva(false);
   }
   cargarData(): void {
+    console.log("cargarData - Cargando noticias...");
     this.NoticiasService.getFromFourth().subscribe({
       next: (noticias) => {
+        console.log("cargarData - Noticias recibidas:", noticias);
         let arrayExterno = Object.values(noticias);
         if (arrayExterno.length > 0 && Array.isArray(arrayExterno[0])) {
           this.noticias1 = arrayExterno[0] as Array<Noticia>;
@@ -97,26 +97,24 @@ export class CardNewsComponent implements OnInit, OnDestroy {
         console.log("Noticias recibidades del service", this.noticias1);
       },
       error: (error) => {
+        console.error("cargarData - Error al cargar noticias:", error);
         console.error('Error al cargar noticias:', error);
         // Manejar el error según sea necesario
       }
     });
   }
-  mostrarDetallesNoticia1(id: number): void {
-    const selectedNoticia = this.NoticiasService.getNoticiaFromFourthById(id);
-    if(selectedNoticia) {
-      this.NoticiasService.setSelectedNoticia(selectedNoticia);
-      this.router.navigate(['noticias-detalle', id]);
-    }
-  }
+
   mostrarDetallesNoticia(id: string) {
+    console.log("mostrarDetallesNoticia - ID de noticia seleccionada:", id);
     const numericId = Number(id);
-    const selectedNoticia = this.NoticiasService.getNoticiaById(numericId);
+    const selectedNoticia = this.noticias1.find((noticia: Noticia) => noticia.id === numericId);
+
     if(selectedNoticia) {
       this.NoticiasService.setSelectedNoticia(selectedNoticia);
       this.router.navigate(['noticias-detalle', numericId]);
     }
   }
+
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
     const windowWidth = window.innerWidth;

@@ -11,7 +11,7 @@ import { NoticiasService } from 'src/app/services/noticias.service';
 })
 
 export class SliderNewsComponent implements OnInit{
-  noticias1: Array<Noticia> = [];
+  noticias: Array<Noticia> = [];
   errorMessage: string = '';
   dataLoaded = false;
   @ViewChild('sliderRef', { static: false }) slider: ElementRef | undefined;
@@ -29,72 +29,58 @@ export class SliderNewsComponent implements OnInit{
     },
   };
 
-    // swiperConfig: any = {
-    //   infinite: true,
-    //   slidesToShow: 3, // Cuantas diapositivas deseas mostrar a la vez. Modifica según tu necesidad.
-    //   slidesToScroll: 1, // Cuantas diapositivas desplazar a la vez. Modifica según tu necesidad.
-    //   autoplay: true,
-    //   autoplaySpeed: 2000,
-    //   dots: true
-    // };
-
   public  first3: Array<Noticia> = [];
   constructor(private NoticiasService:NoticiasService, private cdr: ChangeDetectorRef, private router: Router) {}
   ngOnInit(): void {
-if (this.slider && this.slider.nativeElement) {
-  setTimeout(() => {
-    const sliderElement = this.slider!.nativeElement as HTMLElement;
-    sliderElement.style.display = 'none';
-    sliderElement.offsetHeight;
-    sliderElement.style.display = '';
-}, 1000);
+    if (this.slider && this.slider.nativeElement) {
+      setTimeout(() => {
+        const sliderElement = this.slider!.nativeElement as HTMLElement;
+        sliderElement.style.display = 'none';
+        sliderElement.offsetHeight;
+        sliderElement.style.display = '';
+      }, 1000);
 
-}
-this.cargarData();
+    }
+    this.cargarData();
 }
 
-  // public cargarData () {
-  //   this.NoticiasService.getFirstSeven('http://127.0.0.1:8000/noticias/first-seven')
-  //   .subscribe(res => {
-  //     console.log("Noticias -> ", res);
-  //   })
-  // }
+
   public cargarData(): void {
-    console.log('getGaritos - Solicitando datos');
-    this.noticias1 = [];
+    console.log('SliderNewsComponent - Solicitando datos');
     this.NoticiasService.getFirstSeven().subscribe({
       next: (noticias) => {
         let arrayExterno = Object.values(noticias);
         if (arrayExterno.length > 0 && Array.isArray(arrayExterno[0])) {
-          this.noticias1 = arrayExterno[0] as Array<Noticia>;
-          console.log("Siete primeros", this.noticias1);
-
+          this.noticias = arrayExterno[0] as Array<Noticia>;
+          console.log("Primeras siete noticias:", this.noticias);
+          sessionStorage.setItem('noticiasFirstSeven', JSON.stringify(this.noticias));
           this.dataLoaded = true;
-          console.log('dataLoaded set to true');
           this.cdr.detectChanges();
         } else {
           console.error('La estructura de datos no es la esperada:', noticias);
         }
       },
       error: (error) => {
-        console.log('getGaritos - Error al recibir datos');
-        this.errorMessage = 'Error al cargar los garitos. Por favor, intente de nuevo más tarde.';
-        console.error('Error al obtener los garitos', error);
+        console.error('Error al cargar las primeras siete noticias:', error);
+        this.errorMessage = 'Error al cargar noticias. Por favor, intente de nuevo más tarde.';
       }
     });
   }
 
+
 // En tu componente de swiper
 mostrarDetallesNoticia(id: string) {
-
+  console.log("SliderNewsComponent - mostrarDetallesNoticia - ID de noticia seleccionada:", id);
   const numericId = Number(id);
-  const selectedNoticia = this.NoticiasService.getOnlyNewFromSeven(numericId);
-  console.log("hola", selectedNoticia);
-  if(selectedNoticia) {
+  const noticias = JSON.parse(sessionStorage.getItem('noticiasFirstSeven') || '[]');
+  const selectedNoticia = noticias.find((noticia: Noticia) => noticia.id === numericId);
+
+  if (selectedNoticia) {
     this.NoticiasService.setSelectedNoticia(selectedNoticia);
     this.router.navigate(['noticias-detalle', numericId]);
   }
 }
+
 
 
   calcularTiempoTranscurrido(fechaStr: string): string {
@@ -111,11 +97,4 @@ mostrarDetallesNoticia(id: string) {
       return `Hace ${diasTranscurridos} días.`;
     }
   }
-
-  noticias: Array<any> = [
-    { id: 1, updated_at: "2023/10/05" , title: "Iron Maiden gran gira mundial", img: "/assets/img/new1280(1).jpg", text: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......"},
-    { id: 2, updated_at: "2023/10/06" , title: "Slayer muere bateria", img: "/assets/img/new1280(2).jpg", text: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......"},
-    { id: 3, updated_at: "2023/10/07" , title: "Twisted sister arrestado cantante", img: "/assets/img/new1280(3).jpg", text: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......"},
-    { id: 4, updated_at: "2023/10/09" , title: "Judas Priest muere rod", img: "/assets/img/new1280(1).jpg", text: "Después de 47 años de espera llega el mejor disco de la historia del metal. Una mezcla entre el mejor heavy clásico con toques de thrash metal moderno......"},
-  ];
 }
