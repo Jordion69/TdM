@@ -2,6 +2,7 @@ import {  AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, 
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Garito } from 'src/app/interfaces/garito';
 import { GaritosService } from 'src/app/services/garitos.service';
+import { environment } from 'src/environments/environments';
 @Component({
   selector: 'app-main-cities',
   templateUrl: './main-cities.component.html',
@@ -10,6 +11,7 @@ import { GaritosService } from 'src/app/services/garitos.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MainCitiesComponent  implements OnInit, AfterViewInit{
+  baseUrl = environment.baseUrl;
   customOptions: OwlOptions = {
     loop: false,
     mouseDrag: true,

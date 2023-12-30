@@ -22,7 +22,7 @@
             <img *ngIf="garito.visitado === 1" src="../../../../../assets/img/ruta666black.png" alt="Visited Badge">
           </div>
           <!-- <app-lazy-image class="card-img-top img-fluid" [imageSrc]="'http://127.0.0.1:8000/storage/' + garito.imagen" [alt]="garito.alt_imagen"></app-lazy-image> -->
-          <img class="card-img-top img-fluid" [src]="'http://127.0.0.1:8000/storage/' + garito.imagen" alt="">
+          <img class="card-img-top img-fluid" [src]="baseUrl + garito.imagen" alt="">
           <div class="card-body">
             <!-- <h5 class="card-title" (click)="showTextDialog(garito.nombre_garito, garito.direccion)">{{ truncateText(garito.nombre_garito, 19) }}</h5>
             <p class="card-text"  (click)="showTextDialog(garito.nombre_garito, garito.direccion)">{{ truncateText(garito.direccion, 19) }}</p> -->

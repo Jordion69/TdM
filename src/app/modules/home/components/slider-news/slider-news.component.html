@@ -27,7 +27,7 @@
             (click)="mostrarDetallesNoticia(noticia.id.toString())"
           >
             <div class="tranding-slide-news-img">
-              <img [src]="'http://127.0.0.1:8000/storage/' + noticia.foto_inicio " alt="">
+              <img [src]="baseUrl + noticia.foto_inicio " alt="">
             </div>
             <div class="tranding-slide-content-news">
               <h1 class="date-place-news"><small class="">{{calcularTiempoTranscurrido(noticia.updated_at)}}</small></h1>

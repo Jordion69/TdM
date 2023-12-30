@@ -3,36 +3,12 @@
     <owl-carousel-o [options]="customOptions" class="d-flex">
       <ng-template carouselSlide *ngFor="let garito of garitos">
         <div class="city-slide">
-          <img [src]="'http://127.0.0.1:8000/storage/' + garito.imagen" alt="">
+          <img [src]="baseUrl + garito.imagen" alt="">
           <div class="city-overlay">
             <p class="city-text">{{ garito.poblacion }}</p>
           </div>
         </div>
       </ng-template>
-      <!-- <ng-template carouselSlide>
-        <div class="city-slide">
-          <img src="../../../../../assets/img/Frame 2.jpg" alt="">
-          <div class="city-overlay">
-            <p class="city-text">Madrid</p>
-          </div>
-        </div>
-    </ng-template>
-    <ng-template carouselSlide>
-      <div class="city-slide">
-        <img src="../../../../../assets/img/Frame 3.jpg" alt="">
-        <div class="city-overlay">
-          <p class="city-text">Cantabria</p>
-        </div>
-      </div>
-    </ng-template>
-    <ng-template carouselSlide>
-      <div class="city-slide">
-        <img src="../../../../../assets/img/Frame 4.jpg" alt="">
-        <div class="city-overlay">
-          <p class="city-text">Bilbao</p>
-        </div>
-      </div>
-    </ng-template> -->
     </owl-carousel-o>
   </div>
 </section>

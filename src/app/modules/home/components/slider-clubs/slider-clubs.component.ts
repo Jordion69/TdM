@@ -1,16 +1,9 @@
 import { Component,  OnInit,  ViewEncapsulation, ChangeDetectorRef, ElementRef, ViewChild, AfterViewInit, ChangeDetectionStrategy } from '@angular/core';
 import { Garito } from 'src/app/interfaces/garito';
 import { GaritosService } from 'src/app/services/garitos.service';
+import { environment } from 'src/environments/environments';
 import SwiperCore, { A11y, Mousewheel, Navigation, Pagination, Scrollbar, EffectCoverflow } from 'swiper';
-// import {A11y, Mousewheel, Navigation, Pagination, SwiperOptions} from "swiper";
-// import Swiper from 'swiper';
-// import { Navigation, Pagination } from 'swiper/modules';
-// import SwiperCore, {
-//   Navigation,
-//   Pagination,
-//   Swiper,
-//   EffectCoverflow,
-// } from 'swiper';
+
 SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
 
 @Component({
@@ -21,6 +14,7 @@ SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SliderClubsComponent implements OnInit, AfterViewInit{
+  baseUrl = environment.baseUrl;
   @ViewChild('swiperContainer', { static: false }) swiperContainer: ElementRef | undefined;
   // private swiper: Swiper | undefined;
   errorMessage: string = '';
@@ -38,30 +32,6 @@ export class SliderClubsComponent implements OnInit, AfterViewInit{
       modifier: 2.5,
     },
   };
-
-  // public  SwiperOptions: any = {
-  //   modules: [Navigation, Pagination, A11y, Mousewheel],
-  //   effect: 'coverflow',
-  //   coverflowEffect: {
-  //     rotate: 50,
-  //     stretch: 0,
-  //     depth: 100,
-  //     modifier: 1,
-  //     slideShadows: true,
-  //   },
-  //   autoHeight: true,
-  //   spaceBetween: 20,
-  //   navigation: false,
-  //   pagination: {clickable: true, dynamicBullets: true},
-  //   slidesPerView: 1,
-  //   centeredSlides: true,
-  //   breakpoints: {
-  //     400: {
-  //       slidesPerView: "auto",
-  //       centeredSlides: false
-  //     },
-  //   }
-  // }
   garitos: Array<Garito> = []; // Inicializa el array vacío
   constructor(private garitosService: GaritosService, private cdr: ChangeDetectorRef) {}
 
@@ -96,15 +66,4 @@ export class SliderClubsComponent implements OnInit, AfterViewInit{
       }
     });
   }
-//   initializeSwiper(): void {
-//     console.log('initializeSwiper - Intentando inicializar/actualizar');
-//     if (this.dataLoaded && this.swiperContainer?.nativeElement) {
-//       console.log('initializeSwiper - Data is loaded, initializing/updating swiper');
-//       if (this.swiper) {
-//         this.swiper.update();
-//       } else {
-//         this.swiper = new Swiper(this.swiperContainer.nativeElement, this.swiperConfig);
-//       }
-//     }
-//   }
 }

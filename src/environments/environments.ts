@@ -4,6 +4,7 @@ export const environment = {
   URL_NEWS_FIRST_3: 'http://127.0.0.1:8000/noticias/first-three',
   URL_NEWS_FROM_4: 'http://127.0.0.1:8000/noticias/from-fourth',
   apiUrl: 'http://127.0.0.1:8000/api',
+  baseUrl: 'http://127.0.0.1:8000/storage/',
   endpoints: {
     getProvinceList: '/provincias/list',
     sendEmail: '/EnviarCorreo',

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Garito } from 'src/app/interfaces/garito';
 import { GaritosService } from 'src/app/services/garitos.service';
 import { ChangeDetectorRef } from '@angular/core';
+import { environment } from 'src/environments/environments';
 declare var $: any;
 
 @Component({
@@ -10,7 +11,7 @@ declare var $: any;
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent implements OnInit {
-
+  baseUrl = environment.baseUrl;
   showNoResultsMessage: boolean = false;
   p: number = 1;
   currentComunidadAutonoma: string = '';
@@ -58,12 +59,6 @@ Array: any;
       this.garitosService.updateFilteredGaritos(this.garitos);
     });
   }
-  // truncateText(text: string, maxLength: number): string {
-  //   if (text.length > maxLength) {
-  //     return text.substring(0, maxLength) + ' (ver más)';
-  //   }
-  //   return text;
-  // }
   truncateText(text: string, maxLength: number): { truncated: boolean, text: string } {
     if (text.length > maxLength) {
       return { truncated: true, text: text.substring(0, maxLength) };

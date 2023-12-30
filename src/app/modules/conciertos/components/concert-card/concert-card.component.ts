@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Concierto, Telonero } from 'src/app/interfaces/conciertos';
 import { ConciertosService } from 'src/app/services/conciertos.service';
+import { environment } from 'src/environments/environments';
 declare var $: any;
 @Component({
   selector: 'app-concert-card',
@@ -8,7 +9,7 @@ declare var $: any;
   styleUrls: ['./concert-card.component.scss']
 })
 export class ConcertCardComponent implements OnInit {
-
+  baseUrl = environment.baseUrl;
   p: number = 1;
   conciertos: Concierto[] = [];
   currentMonth: string = '';
@@ -44,7 +45,7 @@ export class ConcertCardComponent implements OnInit {
     });
   }
 openModal(imageSrc: string) {
-  this.modalImage = 'http://127.0.0.1:8000/storage/' + imageSrc;
+  this.modalImage = this.baseUrl + imageSrc;
   console.log(this.modalImage);
 
   $('#gallery-modal').on('show.bs.modal', () => {

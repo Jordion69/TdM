@@ -1,6 +1,7 @@
 import { Component,  ViewEncapsulation, OnInit } from '@angular/core';
 import { Concierto } from 'src/app/interfaces/conciertos';
 import { ConciertosService } from 'src/app/services/conciertos.service';
+import { environment } from 'src/environments/environments';
 // import Swiper from 'swiper';
 // import { Navigation, Pagination } from 'swiper/modules';
 // import SwiperCore, {
@@ -18,6 +19,7 @@ import { ConciertosService } from 'src/app/services/conciertos.service';
   encapsulation: ViewEncapsulation.None
 })
 export class SliderConcertsComponent {
+  baseUrl = environment.baseUrl;
   conciertos: Concierto[] = [];
   swiperConfig: any = {
     effect: 'coverflow',

@@ -2,6 +2,7 @@ import { Component,  OnInit,  ViewEncapsulation, ViewChild, ElementRef, ChangeDe
 import { Router } from '@angular/router';
 import { Noticia } from 'src/app/interfaces/noticia';
 import { NoticiasService } from 'src/app/services/noticias.service';
+import { environment } from 'src/environments/environments';
 
 @Component({
   selector: 'app-slider-news',
@@ -11,6 +12,7 @@ import { NoticiasService } from 'src/app/services/noticias.service';
 })
 
 export class SliderNewsComponent implements OnInit{
+  baseUrl = environment.baseUrl;
   noticias: Array<Noticia> = [];
   errorMessage: string = '';
   dataLoaded = false;

@@ -91,13 +91,6 @@ export class NoticiasService {
     );
   }
 
-  // public getNoticiaFromFourthById(id: number): Noticia | undefined {
-  //   // return this.noticiasRecibidas.find(noticia => noticia.id === id);
-  //   const noticia = this.noticiasRecibidas.find(n => n.id === id);
-  //   console.log("getNoticiaFromFourthById - Buscando ID:", id, "Resultado:", noticia);
-  //   return noticia;
-  // }
-
   public searchNoticias(searchText: string): void {
     console.log("searchNoticias - Texto de búsqueda:", searchText);
 

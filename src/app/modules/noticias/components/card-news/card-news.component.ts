@@ -15,6 +15,7 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./card-news.component.scss']
 })
 export class CardNewsComponent implements OnInit, OnDestroy {
+  baseUrl = environment.baseUrl;
   capturedText: string = '';
   UrlNewsFromFourth: string = environment.URL_NEWS_FROM_4;
   public first3: Array<Noticia> = [];

@@ -24,7 +24,7 @@
         *ngFor="let concierto of conciertos"
         >
           <div class="tranding-slide-concerts-img">
-            <img [src]="'http://127.0.0.1:8000/storage/' + concierto.imagen" alt="">
+            <img [src]="baseUrl + concierto.imagen" alt="">
           </div>
           <div class="tranding-slide-content-concerts">
             <h1 class="date-place-concerts">{{ concierto.fecha_evento | date:'d/M' }}</h1>
