@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Noticia } from 'src/app/interfaces/noticia';
 import { NoticiasService } from 'src/app/services/noticias.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { environment } from 'src/environments/environments';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 export class NoticiaDetalleComponent implements OnInit {
   noticia: Noticia | null = null;
   linkVideo!: SafeResourceUrl;
-
+  baseUrl = environment.baseUrl;
   constructor(private route: ActivatedRoute, private noticiasService: NoticiasService, public sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {

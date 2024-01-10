@@ -2,6 +2,10 @@
 .conciuertos-area {
   padding: 80px 0;
 }
+.img {
+  position: relative;
+
+}
 .card {
   box-shadow: 0 0 30px rgba(0,0,0,0.5);
   overflow: hidden;
@@ -15,6 +19,28 @@
   max-height: 500px;
   object-fit: cover;
   object-position: center center;
+}
+.img .btn-info-icon {
+  position: absolute;
+  bottom: 10px; // Ajusta la distancia desde la parte inferior de la imagen
+  right: 10px; // Ajusta la distancia desde el lado derecho de la imagen
+  background-color: rgba(0, 0, 0, 0.5); // Fondo semitransparente para el botón
+  color: white;
+  border-radius: 50%;
+  padding: 5px;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+  app-attribution {
+    position: absolute;
+    bottom: 50px; // Ajusta según la ubicación deseada
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.9); // Fondo semitransparente para la atribución
+    padding: 10px;
+    box-sizing: border-box;
+  }
 }
 .display-1 {
   color: #e5080d;
@@ -277,11 +303,3 @@ a:hover {
     margin-top: 0; /* Ajusta la posición para evitar cortes */
   }
 }
-
-// /* Ajustes para la imagen en la clase "img" */
-// @media only screen and (max-width: 1200px) and (min-width: 791px){
-//   .img img {
-//     max-height: 400px; /* Ajusta la altura máxima según sea necesario */
-//     object-fit: contain; /* Cambiar a contain para evitar desbordamiento */
-//   }
-// }

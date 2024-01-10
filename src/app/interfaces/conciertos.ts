@@ -13,10 +13,17 @@ export interface Concierto {
   poblacion:       string;
   provincia:       string;
   fecha_evento:    Date;
-  link_entrada:    null;
-  created_at:      null;
+  link_entrada:    string | null;
+  created_at:      Date | null;
   updated_at:      Date;
+  datos_licencia: string;
   teloneros:       Telonero[];
+  showInfo?: boolean;
+  author?: string;
+  authorUrl?: string;
+  licenseType?: string;
+  licenseUrl?: string;
+  modification?: string;
 }
 
 export interface Telonero {

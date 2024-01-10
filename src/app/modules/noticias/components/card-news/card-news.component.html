@@ -9,7 +9,7 @@
           <div class="card-body">
             <h4 class="card-title text-uppercase" data-bs-toggle="tooltip" data-bs-placement="top" title="{{noticia.titular}}" [innerHTML]="lengthTitular(noticia.titular_inicial)"></h4>
             <p class="card-text">{{captureFirst100Words(noticia.texto1) }}<a> ...</a></p>
-            <p class="card-text"><small class="">{{calcularTiempoTranscurrido(noticia.created_at)}}</small></p>
+            <p class="card-text"><small class="">{{calcularTiempoTranscurrido(noticia.updated_at)}}</small></p>
           </div>
         </div>
       </div>

@@ -1,7 +1,5 @@
 
-
-
-import { AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, map } from 'rxjs';
 
@@ -10,20 +8,19 @@ import { filter, map } from 'rxjs';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit, AfterViewInit {
-
+export class NavbarComponent  {
+  @ViewChild('navbarToggler') navbarToggler!: ElementRef;
   constructor(private readonly route: ActivatedRoute, private router: Router) {
     // console.log(this.router.url)
   }
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
-
-  ngAfterViewInit(): void {
-  }
 
 
-  public onToggleSidenav = () => {};
+
+  public onToggleSidenav = () => {
+    // Simula un clic en el botón del menú hamburguesa para cerrar el menú
+    console.log('Toggler clicked');
+    this.navbarToggler.nativeElement.click();
+  };
 
   header_variable = true;
 

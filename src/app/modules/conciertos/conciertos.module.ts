@@ -10,6 +10,7 @@ import { ConcertCardComponent } from './components/concert-card/concert-card.com
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SharedModule } from 'src/app/shared/shared.module';
 
+
 @NgModule({
   declarations: [
     PageComponent,

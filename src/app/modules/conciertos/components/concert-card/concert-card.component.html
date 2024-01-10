@@ -19,6 +19,18 @@
               {{ concierto.fecha_evento | date: 'dd/MM' }}
             </div>
             <img [src]="baseUrl + concierto.imagen" alt="" (click)="openModal(concierto.imagen)">
+            <a *ngIf="concierto.datos_licencia && concierto.datos_licencia.toLowerCase() !== 'void'"
+                class="btn btn-info btn-sm" (click)="toggleInfo(concierto)">
+              <i class="bi bi-info-circle"></i> Info
+            </a>
+            <!-- Componente de atribución -->
+            <app-attribution *ngIf="concierto.showInfo"
+                      [author]="concierto.author ?? ''"
+                      [authorUrl]="concierto.authorUrl ?? ''"
+                      [licenseType]="concierto.licenseType ?? ''"
+                      [licenseUrl]="concierto.licenseUrl ?? ''"
+                      [modification]="concierto.modification ?? ''">
+            </app-attribution>
           </div>
           <div class="main-text">
             <h2>{{ replaceUnderscoreAndHyphen(concierto.banda_principal) }}</h2>

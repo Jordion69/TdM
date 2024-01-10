@@ -46,17 +46,17 @@
             <div class="row">
               <ul class="icons d-flex flex-row flex-wrap list-unstyled col-8 col-lg-6 col-xl-6 justify-content-between">
                 <li class="hover-overlay hover-zoom" *ngIf="garito.facebook && garito.facebook.trim().length > 0">
-                  <a href="{{ garito.facebook }}">
+                  <a target="_blank" href="{{ garito.facebook }}">
                     <span class="bi bi-facebook fs-2"></span>
                   </a>
                 </li>
                 <li *ngIf="garito.instagram && garito.instagram.trim().length > 0">
-                  <a href="{{ garito.instagram }}">
+                  <a target="_blank" href="{{ garito.instagram }}">
                     <span class="bi bi-instagram fs-2"></span>
                   </a>
                 </li>
                 <li *ngIf="garito.latitud && garito.latitud.trim().length > 0">
-                  <a href="{{garito.latitud}}">
+                  <a target="_blank" href="{{garito.latitud}}">
                     <span class="bi bi-geo-alt-fill fs-2"></span>
                   </a>
                 </li>

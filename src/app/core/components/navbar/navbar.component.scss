@@ -26,7 +26,11 @@ ul li a {
 ul li a img {
   height: 32px;
 }
-
+ul.navbar-nav li:hover {
+  // background-color: #ff6600;
+  transform: scale(1.2);
+  transition: transform 0.3s;
+}
 @media  only screen and (max-width: 1500px) {
   ul li {
     font-size: 15px;
@@ -40,19 +44,37 @@ ul li a img {
 }
 
 @media  only screen and (max-width: 1200px) {
+  .navbar-nav {
+    .navbar-item {
+      margin-left: 0;
+      padding-left: 0;
+    }
+  }
+  ul.navbar-nav li:hover {
+    transform: none;
+  }
   ul li {
-    font-size: 10px;
+    font-size: 16px;
   }
   .header_change {
     background-color: black !important;
   }
   .navbar-toggler {
     border: 1px solid white;
+
+    .navbar-toggler-icon {
+      background-image: none; // Elimina la imagen de fondo por defecto
+      // Crear un icono personalizado con barras
+      &::before, &::after {
+        content: '';
+        display: block;
+        height: 2px; // Grosor de la barra
+        width: 30px; // Ancho de la barra
+        background-color: white; // Color de las barras
+        margin: 5px 0; // Espacio entre las barras
+      }
+    }
   }
 }
 
-ul.navbar-nav li:hover {
-  // background-color: #ff6600;
-  transform: scale(1.2);
-  transition: transform 0.3s;
-}
+

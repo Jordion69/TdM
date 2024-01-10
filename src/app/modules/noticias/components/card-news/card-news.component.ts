@@ -17,7 +17,6 @@ import { filter } from 'rxjs/operators';
 export class CardNewsComponent implements OnInit, OnDestroy {
   baseUrl = environment.baseUrl;
   capturedText: string = '';
-  UrlNewsFromFourth: string = environment.URL_NEWS_FROM_4;
   public first3: Array<Noticia> = [];
   private busquedaSub?: Subscription;
   private routeSub: Subscription

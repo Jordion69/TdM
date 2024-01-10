@@ -11,7 +11,7 @@
           <p class="h6">{{ noticia?.texto1 }}</p>
         </div>
         <div class="image rounded-5 my-2">
-          <img class="img-fluid mx-auto rounded-5 d-block" [src]="'http://127.0.0.1:8000/storage/' + noticia?.foto_inicio" alt="">
+          <img class="img-fluid mx-auto rounded-5 d-block" [src]="baseUrl + noticia?.foto_inicio" alt="">
         </div>
         <div *ngIf="noticia?.texto2" class="text-1 col-md-8 offset-md-2 my-5">
           <p class="h6">{{ noticia?.texto2 }}</p>

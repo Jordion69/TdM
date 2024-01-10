@@ -1,0 +1,13 @@
+.attribution {
+  font-size: 0.75rem;
+  margin-top: 1rem;
+  p {
+    margin: 0;
+    a {
+      color: #007bff;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

@@ -34,6 +34,15 @@ export class ConcertCardComponent implements OnInit {
       console.log('Datos recibidos en ConcertCardComponent:', result.data);
       if (result.data && result.data.length > 0) {
         this.conciertos = result.data;
+        this.conciertos.forEach(concierto => {
+          if (concierto.datos_licencia && concierto.datos_licencia.toLowerCase() !== 'void') {
+            const partes = concierto.datos_licencia.split(',').map(parte => parte.trim());
+            [concierto.author, concierto.authorUrl, concierto.licenseType, concierto.licenseUrl, concierto.modification] = partes;
+            concierto.showInfo = false; // Inicializa la propiedad para controlar la visibilidad
+          } else {
+            concierto.showInfo = false;
+          }
+        });
         this.showNoResultsMessage = false;
       } else if (result.message) {
         this.showNoResultsMessage = true;
@@ -65,6 +74,14 @@ openModal(imageSrc: string) {
   });
   $('#gallery-modal').modal('show');
 }
+toggleInfo(concierto: Concierto): void {
+  // Si 'showInfo' no existe en el objeto, inicialízalo aquí.
+  if (concierto.showInfo === undefined) {
+    concierto.showInfo = false;
+  }
+  concierto.showInfo = !concierto.showInfo;
+}
+
 cargarTodosLosConciertos() {
   this.conciertosService.getAllFromToday().subscribe((data: Concierto[]) => {
     let arrayExterno = Object.values(data);

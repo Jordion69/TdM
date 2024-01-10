@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SearchbuttonComponent } from './components/searchbutton/searchbutton.component';
 import { SliderTextComponent } from './components/slider-text/slider-text.component';
 import { register } from 'swiper/element/bundle';
+import { AttributionComponent } from './components/attribution/attribution.component';
 // register Swiper custom elements
 register();
 
@@ -12,14 +13,16 @@ register();
 @NgModule({
   declarations: [
     SearchbuttonComponent,
-    SliderTextComponent
+    SliderTextComponent,
+    AttributionComponent
   ],
   imports: [
     CommonModule,
   ],
   exports: [
     SearchbuttonComponent,
-    SliderTextComponent
+    SliderTextComponent,
+    AttributionComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

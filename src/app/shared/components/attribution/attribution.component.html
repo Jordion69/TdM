@@ -1,0 +1,12 @@
+<div *ngIf="author" class="attribution">
+  <p>
+    Foto por
+    <a *ngIf="authorUrl" href="{{ authorUrl }}" target="_blank" rel="noopener noreferrer">{{ author }}</a>
+    <span *ngIf="!authorUrl">{{ author }}</span>,
+    licenciada bajo
+    <a href="{{ licenseUrl }}" target="_blank" rel="noopener noreferrer">{{ licenseType }}</a>.
+    <span *ngIf="modification">{{ modification }}</span>
+  </p>
+</div>
+
+

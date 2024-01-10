@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://laughing-dijkstra.5-250-188-38.plesk.page/api',
-  baseUrl: 'https://laughing-dijkstra.5-250-188-38.plesk.page/storage/',
+  apiUrl: 'https://brave-sammet.5-250-188-38.plesk.page/api',
+  baseUrl: 'https://brave-sammet.5-250-188-38.plesk.page/storage/',
   endpoints: {
     getProvinceList: '/provincias/list',
     sendEmail: '/EnviarCorreo',

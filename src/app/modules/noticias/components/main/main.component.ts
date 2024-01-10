@@ -12,7 +12,6 @@ import { OwlOptions, CarouselComponent } from 'ngx-owl-carousel-o';
 export class MainComponent implements OnInit {
   baseUrl = environment.baseUrl;
   @ViewChild(CarouselComponent) carousel: CarouselComponent | undefined;
-  UrlNewsFirstThree: string = environment.URL_NEWS_FIRST_3;
   noticiasDia!: Noticia[];
   public  first3: Array<Noticia> = [];
   customOptions: OwlOptions = {
