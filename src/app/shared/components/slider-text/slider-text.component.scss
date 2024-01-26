@@ -2,6 +2,11 @@
 // @import "swiper/scss/effect-coverflow";
 @import "swiper/scss/navigation";
 @import "swiper/scss/pagination";
+.container-text, .swiper-container {
+  max-width: 100%;
+  overflow: hidden; // Esto puede ayudar a evitar desbordamientos horizontales
+}
+
 /* Estilo para el contenedor principal del swiper */
 .swiper-container {
   width: 100%;
@@ -21,7 +26,9 @@
   color: white; /* Texto en blanco */
   font-weight: bold; /* Texto en negrita */
   font-size: 1.5rem; /* Tamaño del texto */
-  white-space: nowrap; /* Evita que el texto se ajuste a líneas múltiples */
+  white-space: normal; /* Evita que el texto se ajuste a líneas múltiples */
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 @media (max-width: 1200px) {
   .swiper-container {

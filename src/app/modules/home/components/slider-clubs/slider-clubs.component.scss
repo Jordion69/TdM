@@ -132,10 +132,11 @@
   }
 }
 
+// Ajustes para la orientación vertical
 @media (max-width: 500px) {
   .tranding-slide-clubs {
     width: 20rem !important;
-    height: auto !important;
+    height: 20rem !important; // Ajustar según sea necesario
   }
 
   .tranding-slide-clubs .tranding-slide-clubs-img img {
@@ -143,9 +144,78 @@
     height: auto !important;
   }
 
+  // Reducir espacio entre imágenes y bullets del slider
+  .tranding-slider-control .swiper-pagination {
+    bottom: 1rem; // Reducir según sea necesario
+  }
+
+  // Centrar flechas laterales en dispositivos móviles
   .tranding-slider-control .swiper-button-next,
   .tranding-slider-control .swiper-button-prev {
-    left: 80% !important;
-    transform: translateX(-80%) !important;
+    top: 50%; // Centrar verticalmente
+    transform: translateY(-50%); // Ajustar para centrar
   }
 }
+
+// @media (max-height: 500px) and (orientation: landscape) {
+//   .tranding-slide-clubs .tranding-slide-clubs-img {
+//     max-width: 15rem;
+//     height: 40vh; // Ajustar a un porcentaje de la altura de la pantalla
+//     max-height: 15rem; // Máxima altura permitida
+//   }
+
+//   .tranding-slide-clubs-img img {
+//     height: 100%;
+//     object-fit: cover;
+//   }
+
+//   .tranding-slider-control .swiper-button-next,
+//   .tranding-slider-control .swiper-button-prev {
+//     top: 50%;
+//     transform: translateY(-50%);
+//   }
+// }
+
+@media (max-width: 950px) and (orientation: landscape) {
+  .tranding-slide-clubs {
+    max-width: 40vh; // Reducir la anchura máxima para ajustar el espacio entre slides
+    height: auto; // Ajustar la altura automáticamente
+  }
+
+  .tranding-slide-clubs .tranding-slide-clubs-img img {
+    width: 100%; //
+    object-fit: cover;
+  }
+  .tranding-slider-control .swiper-button-next,
+  .tranding-slider-control .swiper-button-prev {
+    top: 50%;
+    transform: translate(-50%);
+  }
+}
+@media (max-width: 844px) and (orientation: landscape) {
+  .tranding-slide-clubs {
+    width: auto; // Ajustar la anchura automáticamente
+    max-width: 20rem; // Máxima anchura
+    height: 20rem; // Altura para mantener el aspecto cuadrado
+  }
+
+  .tranding-slide-clubs .tranding-slide-clubs-img {
+    width: 100%; // Asegurar que el contenedor de la imagen llene el slide
+    height: 100%; // Altura igual a la del slide para mantener el aspecto
+    max-height: 20rem; // Máxima altura permitida
+  }
+
+  .tranding-slide-clubs-img img {
+    width: 100%; // Asegurarse de que la imagen llene el contenedor
+    height: 100%; // Altura igual a la del contenedor
+    object-fit: cover; // Ajustar la imagen para cubrir el contenedor sin ser recortada
+  }
+
+  .tranding-slider-control .swiper-button-next,
+  .tranding-slider-control .swiper-button-prev {
+    top: 50%; // Centrar verticalmente los botones
+    transform: translateY(-50%); // Ajuste para mantener los botones centrados verticalmente
+  }
+}
+
+

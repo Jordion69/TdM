@@ -45,6 +45,14 @@ h2 {
   h2 {
     font-size: calc(1.525rem + 3.3vw);
   }
+  .visited-badge {
+    top: 5px; // Ajustar la posición superior
+    right: 5px; // Ajustar la posición derecha
+    img {
+      border-radius: 50%;
+      max-width: 30px; // Reducir el tamaño de la imagen
+    }
+  }
  }
  @keyframes slideUp {
   from {
@@ -127,9 +135,145 @@ h2 {
   color: #e5080d; /* Color rojo para el botón de cierre */
 }
 
+// Ajustes para orientación horizontal en pantallas pequeñas
+// @media (max-height: 500px) and (orientation: landscape) {
+//   .container-fluid {
+//     display: flex;
+//     flex-wrap: wrap;
+//     justify-content: space-around;
+//     align-items: stretch;
+//   }
+//   .container-fluid .row > .col-12 {
+//     flex-basis: 100%;
+//     max-width: 100;
+//     width: 100%;
+//     order: -1;
+//   }
 
+//   .col-xxl-2, .col-xl-3, .col-lg-4, .col-md-4, .col-sm-6, .col-12 {
+//     // Ajustes para que cada tarjeta ocupe aproximadamente un tercio del ancho disponible
+//     flex: 0 0 calc(33.333% - 10px);
+//     max-width: calc(33.333% - 10px);
+//     margin: 5px; // Ajuste para el espaciado entre tarjetas
+//   }
 
+//   .card {
+//   // Ajustes para que la altura de cada tarjeta sea proporcional al alto de la pantalla
+//   height: 90vh;
+//   max-height: 90vh;
+//   }
 
+//   .card img {
+//   // Ajuste para que la imagen se adapte correctamente en la tarjeta
+//   height: 50%; // Ajusta según la proporción deseada para la imagen dentro de la tarjeta
+//   object-fit: cover;
+//   }
 
+//   .card-body {
+//   // Ajustes para el cuerpo de la tarjeta
+//   height: 50%; // Ajusta según la proporción deseada para el cuerpo de la tarjeta
+//   }
+
+//   .visited-badge img {
+//   // Ajuste del tamaño y posición del distintivo de visitado
+//   max-width: 30px; // Reducción del tamaño del distintivo para adaptarse al diseño
+//   top: 5px;
+//   right: 5px;
+//   }
+// }
+// @media (max-height: 500px) and (orientation: landscape) {
+//   .container-fluid {
+//     display: flex;
+//     flex-direction: column; /* Asegúrate de que los elementos se apilen verticalmente */
+//   }
+
+//   .container-fluid .row > .col-12 {
+//     width: 100%;
+//     order: -1; /* Mantiene los títulos al principio */
+//   }
+
+//   .col-xxl-2, .col-xl-3, .col-lg-4, .col-md-4, .col-sm-6, .col-12 {
+//     flex: 0 0 calc(33.333% - 10px);
+//     max-width: calc(33.333% - 10px);
+//     margin: 5px;
+//   }
+
+//   .card {
+//     height: 90vh;
+//     max-height: 90vh;
+//   }
+
+//   .card img {
+//     height: 50%;
+//     object-fit: cover;
+//   }
+
+//   .card-body {
+//     height: 50%;
+//   }
+
+//   .visited-badge img {
+//     max-width: 30px;
+//     top: 5px;
+//     right: 5px;
+//   }
+// }
+@media (max-height: 500px) and (orientation: landscape) {
+  .container-fluid .row > .col-12 {
+    width: 100%;
+  }
+
+  .col-xxl-2, .col-xl-3, .col-lg-4, .col-md-4, .col-sm-6, .col-12 {
+    flex: 0 0 calc(33.33% - 10px); // Toma un tercio del espacio disponible
+    max-width: calc(33.33% - 10px);
+    margin: 5px; // Margen para no pegar las tarjetas
+  }
+
+  .card {
+    height: calc(33vw - 10px); // Altura basada en el ancho de la tarjeta
+    max-height: calc(33vw - 10px);
+  }
+
+  .card img {
+    height: 70%; // Ajuste la proporción según sea necesario
+    object-fit: cover; // Para mantener la proporción de la imagen
+    border-radius: 10% 10% 0 0;
+  }
+
+  .card-body {
+    height: 30%; // Resto del espacio para el cuerpo de la tarjeta
+  }
+
+  .visited-badge img {
+    max-width: 30px;
+    height: 30px;
+    top: 5px;
+    border-radius: 50%;
+    right: 5px;
+  }
+}
+
+@media (max-height: 420px) and (orientation: landscape) {
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; // Asegura la distribución del espacio
+    padding: 10px; // Ajusta el padding según sea necesario
+    height: 30%; // Ajusta la altura para el contenido
+  }
+
+  .card-text {
+    margin-bottom: 10px; // Espacio entre el texto y los iconos
+  }
+
+  .icons {
+    display: flex;
+    justify-content: center; // Centra los iconos en el espacio disponible
+  }
+
+  .icons li {
+    padding: 0 5px; // Espacio entre los iconos
+  }
+}
 
 

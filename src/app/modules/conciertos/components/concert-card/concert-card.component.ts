@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Concierto, Telonero } from 'src/app/interfaces/conciertos';
 import { ConciertosService } from 'src/app/services/conciertos.service';
 import { environment } from 'src/environments/environments';
+import { ChangeDetectorRef } from '@angular/core';
 declare var $: any;
 @Component({
   selector: 'app-concert-card',
@@ -9,6 +10,8 @@ declare var $: any;
   styleUrls: ['./concert-card.component.scss']
 })
 export class ConcertCardComponent implements OnInit {
+  modalContentType: 'teloneros' | 'licencia' = 'teloneros';
+  selectedConciertoForModal: Concierto | null = null;
   baseUrl = environment.baseUrl;
   p: number = 1;
   conciertos: Concierto[] = [];
@@ -20,7 +23,7 @@ export class ConcertCardComponent implements OnInit {
   modalImage: string = '';
   showNoResultsMessage: boolean = false;
 
-  constructor(private conciertosService: ConciertosService) {}
+  constructor(private conciertosService: ConciertosService, private cdRef: ChangeDetectorRef) {}
 
 
   isTeloneroString(telonero: any): boolean {
@@ -34,15 +37,30 @@ export class ConcertCardComponent implements OnInit {
       console.log('Datos recibidos en ConcertCardComponent:', result.data);
       if (result.data && result.data.length > 0) {
         this.conciertos = result.data;
+        // this.conciertos.forEach(concierto => {
+        //   console.log('Datos de licencia original:', concierto.datos_licencia);
+        //   if (concierto.datos_licencia && concierto.datos_licencia.toLowerCase() !== 'void') {
+        //     const partes = concierto.datos_licencia.split(',').map(parte => parte.trim());
+        //     [concierto.author, concierto.authorUrl, concierto.licenseType, concierto.licenseUrl, concierto.modification] = partes;
+        //     concierto.showInfo = false; // Inicializa la propiedad para controlar la visibilidad
+        //   } else {
+        //     concierto.showInfo = false;
+        //   }
+        // });
         this.conciertos.forEach(concierto => {
+          console.log('Datos de licencia original:', concierto.datos_licencia);
           if (concierto.datos_licencia && concierto.datos_licencia.toLowerCase() !== 'void') {
-            const partes = concierto.datos_licencia.split(',').map(parte => parte.trim());
+            const partes = concierto.datos_licencia.split(',').map((parte: string) => {
+              console.log('Parte antes de trim:', parte);
+              const parteTrimmed = parte.trim();
+              console.log('Parte después de trim:', parteTrimmed);
+              return parteTrimmed;
+            });
+            console.log('Partes después de split y map:', partes);
             [concierto.author, concierto.authorUrl, concierto.licenseType, concierto.licenseUrl, concierto.modification] = partes;
-            concierto.showInfo = false; // Inicializa la propiedad para controlar la visibilidad
-          } else {
-            concierto.showInfo = false;
           }
         });
+
         this.showNoResultsMessage = false;
       } else if (result.message) {
         this.showNoResultsMessage = true;
@@ -81,6 +99,13 @@ toggleInfo(concierto: Concierto): void {
   }
   concierto.showInfo = !concierto.showInfo;
 }
+openLicenciaModal(concierto: Concierto): void {
+  this.selectedConciertoForModal = concierto;
+  console.log("selected", this.selectedConciertoForModal);
+
+  $('#licencia-modal').modal('show');
+}
+
 
 cargarTodosLosConciertos() {
   this.conciertosService.getAllFromToday().subscribe((data: Concierto[]) => {
@@ -93,13 +118,18 @@ cargarTodosLosConciertos() {
 }
 // Asumiendo que Telonero tiene una propiedad 'telonero' que es un string.
 showTelonerosDialog(teloneros: Telonero[]) {
+  console.log('Abriendo modal de teloneros para:', teloneros);
   this.telonerosActuales = teloneros.map(t => t.telonero);
+  this.modalContentType = 'teloneros';
+  console.log("teloneros", this.modalContentType);
   $('#teloneros-modal').modal('show');
 }
 closeModal () {
   $('#teloneros-modal').modal('hide');
 }
-
+closeModal2 () {
+  $('#licencia-modal').modal('hide');
+}
 replaceUnderscoreAndHyphen(banda: string): string {
   // Utiliza la función replace para reemplazar _ y - con espacios en blanco
   return banda.replace(/[_-]/g, ' ');

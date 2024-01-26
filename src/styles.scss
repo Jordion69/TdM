@@ -9,14 +9,19 @@
 
 html, body {  margin: 0; padding: 0;}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 
 :root {
-  $ff-title: 'Creepster', cursive;
+  $ff-title: 'Metal Mania', cursive;
+  // $ff-title: 'Creepster', cursive;
   $ff-headline:'Kanit', sans-serif;
 }
 
 $headings-font-family: 'Kanit', sans-serif;
-$display-font-family: 'Creepster', cursive;
+$display-font-family: 'Metal Mania', cursive;
 $primary: #151417;
 $secondary: purple;
 $danger: hsl(330, 100%, 61%);

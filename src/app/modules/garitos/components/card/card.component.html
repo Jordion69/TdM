@@ -31,7 +31,7 @@
               <a *ngIf="truncateText(garito.nombre_garito, 19).truncated"
                  style="color: blue; cursor: pointer;"
                  (click)="showTextDialog(garito.nombre_garito, garito.direccion)">
-                (ver más)
+                (ver)
               </a>
             </div>
             <div (click)="showTextDialog(garito.nombre_garito, garito.direccion)">
@@ -39,7 +39,7 @@
               <a *ngIf="truncateText(garito.direccion, 19).truncated"
                  style="color: blue; cursor: pointer;"
                  (click)="showTextDialog(garito.nombre_garito, garito.direccion)">
-                (ver más)
+                (ver)
               </a>
             </div>
             <p class="card-text"><strong>{{garito.poblacion}}</strong></p>

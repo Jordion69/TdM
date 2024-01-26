@@ -8,6 +8,7 @@ import { HeadlineComponent } from './components/headline/headline.component';
 import { SliderNewsComponent } from './components/slider-news/slider-news.component';
 import { SliderConcertsComponent } from './components/slider-concerts/slider-concerts.component';
 import { SliderClubsComponent } from './components/slider-clubs/slider-clubs.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 // import function to register Swiper custom elements
 import { register } from 'swiper/element/bundle';
 // register Swiper custom elements
@@ -25,6 +26,7 @@ register();
   imports: [
     CommonModule,
     HomeRoutingModule,
+    SharedModule
     // SwiperModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

@@ -22,4 +22,9 @@ export interface Noticia {
   palabras_clave: string
   created_at: any
   updated_at: any
+  author?: string
+  authorUrl?: string
+  licenseType?: string
+  licenseUrl?: string
+  modification?: string
 }

@@ -177,4 +177,20 @@
 .swiper-pagination-bullet-active {
   background: red;
 }
+@media (max-width: 950px) and (max-height: 475px) {
+  .tranding-slide-concerts {
+    // Redimensionar los slides de conciertos para adaptarse a la pantalla
+    width: 100%;
+    max-width: 15rem; // Ajustar según sea necesario
+    height: auto;
+  }
+
+  .tranding-slide-concerts .tranding-slide-concerts-img img {
+    // Ajustar tamaño de la imagen
+    width: 100%;
+    height: auto;
+  }
+
+  // Puedes añadir aquí más ajustes específicos para otros elementos
+}
 

@@ -20,9 +20,20 @@ export class MainComponent implements OnInit {
     autoplayTimeout: 3000,
     items: 1,
     dots: true,
-    nav: false
-    // Otras opciones según sea necesario
+    nav: false,
+    responsive: {
+      0: {
+        items: 1
+      },
+      600: {
+        items: 1
+      },
+      1000: {
+        items: 1
+      }
+    }
   };
+
   constructor(private NoticiasService:NoticiasService, private router: Router, private cdr: ChangeDetectorRef) {}
   ngOnInit(): void {
     this.cargarData();

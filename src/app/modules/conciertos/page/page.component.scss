@@ -1,6 +1,9 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
 .main-img img {
   max-height: 90vh;
-  width: 100vw;
+  width: 100%;
   background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
   background-size: cover;
 }

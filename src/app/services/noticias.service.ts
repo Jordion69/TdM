@@ -85,6 +85,8 @@ export class NoticiasService {
         console.log("Datos recibidos en getFromFourth:", data);
         this.noticiasRecibidas = data;
         sessionStorage.setItem(sessionStorageKey, JSON.stringify({ timestamp: new Date().getTime(), data: data }));
+        console.log("Noticias recibidas ----->", this.noticiasRecibidas);
+
         this._busquedaActual.next(this.noticiasRecibidas);
         console.log("busquedaActual actualizado en getFromFourth:", this.noticiasRecibidas);
       })

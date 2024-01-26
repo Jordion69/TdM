@@ -6,7 +6,7 @@ import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { ChangeDetectorRef } from '@angular/core';
 import { Subscription} from 'rxjs';
 import { filter } from 'rxjs/operators';
-
+declare var $: any;
 
 
 @Component({
@@ -15,6 +15,7 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./card-news.component.scss']
 })
 export class CardNewsComponent implements OnInit, OnDestroy {
+  selectedNoticiaForModal: Noticia | null = null;
   baseUrl = environment.baseUrl;
   capturedText: string = '';
   public first3: Array<Noticia> = [];
@@ -43,6 +44,8 @@ export class CardNewsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.cargarData();
+    console.log(">Noticias cargadas", this.noticias1);
+
     const ultimaBusqueda = this.NoticiasService.getUltimaBusqueda();
     if (ultimaBusqueda) {
       // Si hay una última búsqueda, realiza esa búsqueda
@@ -63,9 +66,32 @@ export class CardNewsComponent implements OnInit, OnDestroy {
       } else if (data && data.noticias && Array.isArray(data.noticias)) {
         // Si los datos son un objeto con una propiedad 'noticias'
         this.noticias1 = data.noticias;
+        console.log("Noticias data.noticias ----->", this.noticias1);
+        this.noticias1.forEach(noticia => {
+          console.log('Text1 original:', noticia.text1);
+          if (noticia.text1 && noticia.text1.toLowerCase() !== 'void') {
+            const partes = noticia.text1.split(',').map((parte: string) => {
+              console.log('Parte antes de trim:', parte);
+              const parteTrimmed = parte.trim();
+              console.log('Parte después de trim:', parteTrimmed);
+              return parteTrimmed;
+            });
+            console.log('Partes después de split y map:', partes);
+            if (partes.length === 5) {
+              [noticia.author, noticia.authorUrl, noticia.licenseType, noticia.licenseUrl, noticia.modification] = partes;
+            } else {
+              console.error('Formato inesperado para text1:', noticia.text1);
+            }
+          }
+        });
+
       } else {
         // Si los datos no son ninguno de los anteriores, puedes manejar el caso o asignar un valor por defecto
         console.log("Formato de datos no reconocido", data);
+        console.log("Noticias antes de forEach:", this.noticias1);
+
+
+
         this.noticias1 = [];
       }
     });
@@ -142,7 +168,16 @@ export class CardNewsComponent implements OnInit, OnDestroy {
     }
     this.cdr.detectChanges();
   }
-
+  abrirModalInfo(noticia: Noticia, event: MouseEvent): void {
+      event.stopPropagation();
+      this.selectedNoticiaForModal = noticia;
+      console.log('selectedNoticiaForModal', this.selectedNoticiaForModal);
+      this.cdr.detectChanges();
+      $('#licencia-modal').modal('show');
+  }
+  closeModal () {
+    $('#licencia-modal').modal('hide');
+  }
   lengthTitular(titular: string): string {
     const words = titular.split(' ');
 

@@ -190,3 +190,41 @@
 .swiper-pagination-bullet-active {
   background:  #e5080d;
 }
+@media (max-width: 768px) {
+  .tranding-slide-news-img {
+    height: 18rem; // Reducir la altura para pantallas pequeñas
+  }
+
+  .tranding-slide-news {
+    max-width: 35rem; // Reducir el ancho máximo
+  }
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+  // Ajustes para dispositivos móviles en orientación horizontal
+  .tranding-slide-news-img {
+    height: 15rem; // Altura más baja para ajustar a la pantalla
+  }
+
+  .tranding-slide-news {
+    max-width: 30rem; // Reducir aún más el ancho máximo
+  }
+
+  .tranding-slide-content-news {
+    // Reducir el tamaño de la fuente y ajustar el posicionamiento
+    .date-place-news {
+      font-size: 14px;
+      top: 1rem;
+      right: 1rem;
+    }
+
+    .tranding-slide-content-bottom-news {
+      bottom: 1rem;
+      left: 1rem;
+      h2 {
+        font-size: 16px; // Tamaño de fuente más pequeño para el título
+      }
+    }
+  }
+}
+

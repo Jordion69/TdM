@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { NoticiasDetalleRoutingModule } from './noticias-detalle-routing.module';
 import { PageComponent } from './page/page.component';
 import { NoticiaDetalleComponent } from './components/noticia-detalle/noticia-detalle.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { NoticiaDetalleComponent } from './components/noticia-detalle/noticia-de
   ],
   imports: [
     CommonModule,
-    NoticiasDetalleRoutingModule
+    NoticiasDetalleRoutingModule,
+    SharedModule
   ]
 })
 export class NoticiasDetalleModule { }

@@ -4,6 +4,9 @@
       <div class="row g-0">
         <div class="col-lg-6 p-2 cont-img" #imageContainer>
           <img [src]="baseUrl + noticia.foto_inicio" class="img-fluid imagen rounded-5" alt="...">
+          <button *ngIf="noticia.text1 !== 'void'" class="info-button" (click)="abrirModalInfo(noticia, $event)"npm run dev>
+            <i class="bi bi-info-circle"></i> Info
+          </button>
         </div>
         <div class="col-lg-6">
           <div class="card-body">
@@ -12,6 +15,28 @@
             <p class="card-text"><small class="">{{calcularTiempoTranscurrido(noticia.updated_at)}}</small></p>
           </div>
         </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div id="licencia-modal" class="modal fade modal-estilo-personalizado" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Información de Licencia</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"  (click)="closeModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-attribution *ngIf="selectedNoticiaForModal"
+                         [author]="selectedNoticiaForModal.author ?? ''"
+                         [authorUrl]="selectedNoticiaForModal.authorUrl ?? ''"
+                         [licenseType]="selectedNoticiaForModal.licenseType ?? ''"
+                         [licenseUrl]="selectedNoticiaForModal.licenseUrl ?? ''"
+                         [modification]="selectedNoticiaForModal.modification ?? ''">
+        </app-attribution>
       </div>
     </div>
   </div>

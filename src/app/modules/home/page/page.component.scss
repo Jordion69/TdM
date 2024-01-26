@@ -1,7 +1,7 @@
 
 .main-img img {
   max-height: 90vh;
-  width: 100vw;
+  width: 100%;
   background-size: cover;
 }
 .news {
@@ -13,8 +13,9 @@
 .clubs {
   background-color: white;
 }
-.container-fluid {
+.container-fluid, .row {
   padding: 0;
+  margin: 0;
 }
 
 @media (max-width: 1200px) {
@@ -26,27 +27,51 @@
   }
 }
 /* Estilos iniciales */
-.fade-in-left {
-  opacity: 0;
-  transform: translateX(-100%);
-  transition: opacity 1.5s, transform 1.5s;
-}
+// .fade-in-left {
+//   opacity: 0;
+//   transform: translateX(-100%);
+//   transition: opacity 1.5s, transform 1.5s;
+// }
 
-.fade-in-right {
-  opacity: 0;
-  transform: translateX(100%);
-  transition: opacity 1.5s, transform 1.5s;
-}
+// .fade-in-right {
+//   opacity: 0;
+//   transform: translateX(100%);
+//   transition: opacity 1.5s, transform 1.5s;
+// }
 
 /* Estilos cuando el elemento es visible */
+// .is-visible {
+//   opacity: 1;
+//   transform: translateX(0);
+// }
+.container-fluid, .row {
+  overflow-x: hidden; /* Prevenir desbordamiento horizontal */
+}
+
+.fade-in-left, .fade-in-right {
+  opacity: 0;
+  transform: translateX(0); /* Iniciar sin desplazamiento */
+  transition: opacity 1.5s, transform 1.5s;
+  visibility: hidden; /* Ocultar inicialmente */
+}
+
+/* Añadir una clase cuando el elemento deba ser visible */
 .is-visible {
   opacity: 1;
   transform: translateX(0);
+  visibility: visible; /* Hacer visible */
 }
+
+
 @media (max-width: 768px) {
+  // .fade-in-left, .fade-in-right {
+  //   transform: translateX(0);
+  //   opacity: 1;
+  // }
   .fade-in-left, .fade-in-right {
-    transform: translateX(0);
+    transform: translateX(0); /* Sin desplazamiento para evitar desbordamiento */
     opacity: 1;
+    visibility: visible;
   }
 }
 

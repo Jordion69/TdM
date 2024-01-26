@@ -4,6 +4,7 @@ import { SearchbuttonComponent } from './components/searchbutton/searchbutton.co
 import { SliderTextComponent } from './components/slider-text/slider-text.component';
 import { register } from 'swiper/element/bundle';
 import { AttributionComponent } from './components/attribution/attribution.component';
+import { BackToTopButtonComponent } from './components/back-to-top-button/back-to-top-button.component';
 // register Swiper custom elements
 register();
 
@@ -14,7 +15,8 @@ register();
   declarations: [
     SearchbuttonComponent,
     SliderTextComponent,
-    AttributionComponent
+    AttributionComponent,
+    BackToTopButtonComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +24,8 @@ register();
   exports: [
     SearchbuttonComponent,
     SliderTextComponent,
-    AttributionComponent
+    AttributionComponent,
+    BackToTopButtonComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
