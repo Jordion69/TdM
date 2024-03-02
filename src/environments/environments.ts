@@ -9,6 +9,7 @@ export const environment = {
       firstSeven: '/noticias/first-seven',
       firstThree: '/noticias/first-three',
       fromFourth: '/noticias/from-fourth',
+      getById: '/noticia/',
     },
     garitos: {
       randomSeven: '/garitos/random-seven',

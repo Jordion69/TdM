@@ -56,8 +56,8 @@ export class MainComponent implements OnInit {
         let arrayExterno = Object.values(noticias);
         if (arrayExterno.length > 0 && Array.isArray(arrayExterno[0])) {
           this.noticiasDia = arrayExterno[0] as Array<Noticia>;
-          console.log("Primeras tres noticias:", this.noticiasDia);
           sessionStorage.setItem('noticiasFirstThree', JSON.stringify(this.noticiasDia));
+          this.NoticiasService.cargaPrimerasNoticiasCompletada.next(true);
         } else {
           console.error('Formato de respuesta inesperado:', noticias);
           // Manejar casos donde la respuesta no contiene las noticias esperadas

@@ -4,6 +4,7 @@ import { Noticia } from 'src/app/interfaces/noticia';
 import { NoticiasService } from 'src/app/services/noticias.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { environment } from 'src/environments/environments';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,7 +17,12 @@ export class NoticiaDetalleComponent implements OnInit {
   noticia: Noticia | null = null;
   linkVideo!: SafeResourceUrl;
   baseUrl = environment.baseUrl;
-  constructor(private route: ActivatedRoute, private noticiasService: NoticiasService, public sanitizer: DomSanitizer) {}
+  constructor(
+    private route: ActivatedRoute,
+    private noticiasService: NoticiasService,
+    public sanitizer: DomSanitizer,
+    private router: Router
+    ) {}
 
   ngOnInit(): void {
     window.scroll(0,0);
@@ -25,17 +31,28 @@ export class NoticiaDetalleComponent implements OnInit {
 
       if (id) {
         // Obtén la noticia seleccionada desde el servicio
-        this.noticia = this.noticiasService.getSelectedNoticia();
-        if (this.noticia?.link_video) {
-          this.linkVideo = this.sanitizer.bypassSecurityTrustResourceUrl(this.noticia.link_video);
-      }
-
-        // this.linkVideo = this.noticiasService.convertirEnlaceVideo(this.noticia?.link_video);
-
-        console.log("Link_video2 -----> ",  this.noticia?.link_video);
-        console.log("Link_video -----> ",  this.linkVideo);
-        console.log("Notcia -----> ",  this.noticia);
-
+        const noticiaSeleccionada = this.noticiasService.getSelectedNoticia();
+        if (!noticiaSeleccionada) {
+          this.noticiasService.getNoticiaById(+id).subscribe({
+            next: (noticia) => {
+              this.noticia = noticia;
+              if (this.noticia?.link_video) {
+                this.linkVideo = this.sanitizer.bypassSecurityTrustResourceUrl(this.noticia.link_video);
+              }
+            },
+            error: (error) => {
+              // Si la API retorna un error (p.ej., 404), redirige al usuario a la página de "Not Found"
+              console.error('Error al obtener la noticia:', error);
+              this.router.navigateByUrl('/not-found'); // Asegúrate de tener esta ruta configurada en tu AppRoutingModule
+            }
+          });
+        } else {
+          // Si la noticia está pre-cargada por el servicio, úsala directamente
+          this.noticia = noticiaSeleccionada;
+          if (this.noticia?.link_video) {
+            this.linkVideo = this.sanitizer.bypassSecurityTrustResourceUrl(this.noticia.link_video);
+          }
+        }
       }
     });
   }

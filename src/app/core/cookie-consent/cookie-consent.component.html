@@ -1,0 +1,12 @@
+<div class="cookie-consent-overlay" *ngIf="show">
+  <div class="cookie-consent-modal">
+    <h2>Valoramos tu privacidad</h2>
+    <p>Utilizamos cookies para mejorar su experiencia. Al continuar navegando por el sitio, usted acepta el uso de nuestras cookies. Puede leer nuestra <a href="/politica-privacidad">Política de Privacidad</a> y <a href="/politica-cookies">Política de Cookies</a>.</p>
+    <div class="cookie-consent-actions">
+      <button (click)="consentGiven()">Aceptar</button>
+      <button (click)="decline()">Rechazar</button>
+    </div>
+  </div>
+</div>
+
+

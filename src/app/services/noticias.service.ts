@@ -14,12 +14,13 @@ export class NoticiasService {
   private completedArray: Noticia[] = [];
   private _busquedaActiva = new BehaviorSubject<boolean>(false);
   private ultimaBusqueda: string = '';
+  public cargaPrimerasNoticiasCompletada = new BehaviorSubject<boolean>(false);
+  public cargaRestoNoticiasCompletada = new BehaviorSubject<boolean>(false);
 
   private selectedNoticia: Noticia | null = null;
   constructor(private http: HttpClient) { }
 
   setSelectedNoticia(noticia: Noticia | null) {
-    console.log("setSelectedNoticia - Noticia seleccionada:", noticia);
     this.selectedNoticia = noticia;
   }
 
@@ -27,7 +28,6 @@ export class NoticiasService {
     return this.selectedNoticia;
   }
   setBusquedaActiva(estado: boolean) {
-    console.log("Estado de búsqueda activa cambiado a:", estado);
     this._busquedaActiva.next(estado);
   }
   get busquedaActiva$() {
@@ -82,19 +82,18 @@ export class NoticiasService {
 
     return this.http.get<Noticia[]>(`${environment.apiUrl}${environment.endpoints.noticias.fromFourth}`).pipe(
       tap((data: Noticia[]) => {
-        console.log("Datos recibidos en getFromFourth:", data);
         this.noticiasRecibidas = data;
         sessionStorage.setItem(sessionStorageKey, JSON.stringify({ timestamp: new Date().getTime(), data: data }));
-        console.log("Noticias recibidas ----->", this.noticiasRecibidas);
 
         this._busquedaActual.next(this.noticiasRecibidas);
-        console.log("busquedaActual actualizado en getFromFourth:", this.noticiasRecibidas);
       })
     );
   }
+  getNoticiaById(id: number): Observable<Noticia> {
+    return this.http.get<Noticia>(`${environment.apiUrl}${environment.endpoints.noticias.getById}${id}`);
+  }
 
   public searchNoticias(searchText: string): void {
-    console.log("searchNoticias - Texto de búsqueda:", searchText);
 
     forkJoin({
       firstThree: this.getFirstThree(),
@@ -103,11 +102,7 @@ export class NoticiasService {
       let noticiasFirst: Noticia[] = this.convertirAResultadoArray(firstThree);
       let noticiasSecond: Noticia[] = this.convertirAResultadoArray(fromFourth);
 
-      console.log("Noticias de firstThree:", noticiasFirst);
-      console.log("Noticias de fromFourth:", noticiasSecond);
-
       this.completedArray = [...noticiasFirst, ...noticiasSecond];
-      console.log("Array combinado antes de la filtración:", this.completedArray);
 
       let noticiasFiltradas: Noticia[];
       if (searchText) {
@@ -115,14 +110,10 @@ export class NoticiasService {
           noticia.titular.toLowerCase().includes(searchText.toLowerCase()) ||
           noticia.texto1.toLowerCase().includes(searchText.toLowerCase())
         );
-        console.log("Array filtrado con término de búsqueda:", noticiasFiltradas);
       } else {
         noticiasFiltradas = this.completedArray;
-        console.log("Array filtrado sin término de búsqueda (completo):", noticiasFiltradas);
       }
-
       this._busquedaActual.next(noticiasFiltradas);
-      console.log("busquedaActual actualizado en searchNoticias:", noticiasFiltradas);
     });
   }
 
@@ -150,12 +141,8 @@ export class NoticiasService {
   }
 
   public resetBusqueda(): void {
-    console.log("resetBusqueda iniciado");
-
     this.getFromFourth().subscribe(noticias => {
-      console.log("Noticias obtenidas en resetBusqueda:", noticias);
       this._busquedaActual.next(noticias);
-      console.log("busquedaActual actualizado en resetBusqueda con:", noticias);
     });
   }
 
@@ -168,8 +155,6 @@ export class NoticiasService {
       return ''; // O cualquier otro valor predeterminado si la URL no es válida
     }
   }
-
-
   // Nuevo método para obtener el enlace de video de la noticia seleccionada
   getEnlaceVideoSeleccionado(): string | null {
     return this.selectedNoticia ? this.selectedNoticia.link_video : null;

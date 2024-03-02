@@ -37,15 +37,12 @@ export class SliderClubsComponent implements OnInit, AfterViewInit{
 
 
   ngOnInit(): void {
-    console.log('ngOnInit - SliderClubsComponent');
     this.getGaritos();
   }
   ngAfterViewInit(): void {
-    console.log('ngAfterViewInit - SliderClubsComponent');
     // this.initializeSwiper();
   }
   getGaritos(): void {
-    console.log('getGaritos - Solicitando datos');
     this.garitos = [];
     this.garitosService.getRandomSeven().subscribe({
       next: (garitos) => {
@@ -53,14 +50,12 @@ export class SliderClubsComponent implements OnInit, AfterViewInit{
         if (arrayExterno.length > 0 && Array.isArray(arrayExterno[0])) {
           this.garitos = arrayExterno[0] as Array<Garito>;
           this.dataLoaded = true;
-          console.log('dataLoaded set to true');
           this.cdr.detectChanges();
         } else {
           console.error('La estructura de datos no es la esperada:', garitos);
         }
       },
       error: (error) => {
-        console.log('getGaritos - Error al recibir datos');
         this.errorMessage = 'Error al cargar los garitos. Por favor, intente de nuevo más tarde.';
         console.error('Error al obtener los garitos', error);
       }

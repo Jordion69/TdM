@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AppRoutingModule } from '../app-routing.module';
+import { CookieConsentComponent } from './cookie-consent/cookie-consent.component';
 
 
 
@@ -10,6 +11,7 @@ import { AppRoutingModule } from '../app-routing.module';
   declarations: [
     NavbarComponent,
     FooterComponent,
+    CookieConsentComponent,
 
   ],
   imports: [
@@ -18,7 +20,8 @@ import { AppRoutingModule } from '../app-routing.module';
   ],
   exports: [
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    CookieConsentComponent
   ]
 })
 export class CoreModule { }

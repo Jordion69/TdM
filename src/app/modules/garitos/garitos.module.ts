@@ -8,7 +8,6 @@ import { MainCitiesComponent } from './components/main-cities/main-cities.compon
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
-import { LazyImageComponent } from 'src/app/shared/components/lazy-image/lazy-image.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 
@@ -18,7 +17,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
     SearchComponent,
     CardComponent,
     MainCitiesComponent,
-    LazyImageComponent
 
   ],
   imports: [

@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://brave-sammet.5-250-188-38.plesk.page/api',
-  baseUrl: 'https://brave-sammet.5-250-188-38.plesk.page/storage/',
+  apiUrl: 'https://www.templodelmetal.com/api',
+  baseUrl: 'https://www.templodelmetal.com/storage/',
   endpoints: {
     getProvinceList: '/provincias/list',
     sendEmail: '/EnviarCorreo',
@@ -9,6 +9,7 @@ export const environment = {
       firstSeven: '/noticias/first-seven',
       firstThree: '/noticias/first-three',
       fromFourth: '/noticias/from-fourth',
+      getById: '/noticia/',
     },
     garitos: {
       randomSeven: '/garitos/random-seven',

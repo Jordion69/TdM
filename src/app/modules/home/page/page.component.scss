@@ -26,6 +26,27 @@
     margin: 0;
   }
 }
+.conciertos a, .news a, .clubs a {
+  text-decoration: none; /* Elimina el subrayado */
+}
+/* Estilo para asegurar que el iframe sea responsivo y mantenga la proporción */
+.embed-responsive-item, iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Asegurar que el video de YouTube se ajuste correctamente en todos los dispositivos */
+@media (max-width: 768px) {
+  .embed-responsive-16by9 {
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  }
+
+  iframe {
+    height: auto;
+    width: 100%;
+  }
+}
+
 /* Estilos iniciales */
 // .fade-in-left {
 //   opacity: 0;

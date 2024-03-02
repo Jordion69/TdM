@@ -25,15 +25,12 @@ Array: any;
 
   constructor(private garitosService: GaritosService) {}
   ngOnInit(): void {
-    console.log('Llamando a cargarTodosLosGaritos');
     this.cargarTodosLosGaritos();
     this.garitosService.filteredGaritos$.subscribe(result => {
-      console.log("Prueba1", result.data);
       if (result.data && result.data.length > 0) {
         // Si hay datos en la propiedad 'data', los usamos
         this.garitos = result.data;
         this.showNoResultsMessage = false;
-        console.log('Datos recibidos:', this.garitos);
       } else if (result.message) {
         this.showNoResultsMessage = true;
         console.log(result.message);
@@ -76,7 +73,4 @@ Array: any;
   isArray(value: any): boolean {
     return Array.isArray(value);
   }
-
-
-
 }

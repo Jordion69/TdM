@@ -21,7 +21,6 @@ export class GaritosService {
   public getRandomSeven(): Observable<Garito[]> {
     return this.http.get<Garito[]>(`${this.apiUrl}/garitos/random-seven`).pipe(
       tap(garitos => {
-        console.log('getRandomSeven - Datos recibidos', garitos);
 
       })
     )
@@ -29,8 +28,6 @@ export class GaritosService {
   public getRandomFromCities(): Observable<Garito[]> {
     return this.http.get<Garito[]>(`${this.apiUrl}/garitos/random-from-cities`).pipe(
       tap(garitosByCity => {
-        console.log('get from city', garitosByCity);
-
       })
     )
   }
@@ -39,7 +36,6 @@ export class GaritosService {
     this._filteredGaritos.next({ data: [] });
   }
   public getAllGaritosMin(): Observable<Garito[]> {
-    console.log('Llamando a getAllGaritosMin');
     const dataFromSession = sessionStorage.getItem('garitosMin'); // Cambia el nombre de la sesión si es necesario
     if (dataFromSession) {
         try {
@@ -60,7 +56,6 @@ export class GaritosService {
                 data: garitos
             };
             sessionStorage.setItem('garitosMin', JSON.stringify(dataToStore));
-            console.log('Respuesta de getAllGaritosMin:', garitos);
         }),
         catchError(error => {
             console.error('Error al obtener garitos mínimos:', error);

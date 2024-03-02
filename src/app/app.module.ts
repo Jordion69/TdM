@@ -10,10 +10,6 @@ import { ConciertosModule } from './modules/conciertos/conciertos.module';
 import { PagenotfoundComponent } from './modules/pagenotfound/page/pagenotfound.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
-
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,11 +24,13 @@ import { CookieService } from 'ngx-cookie-service';
     FormsModule,
     ReactiveFormsModule,
     ConciertosModule,
-    HttpClientModule,
+    HttpClientModule
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [CookieService],
+  providers: [
+    CookieService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

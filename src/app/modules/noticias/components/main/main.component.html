@@ -1,12 +1,12 @@
 
 <owl-carousel-o [options]="customOptions">
   <ng-template carouselSlide *ngFor="let new of noticiasDia">
-    <div (click)="mostrarDetallesNoticia(new.id.toString())">
-      <img #carouselImage [src]="baseUrl + new.foto_inicio" class="d-block w-100" alt="...">
-      <div class="carousel-caption">
-        <h3 class="text-uppercase">{{new.titular_inicial}}</h3>
-        <h5>{{calcularTiempoTranscurrido(new.updated_at)}}</h5>
-      </div>
+    <div (click)="mostrarDetallesNoticia(new.id.toString())" class="img img-fluid">
+        <img #carouselImage [src]="baseUrl + new.foto_inicio" class="d-block w-100" alt="{{new.alt_foto_inicio}}">
+        <div class="carousel-caption">
+          <h3 class="text-uppercase">{{new.titular_inicial}}</h3>
+          <h5>{{calcularTiempoTranscurrido(new.updated_at)}}</h5>
+        </div>
     </div>
   </ng-template>
 </owl-carousel-o>

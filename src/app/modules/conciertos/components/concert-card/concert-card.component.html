@@ -1,6 +1,6 @@
 <div class="container-fluid gallery">
   <div class="row">
-    <ng-container *ngFor="let concierto of conciertos | paginate: { itemsPerPage: 30, currentPage: p }; let i = index ">
+    <ng-container *ngFor="let concierto of conciertos | paginate: { itemsPerPage: 1000, currentPage: p }; let i = index ">
       <!-- Extraer el mes de la fecha del concierto -->
       <ng-container *ngIf="i === 0 || (concierto.fecha_evento | date: 'MMMM y' : 'es') !== (conciertos[i - 1].fecha_evento | date: 'MMMM y')">
         <div class="col-12">
@@ -18,7 +18,14 @@
             <div class="date">
               {{ concierto.fecha_evento | date: 'dd/MM' }}
             </div>
-            <img [src]="baseUrl + concierto.imagen" alt="" (click)="openModal(concierto.imagen)">
+            <!-- <app-lazy-image
+                [baseUrl]="baseUrl"
+                [imagePath]="concierto.imagen"
+                [altText]="concierto.alt_imagen"
+                [imgClass]="''"
+                [clickAction]="openModal.bind(this)">
+            </app-lazy-image> -->
+            <img [src]="baseUrl + concierto.imagen" alt="{{concierto.alt_imagen}}" (click)="openModal(concierto.imagen)">
             <a *ngIf="concierto.datos_licencia && concierto.datos_licencia.toLowerCase() !== 'void'"
                 class="btn btn-info btn-sm" (click)="openLicenciaModal(concierto)">
               <i class="bi bi-info-circle"></i> Info
@@ -43,7 +50,14 @@
                 Sin teloneros
               </ng-template>
             </h4>
-            <h4>{{concierto.sala}}</h4>
+            <!-- <h4>{{concierto.sala}}</h4> -->
+            <h4>
+              <i class="bi bi-geo-alt-fill"></i> <!-- Icono de localización -->
+              <span>{{ concierto.sala }}</span>
+              <a href="{{ concierto.direccion }}" target="_blank">
+                <i class="bi bi-box-arrow-up-right"></i> <!-- Icono para indicar que se abrirá en una nueva pestaña -->
+              </a>
+            </h4>
             <h2>{{concierto.poblacion}}</h2>
           </div>
           <div class="entradas">

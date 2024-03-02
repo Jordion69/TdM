@@ -45,9 +45,7 @@ export class SearchComponent implements OnInit {
     this.selectedProvince = "0";
   }
   getNovedades() {
-    console.log('Botón de novedades pulsado.');
     this.conciertosService.getLastWeekUpdated().subscribe(response => {
-      console.log('Datos recibidos para novedades:', response);
       if (response && response.data) {
         this.conciertosService.updateFilteredConciertos(response.data);
       } else {

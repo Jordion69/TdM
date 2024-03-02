@@ -28,3 +28,18 @@
   text-align: center;
   margin: auto;
  }
+ .video iframe {
+  max-width: 100%;
+  height: auto;
+}
+@media (min-width: 992px) {
+  .video .embed-responsive {
+    max-width: 90%; /* Ajusta este valor según sea necesario */
+    margin: auto; /* Centra el video horizontalmente */
+  }
+}
+@media (max-width: 500px) {
+  .video iframe {
+    height: 200px; // Ajusta esto según necesites
+  }
+}

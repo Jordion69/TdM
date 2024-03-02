@@ -33,7 +33,6 @@ export class CardNewsComponent implements OnInit, OnDestroy {
       // Aquí se hace un casting seguro al tipo NavigationStart
       const navigationEvent = event as NavigationStart;
       if (navigationEvent.navigationTrigger === 'popstate') {
-        console.log("Navegación hacia atrás detectada en CardNewsComponent");
         // Restablecer el estado de búsqueda
         this.NoticiasService.resetBusqueda();
         this.NoticiasService.setBusquedaActiva(false);
@@ -44,39 +43,29 @@ export class CardNewsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.cargarData();
-    console.log(">Noticias cargadas", this.noticias1);
 
     const ultimaBusqueda = this.NoticiasService.getUltimaBusqueda();
     if (ultimaBusqueda) {
       // Si hay una última búsqueda, realiza esa búsqueda
-      console.log("Ultima busqueda", ultimaBusqueda);
-
       this.NoticiasService.searchNoticias(ultimaBusqueda);
     } else {
       // Si no hay una última búsqueda, carga los datos por defecto
       this.cargarData();
     }
     this.NoticiasService.busquedaActual$.subscribe((data: any) => {
-      console.log("Datos recibidos en CardNewsComponent:", data);
       if (Array.isArray(data)) {
         // Si los datos son un array, se asignan directamente
         this.noticias1 = data;
-        console.log("Busqueda actual", data);
 
       } else if (data && data.noticias && Array.isArray(data.noticias)) {
         // Si los datos son un objeto con una propiedad 'noticias'
         this.noticias1 = data.noticias;
-        console.log("Noticias data.noticias ----->", this.noticias1);
         this.noticias1.forEach(noticia => {
-          console.log('Text1 original:', noticia.text1);
           if (noticia.text1 && noticia.text1.toLowerCase() !== 'void') {
             const partes = noticia.text1.split(',').map((parte: string) => {
-              console.log('Parte antes de trim:', parte);
               const parteTrimmed = parte.trim();
-              console.log('Parte después de trim:', parteTrimmed);
               return parteTrimmed;
             });
-            console.log('Partes después de split y map:', partes);
             if (partes.length === 5) {
               [noticia.author, noticia.authorUrl, noticia.licenseType, noticia.licenseUrl, noticia.modification] = partes;
             } else {
@@ -87,11 +76,6 @@ export class CardNewsComponent implements OnInit, OnDestroy {
 
       } else {
         // Si los datos no son ninguno de los anteriores, puedes manejar el caso o asignar un valor por defecto
-        console.log("Formato de datos no reconocido", data);
-        console.log("Noticias antes de forEach:", this.noticias1);
-
-
-
         this.noticias1 = [];
       }
     });
@@ -110,17 +94,13 @@ export class CardNewsComponent implements OnInit, OnDestroy {
     // this.NoticiasService.setBusquedaActiva(false);
   }
   cargarData(): void {
-    console.log("cargarData - Cargando noticias...");
     this.NoticiasService.getFromFourth().subscribe({
       next: (noticias) => {
-        console.log("cargarData - Noticias recibidas:", noticias);
         let arrayExterno = Object.values(noticias);
         if (arrayExterno.length > 0 && Array.isArray(arrayExterno[0])) {
           this.noticias1 = arrayExterno[0] as Array<Noticia>;
-          console.log("noticias1", this.noticias1);
-
+          this.NoticiasService.cargaRestoNoticiasCompletada.next(true);
         }
-        console.log("Noticias recibidades del service", this.noticias1);
       },
       error: (error) => {
         console.error("cargarData - Error al cargar noticias:", error);
@@ -131,7 +111,6 @@ export class CardNewsComponent implements OnInit, OnDestroy {
   }
 
   mostrarDetallesNoticia(id: string) {
-    console.log("mostrarDetallesNoticia - ID de noticia seleccionada:", id);
     const numericId = Number(id);
     const selectedNoticia = this.noticias1.find((noticia: Noticia) => noticia.id === numericId);
 
@@ -171,7 +150,6 @@ export class CardNewsComponent implements OnInit, OnDestroy {
   abrirModalInfo(noticia: Noticia, event: MouseEvent): void {
       event.stopPropagation();
       this.selectedNoticiaForModal = noticia;
-      console.log('selectedNoticiaForModal', this.selectedNoticiaForModal);
       this.cdr.detectChanges();
       $('#licencia-modal').modal('show');
   }

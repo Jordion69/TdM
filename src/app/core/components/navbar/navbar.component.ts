@@ -11,14 +11,12 @@ import { filter, map } from 'rxjs';
 export class NavbarComponent  {
   @ViewChild('navbarToggler') navbarToggler!: ElementRef;
   constructor(private readonly route: ActivatedRoute, private router: Router) {
-    // console.log(this.router.url)
   }
 
 
 
   public onToggleSidenav = () => {
     // Simula un clic en el botón del menú hamburguesa para cerrar el menú
-    console.log('Toggler clicked');
     this.navbarToggler.nativeElement.click();
   };
 

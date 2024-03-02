@@ -11,9 +11,9 @@
     </div>
 
     <ng-container *ngFor="let garito of garitos; let i = index ">
-      <ng-container *ngIf="i === 0 || garito.comunidad_autonoma !== garitos[i - 1].comunidad_autonoma">
+      <ng-container *ngIf="i === 0 || garito.provincia !== garitos[i - 1].provincia">
         <div class="col-12">
-          <h2 class="display-1 py-1 mt-5">{{ garito.comunidad_autonoma }}</h2>
+          <h2 class="display-1 py-1 mt-5">{{ garito.provincia }}</h2>
         </div>
       </ng-container>
       <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
@@ -22,7 +22,8 @@
             <img *ngIf="garito.visitado === 1" src="../../../../../assets/img/ruta666black.png" alt="Visited Badge">
           </div>
           <!-- <app-lazy-image class="card-img-top img-fluid" [imageSrc]="'http://127.0.0.1:8000/storage/' + garito.imagen" [alt]="garito.alt_imagen"></app-lazy-image> -->
-          <img class="card-img-top img-fluid" [src]="baseUrl + garito.imagen" alt="">
+          <!-- <img class="card-img-top img-fluid" [src]="baseUrl + garito.imagen" alt="{{ garito.alt_imagen}}"> -->
+          <app-lazy-image [baseUrl]="baseUrl" [imagePath]="garito.imagen" [altText]="garito.alt_imagen" [imgClass]="'card-img-top img-fluid'"></app-lazy-image>
           <div class="card-body">
             <!-- <h5 class="card-title" (click)="showTextDialog(garito.nombre_garito, garito.direccion)">{{ truncateText(garito.nombre_garito, 19) }}</h5>
             <p class="card-text"  (click)="showTextDialog(garito.nombre_garito, garito.direccion)">{{ truncateText(garito.direccion, 19) }}</p> -->

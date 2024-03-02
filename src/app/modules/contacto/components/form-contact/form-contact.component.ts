@@ -30,7 +30,6 @@ export class FormContactComponent {
     this.http.get('http://127.0.0.1:8000/csrf-cookie').subscribe(() => {
       this.http.get('http://127.0.0.1:8000/api/user').subscribe((response: any) => {
         this.csrfToken = response.csrf_token;
-        console.log('Token CSRF recibido:', this.csrfToken);
       });
     });
   }

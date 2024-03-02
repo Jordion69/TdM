@@ -34,29 +34,14 @@ export class ConcertCardComponent implements OnInit {
   ngOnInit(): void {
     this.cargarTodosLosConciertos();
     this.conciertosService.filteredConciertos$.subscribe(result => {
-      console.log('Datos recibidos en ConcertCardComponent:', result.data);
       if (result.data && result.data.length > 0) {
         this.conciertos = result.data;
-        // this.conciertos.forEach(concierto => {
-        //   console.log('Datos de licencia original:', concierto.datos_licencia);
-        //   if (concierto.datos_licencia && concierto.datos_licencia.toLowerCase() !== 'void') {
-        //     const partes = concierto.datos_licencia.split(',').map(parte => parte.trim());
-        //     [concierto.author, concierto.authorUrl, concierto.licenseType, concierto.licenseUrl, concierto.modification] = partes;
-        //     concierto.showInfo = false; // Inicializa la propiedad para controlar la visibilidad
-        //   } else {
-        //     concierto.showInfo = false;
-        //   }
-        // });
         this.conciertos.forEach(concierto => {
-          console.log('Datos de licencia original:', concierto.datos_licencia);
           if (concierto.datos_licencia && concierto.datos_licencia.toLowerCase() !== 'void') {
             const partes = concierto.datos_licencia.split(',').map((parte: string) => {
-              console.log('Parte antes de trim:', parte);
               const parteTrimmed = parte.trim();
-              console.log('Parte después de trim:', parteTrimmed);
               return parteTrimmed;
             });
-            console.log('Partes después de split y map:', partes);
             [concierto.author, concierto.authorUrl, concierto.licenseType, concierto.licenseUrl, concierto.modification] = partes;
           }
         });
@@ -64,7 +49,6 @@ export class ConcertCardComponent implements OnInit {
         this.showNoResultsMessage = false;
       } else if (result.message) {
         this.showNoResultsMessage = true;
-        console.log(result.message);
       } else {
         this.conciertos = [];
         this.showNoResultsMessage = false;
@@ -73,8 +57,6 @@ export class ConcertCardComponent implements OnInit {
   }
 openModal(imageSrc: string) {
   this.modalImage = this.baseUrl + imageSrc;
-  console.log(this.modalImage);
-
   $('#gallery-modal').on('show.bs.modal', () => {
     const img = new Image();
     img.src = imageSrc;
@@ -101,8 +83,6 @@ toggleInfo(concierto: Concierto): void {
 }
 openLicenciaModal(concierto: Concierto): void {
   this.selectedConciertoForModal = concierto;
-  console.log("selected", this.selectedConciertoForModal);
-
   $('#licencia-modal').modal('show');
 }
 
@@ -118,10 +98,8 @@ cargarTodosLosConciertos() {
 }
 // Asumiendo que Telonero tiene una propiedad 'telonero' que es un string.
 showTelonerosDialog(teloneros: Telonero[]) {
-  console.log('Abriendo modal de teloneros para:', teloneros);
   this.telonerosActuales = teloneros.map(t => t.telonero);
   this.modalContentType = 'teloneros';
-  console.log("teloneros", this.modalContentType);
   $('#teloneros-modal').modal('show');
 }
 closeModal () {
@@ -135,7 +113,7 @@ replaceUnderscoreAndHyphen(banda: string): string {
   return banda.replace(/[_-]/g, ' ');
 }
 tipoDeEntrada(linkEntrada: string) {
-  return linkEntrada.toLowerCase().includes('gratis') || linkEntrada.toLowerCase().includes('inversa');
+  return linkEntrada.toLowerCase().includes('gratis') || linkEntrada.toLowerCase().includes('inversa') || linkEntrada.toLowerCase().includes('taquilla');
 }
 textoEntrada(linkEntrada:string) {
   if (linkEntrada.toLowerCase().includes('gratis')) {
@@ -143,6 +121,9 @@ textoEntrada(linkEntrada:string) {
   }
   if (linkEntrada.toLowerCase().includes('inversa')) {
     return 'Taquilla inversa';
+  }
+  if (linkEntrada.toLowerCase().includes('taquilla')) {
+    return 'Puntos de venta en cartel';
   }
   return 'Entrada sin denominación';
 }

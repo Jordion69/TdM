@@ -6,7 +6,9 @@
 </section>
 <section class="conciertos py-5">
   <div class="container-fluid color-overlay d-flex flex-column justify-content-center align-items-center fade-in-left">
-    <app-title [nombre]="'próximos conciertos'"></app-title>
+    <a href="" routerLink="/lista_conciertos">
+      <app-title [nombre]="'próximos conciertos'"></app-title>
+    </a>
   </div>
   <div class="slider slider-concerts fade-in-right">
     <app-slider-concerts></app-slider-concerts>
@@ -14,19 +16,25 @@
 </section>
 <section class="container-fluid news py-5">
   <div class="container-fluid color-overlay d-flex flex-column justify-content-center align-items-center fade-in-left">
-    <app-title [nombre]="'últimas noticias'"></app-title>
+    <a href="" routerLink="/lista_noticias">
+      <app-title [nombre]="'últimas noticias'"></app-title>
+    </a>
   </div>
   <div class="slider slider-news fade-in-right">
-    <app-slider-news></app-slider-news>
+      <app-slider-news></app-slider-news>
   </div>
 </section>
 
 <section class="clubs py-5">
   <div class="container-fluid color-overlay d-flex flex-column justify-content-center align-items-center fade-in-left">
-    <app-title [nombre]="'garitos'"></app-title>
+    <a href="" routerLink="/lista_garitos">
+      <app-title [nombre]="'garitos'"></app-title>
+    </a>
   </div>
   <div class="slider slider-clubs fade-in-right">
+
       <app-slider-clubs></app-slider-clubs>
+
   </div>
 
 </section>

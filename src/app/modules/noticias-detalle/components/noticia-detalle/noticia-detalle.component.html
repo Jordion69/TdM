@@ -17,13 +17,17 @@
           <p class="h6">{{ noticia?.texto2 }}</p>
         </div>
         <div class="video d-flex justify-content-center my-5">
-          <iframe width="560" height="315"
-            [src]="sanitizer.bypassSecurityTrustResourceUrl(noticia?.link_video)"
-            title="Reproductor de video de YouTube"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
+          <!-- <div class="embed-responsive embed-responsive-16by9"> -->
+            <iframe
+              width="80%" height="500"
+              [src]="sanitizer.bypassSecurityTrustResourceUrl(noticia?.link_video)"
+              title="Reproductor de video de YouTube"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen>
+            </iframe>
+          <!-- </div> -->
+
         </div>
         <div *ngIf="noticia?.texto3" class="text-1 col-md-8 offset-md-2 my-5">
             <p class="h6">{{ noticia?.texto3 }}</p>
@@ -32,10 +36,13 @@
         <div *ngIf="noticia?.texto4" class="text-1 col-md-8 offset-md-2 my-5">
             <p class="h6">{{ noticia?.texto4 }}</p>
         </div>
-
+        <div class="text-1 col-md-8 offset-md-2 my-5">
+          <p><strong>{{noticia?.text2}}</strong></p>
+        </div>
       </div>
       <div class="col-lg-2"></div>
     </div>
   </div>
+
 </section>
 

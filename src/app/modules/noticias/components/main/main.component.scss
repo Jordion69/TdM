@@ -1,9 +1,11 @@
 ::ng-deep owl-carousel-o .owl-item {
-  img {
+
+
+   img {
     display: block;
     max-width: 100%; // Establece el ancho máximo al 100% del contenedor
     height: auto; // Ajusta la altura automáticamente para mantener la relación de aspecto
-    max-height: 500px; // Establece una altura máxima de 500px
+    max-height: 650px; // Establece una altura máxima de 500px
     object-fit: cover; // Cubre el área disponible sin perder la relación de aspecto
     object-position: center; // Centra la imagen dentro del elemento
   }
@@ -74,7 +76,7 @@
 }
 @media (min-width: 769px) {
   ::ng-deep owl-carousel-o .owl-item img {
-    height: 500px; // Altura fija para pantallas grandes
+    height: 650px; // Altura fija para pantallas grandes
   }
 }
 

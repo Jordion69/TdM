@@ -48,13 +48,11 @@ export class SliderNewsComponent implements OnInit{
 
 
   public cargarData(): void {
-    console.log('SliderNewsComponent - Solicitando datos');
     this.NoticiasService.getFirstSeven().subscribe({
       next: (noticias) => {
         let arrayExterno = Object.values(noticias);
         if (arrayExterno.length > 0 && Array.isArray(arrayExterno[0])) {
           this.noticias = arrayExterno[0] as Array<Noticia>;
-          console.log("Primeras siete noticias:", this.noticias);
           sessionStorage.setItem('noticiasFirstSeven', JSON.stringify(this.noticias));
           this.dataLoaded = true;
           this.cdr.detectChanges();
@@ -72,7 +70,6 @@ export class SliderNewsComponent implements OnInit{
 
 // En tu componente de swiper
 mostrarDetallesNoticia(id: string) {
-  console.log("SliderNewsComponent - mostrarDetallesNoticia - ID de noticia seleccionada:", id);
   const numericId = Number(id);
   const noticias = JSON.parse(sessionStorage.getItem('noticiasFirstSeven') || '[]');
   const selectedNoticia = noticias.find((noticia: Noticia) => noticia.id === numericId);

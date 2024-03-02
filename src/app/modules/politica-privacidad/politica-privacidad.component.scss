@@ -1,0 +1,33 @@
+.politica-privacidad {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+
+  h1 {
+      color: #333;
+      margin-bottom: 20px;
+  }
+
+  h2 {
+      color: #666;
+      margin-top: 20px;
+      margin-bottom: 10px;
+  }
+
+  p {
+      color: #444;
+      line-height: 1.6;
+      margin-bottom: 10px;
+  }
+
+  a {
+      color: #007bff;
+      text-decoration: none;
+
+      &:hover {
+          text-decoration: underline;
+      }
+  }
+
+  // Añade aquí más estilos según necesites
+}

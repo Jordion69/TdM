@@ -1,0 +1,53 @@
+.politica-cookies {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff; // Considera tu color de fondo
+  color: #333; // Ajusta según tu esquema de color
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); // Opcional, para darle un poco de profundidad
+
+  h1 {
+      color: #007bff; // Ajusta al color principal de tu sitio
+      margin-bottom: 20px;
+  }
+
+  h2 {
+      color: #0056b3; // Un poco más oscuro que el color principal para contraste
+      margin-top: 20px;
+      margin-bottom: 10px;
+  }
+
+  p, li {
+      color: #333; // Color de texto general
+      line-height: 1.6;
+      margin-bottom: 10px;
+  }
+
+  ul {
+      padding-left: 20px;
+  }
+
+  a {
+      color: #007bff;
+      text-decoration: none;
+
+      &:hover {
+          text-decoration: underline;
+      }
+  }
+
+  // Considera agregar estilos para botones o enlaces específicos dentro de tu política
+  button {
+      background-color: #007bff;
+      color: #ffffff;
+      border: none;
+      padding: 10px 15px;
+      margin: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+
+      &:hover {
+          background-color: #0056b3;
+      }
+  }
+}

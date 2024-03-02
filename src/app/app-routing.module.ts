@@ -33,6 +33,13 @@ const routes: Routes = [
   loadChildren: () => import('./modules/noticias-detalle/noticias-detalle.module')
   .then(m => m.NoticiasDetalleModule)
   },
+  { path: 'politica-privacidad',
+    loadChildren: () => import('./modules/politica-privacidad/politica-privacidad.module')
+    .then(m => m.PoliticaPrivacidadModule) },
+  { path: 'politica-cookies',
+  loadChildren: () => import('./modules/politica-cookies/politica-cookies.module')
+  .then(m => m.PoliticaCookiesModule) },
+
 
 
   { path: '**', component: PagenotfoundComponent}
@@ -41,7 +48,8 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
     enableTracing: true,
-    preloadingStrategy: PreloadAllModules
+    preloadingStrategy: PreloadAllModules,
+    scrollPositionRestoration: 'enabled',
   })],
   exports: [RouterModule]
 

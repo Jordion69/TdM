@@ -1,20 +1,52 @@
-// lazy-image.component.ts
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-lazy-image',
-  templateUrl: './lazy-image.component.html',
-  styleUrls: ['./lazy-image.component.scss'],
+  template: `<img [ngClass]="imgClass" [src]="loaded ? fullImageUrl : placeholder" alt="{{ altText }}" #imageRef (click)="handleClick()">`,
+  styles: []
 })
-export class LazyImageComponent {
-  @Input() imageSrc: string ='';
-  @Input() alt: string = '';
-  imageLoaded: boolean = false;
+export class LazyImageComponent implements OnInit, AfterViewInit {
+  @Input() baseUrl: string | undefined;
+  @Input() imagePath: string | undefined;
+  @Input() altText: string | undefined;
+  @Input() imgClass: string = '';
+  @Input() clickAction: Function | undefined;
 
-  constructor() {}
+  @ViewChild('imageRef') imageRef: ElementRef | undefined;
 
-  onImageLoad(): void {
-    this.imageLoaded = true;
+  loaded = false;
+  fullImageUrl: string | undefined;
+  placeholder = 'path/to/your/placeholder/image.jpg'; // Opcional: una imagen de placeholder
+
+  constructor(private el: ElementRef) {}
+
+  ngOnInit(): void {
+    if (this.baseUrl && this.imagePath) {
+      this.fullImageUrl = this.baseUrl + this.imagePath;
+    }
+  }
+
+  ngAfterViewInit(): void {
+    this.observeImage();
+  }
+
+  observeImage() {
+    if (this.imageRef) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(({ isIntersecting }) => {
+          if (isIntersecting) {
+            this.loaded = true;
+            observer.unobserve(this.imageRef!.nativeElement);
+          }
+        });
+      });
+      observer.observe(this.imageRef.nativeElement);
+    }
+  }
+
+  handleClick() {
+    if (this.clickAction) {
+      this.clickAction(this.imagePath);
+    }
   }
 }
-
