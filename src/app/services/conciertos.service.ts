@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Concierto } from '../interfaces/conciertos';
+import { Concierto, Telonero } from '../interfaces/conciertos';
 import { HttpClient } from '@angular/common/http';
 import { Provincia } from '../interfaces/provincia';
 import { environment } from 'src/environments/environments';
@@ -82,7 +82,11 @@ public resetSearch(): void {
         filteredConciertos = filteredConciertos.filter(concierto => {
         const matchNombre =  concierto.nombre.toLowerCase().trim().includes(lowerSearchText);
         const matchBanda = concierto.banda_principal.toLowerCase().trim().includes(lowerSearchText);
-        return matchBanda || matchNombre;
+        const matchTeloneros = concierto.teloneros.some((telonero: Telonero) => {
+          return telonero.telonero.toLowerCase().trim().includes(lowerSearchText);
+        });
+
+        return matchBanda || matchNombre || matchTeloneros;
       });
       }
       if (Array.isArray(filteredConciertos) && selectedProvince !== '0') {
