@@ -17,7 +17,7 @@ import { CookieService } from 'ngx-cookie-service';
     PagenotfoundComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     BrowserAnimationsModule,
     CoreModule,

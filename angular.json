@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/templo-del-metal",
+            "outputPath": "dist/templo-del-metal/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -121,6 +121,66 @@
             ]
         }
 
+          },
+          "server": {
+            "builder": "@angular-devkit/build-angular:server",
+            "options": {
+              "outputPath": "dist/templo-del-metal/server",
+              "main": "server.ts",
+              "tsConfig": "tsconfig.server.json",
+              "inlineStyleLanguage": "scss"
+            },
+            "configurations": {
+              "production": {
+                "outputHashing": "media",
+                "fileReplacements": [
+                  {
+                    "replace": "src/environments/environments.ts",
+                    "with": "src/environments/environments.prod.ts"
+                  }
+                ]
+              },
+              "development": {
+                "optimization": false,
+                "sourceMap": true,
+                "extractLicenses": false,
+                "vendorChunk": true
+              }
+            },
+            "defaultConfiguration": "production"
+          },
+          "serve-ssr": {
+            "builder": "@nguniversal/builders:ssr-dev-server",
+            "configurations": {
+              "development": {
+                "browserTarget": "templo-del-metal:build:development",
+                "serverTarget": "templo-del-metal:server:development"
+              },
+              "production": {
+                "browserTarget": "templo-del-metal:build:production",
+                "serverTarget": "templo-del-metal:server:production"
+              }
+            },
+            "defaultConfiguration": "development"
+          },
+          "prerender": {
+            "builder": "@nguniversal/builders:prerender",
+            "options": {
+              "routes": [
+                "/"
+              ]
+            },
+            "configurations": {
+              "production": {
+                "browserTarget": "templo-del-metal:build:production",
+                "serverTarget": "templo-del-metal:server:production"
+              },
+              "development": {
+                "browserTarget": "templo-del-metal:build:development",
+                "serverTarget": "templo-del-metal:server:development"
+              }
+            },
+            "defaultConfiguration": "production"
           }
         }
       }

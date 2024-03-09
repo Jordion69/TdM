@@ -50,7 +50,8 @@ const routes: Routes = [
     enableTracing: true,
     preloadingStrategy: PreloadAllModules,
     scrollPositionRestoration: 'enabled',
-  })],
+    initialNavigation: 'enabledBlocking'
+})],
   exports: [RouterModule]
 
 })
