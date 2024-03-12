@@ -14,9 +14,33 @@ type GaritosResult = {
 export class GaritosService {
 
   private apiUrl = environment.apiUrl;
+  private cache = new Map<string, any>();
+  private cacheExpiration = new Map<string, number>();
+  private cacheDuration = 300000;
   private _filteredGaritos = new BehaviorSubject<GaritosResult>({ data: [] });
   filteredGaritos$ = this._filteredGaritos.asObservable();
   constructor(private http: HttpClient) {}
+  private setCache(key: string, data: any): void {
+    this.cache.set(key, data);
+    this.cacheExpiration.set(key, Date.now() + this.cacheDuration);
+  }
+
+  // private getCache(key: string): any {
+  //   if (this.cache.has(key) && this.cacheExpiration.get(key) > Date.now()) {
+  //     return of(this.cache.get(key));
+  //   }
+  //   return null;
+  // }
+
+  private getCache(key: string): any {
+    const expirationTime = this.cacheExpiration.get(key);
+
+    // Comprobamos si expirationTime es undefined
+    if (expirationTime !== undefined && expirationTime > Date.now()) {
+      return of(this.cache.get(key)); // Aquí también podrías comprobar si this.cache.get(key) es undefined, aunque no debería ser necesario si la lógica asegura su presencia.
+    }
+    return null;
+  }
 
   public getRandomSeven(): Observable<Garito[]> {
     return this.http.get<Garito[]>(`${this.apiUrl}/garitos/random-seven`).pipe(
@@ -34,64 +58,23 @@ export class GaritosService {
   public resetSearch(): void {
     // Restablecer el BehaviorSubject a su estado inicial
     this._filteredGaritos.next({ data: [] });
-  }
-  public getAllGaritosMin(): Observable<Garito[]> {
-    const dataFromSession = sessionStorage.getItem('garitosMin'); // Cambia el nombre de la sesión si es necesario
-    if (dataFromSession) {
-        try {
-            const parsedData = JSON.parse(dataFromSession);
-            const now = new Date().getTime();
-            if (now - parsedData.timestamp < 24 * 60 * 60 * 1000 && Array.isArray(parsedData.data)) {
-                return of(parsedData.data);
-            }
-        } catch (e) {
-            console.error('Error al parsear datos de sessionStorage:', e);
-            sessionStorage.removeItem('garitosMin');
-        }
-    }
-    return this.http.get<Garito[]>(`${this.apiUrl}/garitos/all-by-province-min`).pipe(
-        tap(garitos => {
-            const dataToStore = {
-                timestamp: new Date().getTime(),
-                data: garitos
-            };
-            sessionStorage.setItem('garitosMin', JSON.stringify(dataToStore));
-        }),
-        catchError(error => {
-            console.error('Error al obtener garitos mínimos:', error);
-            return of([]); // Devolver un arreglo vacío en caso de error
-        })
+}
+public getAllGaritos(): Observable<Garito[]> {
+  const cacheKey = 'allGaritos';
+  const cachedResponse = this.getCache(cacheKey);
+  if (cachedResponse) {
+    return cachedResponse;
+  } else {
+    return this.http.get<Garito[]>(`${this.apiUrl}/garitos/all-by-province`).pipe(
+      tap(data => this.setCache(cacheKey, data)),
+      catchError(error => {
+        console.error('Error al obtener garitos:', error);
+        return of([]);
+      })
     );
+  }
 }
 
-  public getAllGaritos(): Observable<Garito[]> {
-    const dataFromSession = sessionStorage.getItem('garitos');
-    if (dataFromSession) {
-        try {
-            const parsedData = JSON.parse(dataFromSession);
-            const now = new Date().getTime();
-            if (now - parsedData.timestamp < 24 * 60 * 60 * 1000 && Array.isArray(parsedData.data)) {
-                return of(parsedData.data);
-            }
-        } catch (e) {
-            console.error('Error al parsear datos de sessionStorage:', e);
-            sessionStorage.removeItem('garitos');
-        }
-    }
-    return this.http.get<Garito[]>(`${this.apiUrl}/garitos/all-by-province`).pipe(
-        tap(garitos => {
-            const dataToStore = {
-                timestamp: new Date().getTime(),
-                data: garitos
-            };
-            sessionStorage.setItem('garitos', JSON.stringify(dataToStore));
-        }),
-        catchError(error => {
-            console.error('Error al obtener garitos:', error);
-            return of([]); // Devolver un arreglo vacío en caso de error
-        })
-    );
-}
  updateFilteredGaritos(garitos: Garito[]): void {
     // Crear un objeto GaritosResult con los garitos como la propiedad 'data'
     const result: GaritosResult = { data: garitos };

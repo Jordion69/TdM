@@ -18,14 +18,8 @@
             <div class="date">
               {{ concierto.fecha_evento | date: 'dd/MM' }}
             </div>
-            <!-- <app-lazy-image
-                [baseUrl]="baseUrl"
-                [imagePath]="concierto.imagen"
-                [altText]="concierto.alt_imagen"
-                [imgClass]="''"
-                [clickAction]="openModal.bind(this)">
-            </app-lazy-image> -->
-            <img [src]="baseUrl + concierto.imagen" alt="{{concierto.alt_imagen}}" (click)="openModal(concierto.imagen)">
+
+            <img [src]="baseUrl + concierto.imagen" alt="{{concierto.alt_imagen}}" (click)="openModal(concierto.imagen)" loading="lazy">
             <a *ngIf="concierto.datos_licencia && concierto.datos_licencia.toLowerCase() !== 'void'"
                 class="btn btn-info btn-sm" (click)="openLicenciaModal(concierto)">
               <i class="bi bi-info-circle"></i> Info

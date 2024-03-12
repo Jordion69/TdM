@@ -1,9 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { Concierto, Telonero } from '../interfaces/conciertos';
 import { HttpClient } from '@angular/common/http';
 import { Provincia } from '../interfaces/provincia';
 import { environment } from 'src/environments/environments';
 import { BehaviorSubject, Observable, catchError, of, tap } from 'rxjs';
+import { makeStateKey, TransferState } from '@angular/platform-browser';
+import { isPlatformServer } from '@angular/common';
 type ConciertosResult = {
   data: Concierto[];
   message?: string;
@@ -18,7 +20,11 @@ export class ConciertosService {
   private apiUrl = environment.apiUrl;
   private _filteredConciertos = new BehaviorSubject<ConciertosResult>({ data: [] });
   filteredConciertos$ = this._filteredConciertos.asObservable();
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private transferState: TransferState,
+    @Inject(PLATFORM_ID) private platformId: Object
+    ) { }
   getProvincias(): Observable<Provincia[]> {
     return this.http.get<Provincia[]>(`${this.apiUrl}${environment.endpoints.getProvinceList}`);
   }
@@ -46,34 +52,27 @@ public resetSearch(): void {
   // Restablecer el BehaviorSubject a su estado inicial
   this._filteredConciertos.next({ data: [] });
 }
-  getAllFromToday(): Observable<Concierto[]> {
-    const dataFromSession = sessionStorage.getItem('conciertos');
-    if (dataFromSession) {
-      try {
-        const parsedData =JSON.parse(dataFromSession);
-        const now = new Date().getTime();
-        if (now -parsedData.timestamp < 24 * 60 * 60 * 1000 && Array.isArray(parsedData.data)) {
-          return of(parsedData.data);
-        }
-      } catch (error) {
-        console.error('Error al parsear datos de sessionStorage:', error);
-        sessionStorage.removeItem('conciertos');
-      }
-    }
+getAllFromToday(): Observable<Concierto[]> {
+  const CONCIERTOS_KEY = makeStateKey<Concierto[]>('conciertos-all-from-today');
+
+  if (this.transferState.hasKey(CONCIERTOS_KEY)) {
+    const conciertos = this.transferState.get<Concierto[]>(CONCIERTOS_KEY, []);
+    this.transferState.remove(CONCIERTOS_KEY);
+    return of(conciertos);
+  } else {
     return this.http.get<Concierto[]>(`${this.apiUrl}${environment.endpoints.conciertos.allFromToday}`).pipe(
       tap(conciertos => {
-        const dataToStore = {
-          timestamp: new Date().getTime(),
-          data: conciertos
-        };
-      sessionStorage.setItem('conciertos', JSON.stringify(dataToStore));
+        if (isPlatformServer(this.platformId)) {
+          this.transferState.set(CONCIERTOS_KEY, conciertos);
+        }
       }),
       catchError(error => {
-        console.log('Error al obtener conciertos', error);
+        console.error('Error al obtener conciertos', error);
         return of([]);
       })
     );
   }
+}
   searchConciertos(searchText: string, selectedProvince: string): void{
     this.getAllFromToday().subscribe(response => {
       let filteredConciertos: any = Object.values(response)[0];

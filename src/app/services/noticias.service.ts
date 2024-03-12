@@ -1,8 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Noticia } from '../interfaces/noticia';
 import { Observable, forkJoin, map, of, tap, BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environments';
+import { isPlatformServer } from '@angular/common';
+import { makeStateKey, TransferState } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +20,11 @@ export class NoticiasService {
   public cargaRestoNoticiasCompletada = new BehaviorSubject<boolean>(false);
 
   private selectedNoticia: Noticia | null = null;
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private transferState: TransferState,
+    @Inject(PLATFORM_ID) private platformId: Object
+    ) { }
 
   setSelectedNoticia(noticia: Noticia | null) {
     this.selectedNoticia = noticia;
@@ -55,40 +61,45 @@ export class NoticiasService {
   public getOnlyNewFromSeven(id: number): Noticia | undefined {
     return this.noticiasRecibidas.find(noticia => noticia.id === id);
   }
-  public getFirstThree() {
-    return this.http.get<Noticia[]>(`${environment.apiUrl}${environment.endpoints.noticias.firstThree}`);
+  // public getFirstThree() {
+  //   return this.http.get<Noticia[]>(`${environment.apiUrl}${environment.endpoints.noticias.firstThree}`);
+  // }
+  public getFirstThree(): Observable<Noticia[]> {
+    const key = makeStateKey<Noticia[]>('noticiasFirstThree');
+
+    if (this.transferState.hasKey(key)) {
+      const noticias = this.transferState.get<Noticia[]>(key, []);
+      this.transferState.remove(key); // Opcional, si quieres limpiar después de la lectura
+      return of(noticias);
+    } else {
+      return this.http.get<Noticia[]>(`${environment.apiUrl}${environment.endpoints.noticias.firstThree}`).pipe(
+        tap((data: Noticia[]) => {
+          if (isPlatformServer(this.platformId)) {
+            this.transferState.set(key, data);
+          }
+        })
+      );
+    }
   }
-
-
-
-
 
   public getFromFourth(): Observable<Noticia[]> {
-    const sessionStorageKey = 'noticiasFromFourth';
-    const storedData = sessionStorage.getItem(sessionStorageKey);
-    if (storedData) {
-      try {
-        const parsedData = JSON.parse(storedData);
-        const now = new Date().getTime();
-        if (now - parsedData.timestamp < 3600000) {
-          this.noticiasRecibidas = parsedData.data;
-          return of(parsedData.data as Noticia[]);
-        }
-      } catch (e) {
-        console.error('Error al parsear los datos de sessionStorage:', e);
-        sessionStorage.removeItem(sessionStorageKey);
-      }
+    const key = makeStateKey<Noticia[]>('noticiasFromFourth');
+
+    if (this.transferState.hasKey(key)) {
+      const noticias = this.transferState.get<Noticia[]>(key, []);
+      this.transferState.remove(key); // Opcional, si quieres limpiar después de la lectura
+      return of(noticias);
+    } else {
+      return this.http.get<Noticia[]>(`${environment.apiUrl}${environment.endpoints.noticias.fromFourth}`).pipe(
+        tap((data: Noticia[]) => {
+          if (isPlatformServer(this.platformId)) {
+            this.transferState.set(key, data);
+          }
+        })
+      );
     }
-
-    return this.http.get<Noticia[]>(`${environment.apiUrl}${environment.endpoints.noticias.fromFourth}`).pipe(
-      tap((data: Noticia[]) => {
-        this.noticiasRecibidas = data;
-        sessionStorage.setItem(sessionStorageKey, JSON.stringify({ timestamp: new Date().getTime(), data: data }));
-
-        this._busquedaActual.next(this.noticiasRecibidas);
-      })
-    );
   }
+
   getNoticiaById(id: number): Observable<Noticia> {
     return this.http.get<Noticia>(`${environment.apiUrl}${environment.endpoints.noticias.getById}${id}`);
   }

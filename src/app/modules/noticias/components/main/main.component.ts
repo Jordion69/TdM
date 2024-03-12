@@ -44,9 +44,6 @@ export class MainComponent implements OnInit {
   }
   private refreshCarousel() {
     if (this.carousel) {
-      // Lógica para actualizar/refrescar el carrusel
-      // Esto depende de cómo ngx-owl-carousel-o maneje el refresco
-      // Por ejemplo, podría ser algo como:
       this.cdr.detectChanges();
     }
   }

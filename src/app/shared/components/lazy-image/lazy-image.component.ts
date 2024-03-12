@@ -2,7 +2,7 @@ import { Component, Input, OnInit, AfterViewInit, ElementRef, ViewChild } from '
 
 @Component({
   selector: 'app-lazy-image',
-  template: `<img [ngClass]="imgClass" [src]="loaded ? fullImageUrl : placeholder" alt="{{ altText }}" #imageRef (click)="handleClick()">`,
+  template: `<img [ngClass]="imgClass" [src]="loaded ? fullImageUrl : placeholder" alt="{{ altText }}" loading="lazy" #imageRef (click)="handleClick()">`,
   styles: []
 })
 export class LazyImageComponent implements OnInit, AfterViewInit {
